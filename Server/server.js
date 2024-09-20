@@ -1,13 +1,33 @@
 import express from "express";
+import postsRoute from "./Routes/posts.routes.js"
+import authRoute from "./Routes/auth.routes.js"
+// import userRoute from "./Routes/user.routes.js"
+
 const app = express();
 const port = 3005;
 
 app.use(express.json());
 
-app.use("/", (req, res) => {
-  res.send("hii there");
-});
+app.get("/",(req,res) => {
+    res.send("kjddk;")
+})
 
-app.listen(port, (port) => {
+app.use("/api/posts",postsRoute);
+app.use("/api/auth",authRoute);
+// app.use("/api/user",userRoute);
+
+//If error occured while connecting to the server
+app.use((req,res,err) => {
+    const statusCode = err.statusCode || 500;
+    const errorMessage = err.errorMessage || "Internal Server Error";
+
+    res.status(statusCode).json({
+        success: false,
+        StatusCode: statusCode,
+        Error: errorMessage
+    })
+})
+
+app.listen(port, () => {
   console.log(`App is running on ${port}`);
 });
