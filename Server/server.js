@@ -1,10 +1,11 @@
 import express from "express";
 import postsRoute from "./Routes/posts.routes.js"
 import authRoute from "./Routes/auth.routes.js"
+import ENV_VARIABLES from "./constants.js"
 // import userRoute from "./Routes/user.routes.js"
 
 const app = express();
-const port = 3005;
+const port = ENV_VARIABLES.PORT;
 
 app.use(express.json());
 
