@@ -23,3 +23,4 @@ model User {
 // @unique - Ensures that all values in this field are unique across all records.
 // @default(now()) - Sets the default value of the field to the current date and time when a new record is created.
 // ? -  Indicates that the field is optional.
+// npm prisma db push - Important command

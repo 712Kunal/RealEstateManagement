@@ -7,7 +7,7 @@ const signup = async (req, res) => {
   try {
     const { username, email, password } = req.body;
     if (!username || !email || !password) {
-      return res.status(400).json({ error: "Missing required fields" });
+      return res.status(400).json({ error: "Missing required fields!!" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -30,8 +30,8 @@ const signup = async (req, res) => {
       password: password,
     });
   } catch (error) {
-    console.error(`Signup error ${error}`);
-    res.status(500).json({ error: "Internal server error" });
+    console.error(`Signup error => ${error}`);
+    res.status(500).json({ error: "Failed to create user!!" });
   }
 };
 
