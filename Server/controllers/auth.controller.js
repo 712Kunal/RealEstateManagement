@@ -2,7 +2,7 @@ import bcrypt from "bcrypt"; //Library to hashing the passwords
 import prisma from "../lib/prisma.js";
 
 const signup = async (req, res) => {
-  //db operation
+  //DB SIGNUP OPERATION
 
   try {
     const { username, email, password } = req.body;
@@ -12,7 +12,7 @@ const signup = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a user and save it to the database
+    // CREATE A USER AND SAVE IT TO THE DATABASE
     const newUser = await prisma.user.create({
       data: {
         username,
@@ -35,8 +35,36 @@ const signup = async (req, res) => {
   }
 };
 
-const login = (req, res) => {
-  //db operation
+const login = async (req, res) => {
+  //DB LOGIN OPERATION
+  const { username, password } = req.body;
+
+  try {
+    // CHECK IF THE USER EXIST
+    const user = await prisma.user.findUnique({
+      where: { username: username },
+    });
+
+    if (!user) {
+      res
+        .status(401)
+        .json({ message: "Invalid Credentials!!,User doesn't exist" });
+    }
+
+    // CHECK IF THE PASSWORD IS CORRECT
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      res
+        .status(401)
+        .json({ message: "Invalid Credentials!!,Invalid password" });
+    }
+
+    // GERNERATE COOKIE TOKEN AND GENERATE IT TO THE USER
+    res.setHeader()
+  } catch (error) {
+    console.error(`Login error => ${error}`);
+    res.status(500).json({ error: "Failed to login user!!" });
+  }
 };
 
 const logout = (req, res) => {
