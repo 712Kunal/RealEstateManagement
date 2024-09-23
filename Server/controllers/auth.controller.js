@@ -60,7 +60,7 @@ const login = async (req, res) => {
     }
 
     // GERNERATE COOKIE TOKEN AND GENERATE IT TO THE USER
-    res.setHeader()
+    
   } catch (error) {
     console.error(`Login error => ${error}`);
     res.status(500).json({ error: "Failed to login user!!" });
