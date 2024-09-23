@@ -1,5 +1,7 @@
-import bcrypt from "bcrypt"; //Library to hashing the passwords
+import bcrypt from "bcrypt"; //Library to hashing the passwords to store in database
 import prisma from "../lib/prisma.js";
+import jwt from "jsonwebtoken";
+import ENV_VARIABLES from "../constants.js";
 
 const signup = async (req, res) => {
   //DB SIGNUP OPERATION
@@ -60,7 +62,23 @@ const login = async (req, res) => {
     }
 
     // GERNERATE COOKIE TOKEN AND GENERATE IT TO THE USER
-    
+    const age = 1000 * 60 * 60 * 24 * 7; //expires after every 7 days (milliseconds in 7 days)
+    const token = jwt.sign(
+      {
+        id: user.id,
+      },
+      ENV_VARIABLES.JWT_SECRETKEY,
+      { expiresIn: age }
+    );
+
+    res
+      .cookie("access_token", token, {
+        httpOnly: true,
+        Expires: age,
+        secure: true,
+      })
+      .status(200)
+      .json({ message: "User logedin successfully!!" });
   } catch (error) {
     console.error(`Login error => ${error}`);
     res.status(500).json({ error: "Failed to login user!!" });
