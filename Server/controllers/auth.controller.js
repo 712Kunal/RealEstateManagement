@@ -74,7 +74,7 @@ const login = async (req, res) => {
     res
       .cookie("access_token", token, {
         httpOnly: true,
-        Expires: age,
+        maxAge: age,
         secure: true,
       })
       .status(200)
@@ -86,7 +86,17 @@ const login = async (req, res) => {
 };
 
 const logout = (req, res) => {
-  //db operation
+  //DB LOGOUT OPERATION
+
+  try {
+    res
+      .clearCookie("access_token")
+      .status(200)
+      .json({ message: "User loged out successfully!!" });
+  } catch (error) {
+    console.error(`Logout error => ${error}`);
+    res.status(500).json({ error: "Failed to logout user!!" });
+  }
 };
 
 const google = (req, res) => {
