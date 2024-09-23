@@ -1,13 +1,52 @@
 import bcrypt from "bcrypt"; //Library to hashing the passwords to store in database
+import zod from "zod";
 import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
 import ENV_VARIABLES from "../constants.js";
 
+// INPUT VALIDATION USING ZOD
+
+const signupSchema = zod.object({
+  username: zod
+    .string()
+    .min(2, { message: "Username must contains atleast two characters" }),
+  email: zod.string().email({ message: "Invalid email" }),
+  password: zod
+    .string()
+    .min(6, { message: "Password must contains atleast 6 characters" }),
+});
+
+const loginSchema = zod.object({
+  username: zod
+    .string()
+    .min(2, { message: "Username must contains atleast 2 characters" }),
+  password: zod
+    .string()
+    .min(6, { message: "Password must contains atleast 6 characters" }),
+});
+
+// MIDDLEWARES FOR THE SIGNUP AND LOGIN
+
+const validateInput = (schema) => (req, res, next) => {
+  try {
+    const validatedData = schema.safeParse(req.body);
+
+    if (!validatedData.success) {
+      return res.status(400).json({ message: "Input fields must be valid" });
+    }
+
+    req.validatedInputs = validatedData.data;
+    next();
+  } catch (error) {
+    console.error(`Input Validation Error => ${error}`);
+    res.status(400).json({ message: "Input fields must be valid" });
+  }
+};
+
 const signup = async (req, res) => {
   //DB SIGNUP OPERATION
-
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password } = req.validatedInputs;
     if (!username || !email || !password) {
       return res.status(400).json({ error: "Missing required fields!!" });
     }
@@ -39,7 +78,7 @@ const signup = async (req, res) => {
 
 const login = async (req, res) => {
   //DB LOGIN OPERATION
-  const { username, password } = req.body;
+  const { username, password } = req.validatedInputs;
 
   try {
     // CHECK IF THE USER EXIST
@@ -100,7 +139,15 @@ const logout = (req, res) => {
 };
 
 const google = (req, res) => {
-  //db operation
+  //DB LOGIN WITH GOOGLE OPERATION
 };
 
-export { signup, login, logout, google };
+export {
+  signup,
+  login,
+  logout,
+  google,
+  signupSchema,
+  loginSchema,
+  validateInput,
+};
