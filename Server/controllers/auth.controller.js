@@ -127,6 +127,12 @@ const google = (req, res) => {
   //DB LOGIN WITH GOOGLE OPERATION
 };
 
+const sendOTPVerification = () => {
+  try {
+    const otp = `${Math.floor(1000 + Math.random() * 9000)}`;
+  } catch (error) {}
+};
+
 export {
   signup,
   login,
