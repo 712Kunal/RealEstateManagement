@@ -135,8 +135,8 @@ const sendMail = async(req,res) => {
     secure: true,
     port: 587,
     auth: {
-      user: ,
-      pass: 
+      user: ENV_VARIABLES.SENDERS_MAIL,
+      pass: ENV_VARIABLES.PASSWORD
     },
   });
 };
