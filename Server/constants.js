@@ -7,6 +7,8 @@ const ENV_VARIABLES = {
   LOCALDB_URI: process.env.LOCALDB_URL,
   JWT_SECRETKEY: process.env.JWT_SECRET_KEY,
   CLIENT_URL: process.env.CLIENT_URL,
+  SENDERS_MAIL: process.env.SENDERS_MAIL,
+  PASSWORD: process.env.PASS
 };
 
 export default ENV_VARIABLES;

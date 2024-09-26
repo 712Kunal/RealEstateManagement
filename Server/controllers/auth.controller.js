@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt"; //Library to hashing the passwords to store in database
 import zod from "zod";
+import nodemailer from "nodemailer";
 import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
 import ENV_VARIABLES from "../constants.js";
@@ -127,7 +128,20 @@ const google = (req, res) => {
   //DB LOGIN WITH GOOGLE OPERATION
 };
 
-const sendOTPVerification = () => {
+const sendMail = async(req,res) => {
+
+  const transporter = nodemailer.createTransport({
+    host: "Gmail",
+    secure: true,
+    port: 587,
+    auth: {
+      user: ,
+      pass: 
+    },
+  });
+};
+
+const sendOTPVerification = async () => {
   try {
     const otp = `${Math.floor(1000 + Math.random() * 9000)}`;
   } catch (error) {}
