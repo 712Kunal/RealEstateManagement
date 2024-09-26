@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
 import postsRoute from "./Routes/posts.routes.js";
 import authRoute from "./Routes/auth.routes.js";
 import ENV_VARIABLES from "./constants.js";
@@ -11,10 +13,10 @@ const port = ENV_VARIABLES.PORT;
 app.use(
   cors({
     origin: ENV_VARIABLES.CLIENT_URL,
-    credentials: true
+    credentials: true,
   })
 );
-app.use(express.json());  
+app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postsRoute);
