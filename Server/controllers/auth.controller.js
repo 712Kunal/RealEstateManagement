@@ -3,6 +3,7 @@ import zod from "zod";
 import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
 import ENV_VARIABLES from "../constants.js";
+import validateInput from "../Services/InputValidate.service.js";
 
 // INPUT VALIDATION USING ZOD
 
@@ -25,23 +26,6 @@ const loginSchema = zod.object({
     .min(6, { message: "Password must contains atleast 6 characters" }),
 });
 
-// MIDDLEWARES FOR THE SIGNUP AND LOGIN
-
-const validateInput = (schema) => (req, res, next) => {
-  try {
-    const validatedData = schema.safeParse(req.body);
-
-    if (!validatedData.success) {
-      return res.status(400).json({ message: "Input fields must be valid" });
-    }
-
-    req.validatedInputs = validatedData.data;
-    next();
-  } catch (error) {
-    console.error(`Input Validation Error => ${error}`);
-    res.status(400).json({ message: "Input fields must be valid" });
-  }
-};
 
 const signup = async (req, res) => {
   //DB SIGNUP OPERATION
@@ -101,7 +85,7 @@ const login = async (req, res) => {
     }
 
     // GERNERATE COOKIE TOKEN AND GENERATE IT TO THE USER
-    const age = 1000 * 60 * 60 * 24 * 7; //expires after every 7 days (milliseconds in 7 days)
+    const age = 1000 * 60 * 60 * 24 * 7; // EXPIRES AFTER EVERY 7 DAYS (MILLISECONDS IN A WEEK)
     const token = jwt.sign(
       {
         id: user.id,

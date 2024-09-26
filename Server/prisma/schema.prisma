@@ -7,6 +7,17 @@ datasource db {
   url      = env("LOCALDB_URL")
 }
 
+// FIELD ATTRUBUTES / MODEL ATTRIBUTES =>
+// @id - This marks the field as the primary key of the model.
+// @default(auto()) -  Sets a default value for the field, which is automatically generated.
+// @map("_id") - Maps the field in your Prisma model to a field with a different name in the database.(Mainly used in relation databases)
+// @db.ObjectId -  Id should be stored as an ObjectId, which is a special type used by MongoDB for unique identifiers.
+// @unique - Ensures that all values in this field are unique across all records.
+// @default(now()) - Sets the default value of the field to the current date and time when a new record is created.
+// ? -  Indicates that the field is optional.
+// npx prisma init --datasource-provider mongodb
+// npx prisma generate
+// npm prisma db push - Important command
 model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   username  String   @unique
@@ -16,11 +27,3 @@ model User {
   createdAt DateTime @default(now())
 }
 
-// @id - This marks the field as the primary key of the model.
-// @default(auto()) -  Sets a default value for the field, which is automatically generated.
-// @map("_id") - Maps the field in your Prisma model to a field with a different name in the database.(Mainly used in relation databases)
-// @db.ObjectId -  Id should be stored as an ObjectId, which is a special type used by MongoDB for unique identifiers.
-// @unique - Ensures that all values in this field are unique across all records.
-// @default(now()) - Sets the default value of the field to the current date and time when a new record is created.
-// ? -  Indicates that the field is optional.
-// npm prisma db push - Important command

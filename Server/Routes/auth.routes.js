@@ -1,4 +1,5 @@
 import express from "express";
+import validateInput from "../Services/InputValidate.service.js";
 import {
   google,
   login,
@@ -6,8 +7,8 @@ import {
   signup,
   loginSchema,
   signupSchema,
-  validateInput,
 } from "../controllers/auth.controller.js";
+
 
 const router = express.Router();
 
