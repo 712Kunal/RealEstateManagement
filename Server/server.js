@@ -5,6 +5,7 @@ dotenv.config();
 import postsRoute from "./Routes/posts.routes.js";
 import authRoute from "./Routes/auth.routes.js";
 import ENV_VARIABLES from "./constants.js";
+import cookieParser from "cookie-parser";
 // import userRoute from "./Routes/user.routes.js"
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postsRoute);

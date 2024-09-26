@@ -26,7 +26,6 @@ const loginSchema = zod.object({
     .min(6, { message: "Password must contains atleast 6 characters" }),
 });
 
-
 const signup = async (req, res) => {
   //DB SIGNUP OPERATION
   try {
@@ -94,8 +93,10 @@ const login = async (req, res) => {
       { expiresIn: age }
     );
 
+    const bearer_token = `bearer ${token}`;
+
     res
-      .cookie("access_token", token, {
+      .cookie("access_token", bearer_token, {
         httpOnly: true,
         maxAge: age,
         secure: true,

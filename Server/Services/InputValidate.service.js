@@ -1,4 +1,3 @@
-
 // INPUT VALIDATION FOR THE INPUTS
 const validateInput = (schema) => (req, res, next) => {
   try {
