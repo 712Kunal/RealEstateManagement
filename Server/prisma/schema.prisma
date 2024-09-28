@@ -29,10 +29,10 @@ model User {
 }
 
 model UserOTPVerification {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId       String   @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String   @db.ObjectId
   relatedUser User     @relation(fields: [userId], references: [id])
-  otp          String
-  createdAt    DateTime
-  expiredAt    DateTime
+  otp         String
+  createdAt   DateTime @default(now())
+  expiredAt   DateTime
 }

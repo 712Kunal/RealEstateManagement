@@ -1,10 +1,10 @@
 import bcrypt from "bcrypt"; //Library to hashing the passwords to store in database
 import zod from "zod";
-import nodemailer from "nodemailer";
 import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
 import ENV_VARIABLES from "../constants.js";
 import validateInput from "../Services/InputValidate.service.js";
+import { sendOTPVerification, sendMail } from "../Services/2FaAuth.service.js";
 
 // INPUT VALIDATION USING ZOD
 
@@ -46,14 +46,24 @@ const signup = async (req, res) => {
       },
     });
 
-    console.log(`The new user is : ${newUser}`);
-
-    res.status(201).json({
-      message: "User registered successfully",
-      username: username,
-      email: email,
-      password: password,
-    });
+    try {
+      const otp = await sendOTPVerification(newUser);
+      const sendingMail = await sendMail(req, res, otp);
+      if (sendingMail.success) {
+        res.status(201).json({
+          message: "User registered successfully and otp sent successfully!!",
+          username: username,
+          email: email,
+          password: password,
+        });
+      }
+    } catch (error) {
+      res.status(201).json({
+        message: "User registered successfully but failed to send OTP",
+        username: username,
+        email: email,
+      });
+    }
   } catch (error) {
     console.error(`Signup error => ${error}`);
     res.status(500).json({ error: "Failed to create user!!" });
@@ -126,25 +136,6 @@ const logout = (req, res) => {
 
 const google = (req, res) => {
   //DB LOGIN WITH GOOGLE OPERATION
-};
-
-const sendMail = async(req,res) => {
-
-  const transporter = nodemailer.createTransport({
-    host: "Gmail",
-    secure: true,
-    port: 587,
-    auth: {
-      user: ENV_VARIABLES.SENDERS_MAIL,
-      pass: ENV_VARIABLES.PASSWORD
-    },
-  });
-};
-
-const sendOTPVerification = async () => {
-  try {
-    const otp = `${Math.floor(1000 + Math.random() * 9000)}`;
-  } catch (error) {}
 };
 
 export {
