@@ -142,7 +142,6 @@ const sendMail = async (req, res, otp) => {
 
   try {
     const info = await transporter.sendMail(receiver);
-    console.log(info);
     return { success: true, message: "OTP sent successfully!!" };
   } catch (error) {
     console.log(error);

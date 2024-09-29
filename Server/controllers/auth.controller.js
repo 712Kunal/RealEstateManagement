@@ -117,7 +117,11 @@ const login = async (req, res) => {
         path: "/", // ENSURE THE THE COOKIE IS AVAILABLE FOR ALL THE PATHS
       })
       .status(200)
-      .json({ message: "User logedin successfully!!" });
+      .json({
+        message: "User logedin successfully!!",
+        username: user.username,
+        email: user.email,
+      });
   } catch (error) {
     console.error(`Login error => ${error}`);
     res.status(500).json({ error: "Failed to login user!!" });
@@ -141,6 +145,8 @@ const logout = (req, res) => {
         message: "User loged out successfully!!",
         tokenInfo: {
           token: token,
+          username: req.user.username,
+          email: req.user.email,
         },
       });
   } catch (error) {
