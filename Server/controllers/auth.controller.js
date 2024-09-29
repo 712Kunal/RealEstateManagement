@@ -98,6 +98,8 @@ const login = async (req, res) => {
     const age = 1000 * 60 * 60 * 24 * 7; // EXPIRES AFTER EVERY 7 DAYS (MILLISECONDS IN A WEEK)
     const token = jwt.sign(
       {
+        username: user.username,
+        email: user.email,
         id: user.id,
       },
       ENV_VARIABLES.JWT_SECRETKEY,
@@ -111,6 +113,8 @@ const login = async (req, res) => {
         httpOnly: true,
         maxAge: age,
         secure: true,
+        sameSite: "lax",
+        path: "/", // ENSURE THE THE COOKIE IS AVAILABLE FOR ALL THE PATHS
       })
       .status(200)
       .json({ message: "User logedin successfully!!" });
@@ -122,12 +126,23 @@ const login = async (req, res) => {
 
 const logout = (req, res) => {
   //DB LOGOUT OPERATION
-
+  const token = req.cookies.access_token;
   try {
+    if (!req.cookies.access_token) {
+      return res
+        .status(400)
+        .json({ message: "No any cookie found,You are not logged in" });
+    }
+
     res
       .clearCookie("access_token")
       .status(200)
-      .json({ message: "User loged out successfully!!" });
+      .json({
+        message: "User loged out successfully!!",
+        tokenInfo: {
+          token: token,
+        },
+      });
   } catch (error) {
     console.error(`Logout error => ${error}`);
     res.status(500).json({ error: "Failed to logout user!!" });

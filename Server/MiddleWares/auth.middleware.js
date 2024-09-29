@@ -15,6 +15,7 @@ const userMiddleware = (req, res, next) => {
 
     // IF DECODED_VALUE CONTAINS ID THEN THE USER IS VERIFIED SUCCESSFULLY
     if (decoded_value.id) {
+      console.log(decoded_value.id);
       next();
     } else {
       return res

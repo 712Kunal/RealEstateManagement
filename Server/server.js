@@ -1,11 +1,12 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 dotenv.config();
 import postsRoute from "./Routes/posts.routes.js";
 import authRoute from "./Routes/auth.routes.js";
+import testRoute from "./Routes/test.routes.js";
 import ENV_VARIABLES from "./constants.js";
-import cookieParser from "cookie-parser";
 // import userRoute from "./Routes/user.routes.js"
 
 const app = express();
@@ -22,6 +23,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postsRoute);
+app.use("/api/test", testRoute);
 // app.use("/api/user",userRoute);
 
 // IF ERROR OCCURED WHILE CONNECTING TO THE SERVER

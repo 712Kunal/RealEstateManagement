@@ -14,9 +14,9 @@ const router = express.Router();
 
 router.post("/signup", validateInput(signupSchema), signup);
 
-router.post("/login", validateInput(loginSchema), userMiddleware, login);
+router.post("/login", validateInput(loginSchema), login);
 
-router.post("/logout", logout);
+router.post("/logout", userMiddleware, logout);
 
 router.post("/google", google);
 

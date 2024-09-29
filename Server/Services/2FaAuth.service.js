@@ -37,35 +37,107 @@ const sendMail = async (req, res, otp) => {
     to: req.body.email,
     subject: "Verify Your Account - Real Estate Management",
     text: `Your verification code is: ${otp}. This code will expire in 15 minutes.`,
-    html: `
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Verify Your Account</title>
-      </head>
-      <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #1a1a1a; color: #ffffff;">
-        <div style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #2c2c2c;">
-          <div style="background-color: #3d3d3d; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
-            <h1 style="margin: 0; color: #4db6ac; font-size: 30px;">Real Estate Management</h1>
-          </div>
-          <div style="padding: 30px; text-align: center; background-color: #2c2c2c; border-radius: 0 0 8px 8px;">
-          <h2 style="color: #4db6ac; font-size: 25px;">Welcome, ${req.body.username} !</h2>
-            <h2 style="color: #4db6ac; font-size: 24px; margin-bottom: 20px;">Verify Your Account</h2>
-            <p style="color: #e0e0e0; font-size: 16px; line-height: 1.5;">Thank you for choosing Real Estate Management. To complete your account verification, please use the following code:</p>
-            <div style="font-size: 36px; font-weight: bold; color: #ffffff; margin: 30px 0; padding: 15px; background-color: #4db6ac; border-radius: 8px; display: inline-block;">
-              ${otp}
-            </div>
-            <p style="color: #e0e0e0; font-size: 14px; margin-bottom: 20px;">This verification code will expire in 15 minutes.</p>
-            <p style="color: #bdbdbd; font-size: 14px; font-style: italic;">If you didn't request this code, please ignore this email or contact our support team if you have any concerns.</p>
-          </div>
-          <div style="margin-top: 30px; text-align: center; font-size: 12px; color: #9e9e9e; padding: 0 20px;">
-            <p style="margin-top: 10px;">This is an automated message, please do not reply to this email.</p>
-          </div>
-        </div>
-      </body>
-      </html>`,
+    html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Account - Real Estate Management</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        img { -ms-interpolation-mode: bicubic; }
+        img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+        table { border-collapse: collapse !important; }
+        body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; }
+        a[x-apple-data-detectors] { color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important; }
+        div[style*="margin: 16px 0;"] { margin: 0 !important; }
+    </style>
+</head>
+<body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td bgcolor="#2C3E50" align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="480" >
+                    <tr>
+                        <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
+                            <a href="https://www.yourcompany.com" target="_blank">
+                                <img alt="Logo" src="/api/placeholder/200/80" width="200" height="80" style="display: block; font-family: 'Roboto', Helvetica, Arial, sans-serif; color: #ffffff; font-size: 18px;" border="0">
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="480" >
+                    <tr>
+                        <td bgcolor="#ffffff" align="left" valign="top" style="padding: 30px 30px 20px 30px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Roboto', Helvetica, Arial, sans-serif; font-weight: 400; line-height: 48px;">
+                            <h1 style="font-size: 32px; font-weight: 400; margin: 0;">Welcome, ${req.body.username} !</h1>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="480" >
+                    <tr>
+                        <td bgcolor="#ffffff" align="left">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="2" style="padding-left:30px;padding-right:15px;padding-bottom:10px; font-family: 'Roboto', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
+                                        <p>Thank you for choosing Real Estate Management. To ensure the security of your account, please verify your email address using the code below:</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding-top: 20px; padding-bottom: 20px;">
+                                        <table border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td align="center" style="border-radius: 8px;" bgcolor="#2C3E50">
+                                                    <div style="font-size: 36px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 8px; border: 1px solid #2C3E50; display: inline-block; font-weight: bold; letter-spacing: 2px;">${otp}</div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding-left:30px;padding-right:15px;padding-bottom:10px; font-family: 'Roboto', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
+                                        <p>This verification code will expire in 15 minutes. If you did not request this code, please disregard this email or contact our support team if you have any concerns.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding-left:30px;padding-right:15px;padding-bottom:30px; font-family: 'Roboto', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
+                                        <p>Best regards,<br>The Real Estate Management Team</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="480" >
+                    <tr>
+                        <td bgcolor="#f4f4f4" align="left" style="padding: 30px 30px 30px 30px; color: #666666; font-family: 'Roboto', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
+                            <p style="margin: 0;">You received this email because you requested a verification code. If you did not request a code, you can safely ignore this email.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Roboto', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
+                            <p style="margin: 0;">Real Estate Management, 1234 Main St, Anytown, AN 12345</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>`,
   };
 
   try {
