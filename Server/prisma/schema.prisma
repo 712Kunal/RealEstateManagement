@@ -19,13 +19,14 @@ datasource db {
 // npx prisma generate
 // npm prisma db push - Important command
 model User {
-  id                  String                @id @default(auto()) @map("_id") @db.ObjectId
-  username            String                @unique
-  email               String                @unique
-  password            String
-  avatar              String?
-  createdAt           DateTime              @default(now())
-  UserOTPVerification UserOTPVerification[]
+  id        String                @id @default(auto()) @map("_id") @db.ObjectId
+  username  String                @unique
+  email     String                @unique
+  password  String
+  avatar    String?
+  createdAt DateTime              @default(now())
+  UserOTPs  UserOTPVerification[] //BECAUSE A SINGLE USER CAN HAVE MULTIPLE OTP VERIFICATIONS, THEREFORE WE NEED TO USE AN ARRAY
+  posts     Post[] //BECAUSE A SINGLE USER CAN HAVE MULTIPLE POSTS, THEREFORE WE NEED TO USE AN ARRAY
 }
 
 model UserOTPVerification {
@@ -35,4 +36,35 @@ model UserOTPVerification {
   otp         String
   createdAt   DateTime @default(now())
   expiredAt   DateTime
+}
+
+model Post {
+  id           String       @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  price        Int
+  Img          String
+  address      String
+  city         String
+  bedroooms    Int
+  bathrooms    Int
+  latitude     String
+  longitude    String
+  type         Type
+  propertyType PropertyType
+  userId       String       @db.ObjectId
+  relatedUser  User         @relation(fields: [userId], references: [id])
+  cratedAt     DateTime     @default(now())
+}
+
+enum Type {
+  buy
+  rent
+}
+
+enum PropertyType {
+  appartment
+  house
+  flat
+  condo
+  land
 }
