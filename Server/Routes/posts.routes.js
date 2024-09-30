@@ -1,25 +1,28 @@
 import express from "express";
+import usermiddleware from "../MiddleWares/auth.middleware.js";
+import {
+  getAllPosts,
+  getPostById,
+  addPostById,
+  updatePostById,
+  deletePostById,
+} from "../controllers/post.controller.js";
 
 const router = express.Router();
 
-// Posting the post
-router.post("/test", (req, res) => {
-  console.log("Router works");
-});
+// FETCHING ALL THE POSTS
+router.post("/", getAllPosts);
 
-//Fetching the post
-router.get("/test", (req, res) => {
-  console.log("Router works");
-});
+// FETCHING THE SINGLE USER POSTS
+router.get("/:id", usermiddleware, getPostById);
 
-//Updating the post
-router.put("/test", (req, res) => {
-  console.log("Router works");
-});
+// POSTING THE SINGLE USER POST
+router.post("/:id", usermiddleware, addPostById);
 
-//deleting the post
-router.delete("/test", (req, res) => {
-  console.log("Router works");
-});
+// UPDATING THE SINGLE USER POST
+router.put("/:id", usermiddleware, updatePostById);
+
+// DELETING THE SINGLE USER POST
+router.delete("/:id", usermiddleware, deletePostById);
 
 export default router;
