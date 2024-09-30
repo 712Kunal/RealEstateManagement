@@ -17,7 +17,7 @@ datasource db {
 // ? -  Indicates that the field is optional.
 // npx prisma init --datasource-provider mongodb
 // npx prisma generate
-// npm prisma db push - Important command
+// npx prisma db push - Important command
 model User {
   id        String                @id @default(auto()) @map("_id") @db.ObjectId
   username  String                @unique
