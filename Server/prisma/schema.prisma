@@ -42,10 +42,10 @@ model Post {
   id           String       @id @default(auto()) @map("_id") @db.ObjectId
   title        String
   price        Int
-  Img          String
+  Images       String[]
   address      String
   city         String
-  bedrooms    Int
+  bedrooms     Int
   bathrooms    Int
   latitude     String
   longitude    String
@@ -54,6 +54,7 @@ model Post {
   userId       String       @db.ObjectId
   relatedUser  User         @relation(fields: [userId], references: [id])
   cratedAt     DateTime     @default(now())
+  postDetail   PostDetail?
 }
 
 enum Type {
@@ -67,4 +68,18 @@ enum PropertyType {
   flat
   condo
   land
+}
+
+model PostDetail {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  desc        String
+  utilities   String?
+  pet         String?
+  income      String?
+  size        Int?
+  school      Int?
+  bus         Int?
+  restaurant  Int?
+  postId      String  @unique @db.ObjectId
+  relatedPost Post    @relation(fields: [postId], references: [id])
 }

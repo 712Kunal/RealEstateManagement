@@ -24,6 +24,15 @@ const getPostById = async (req, res) => {
       where: {
         id: post_id,
       },
+      include: {
+        postDetail: true,
+        relatedUser: {
+          select: {
+            username: true,
+            avatar: true,
+          },
+        },
+      },
     });
 
     if (singlePost) {
@@ -54,8 +63,12 @@ const addPostById = async (req, res) => {
 
     const newPost = await prisma.post.create({
       data: {
-        ...propertyData,
+        ...propertyData.postData,
         userId: tokenUserId,
+        postDetail: {
+          //This is a nested create operation in Prisma,The create keyword tells Prisma to create a new postDetail record.
+          create: propertyData.postDetail,
+        },
       },
     });
 
