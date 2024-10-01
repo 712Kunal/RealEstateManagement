@@ -11,18 +11,18 @@ import {
 const router = express.Router();
 
 // FETCHING ALL THE POSTS
-router.post("/", getAllPosts);
+router.get("/", getAllPosts);
 
 // FETCHING THE SINGLE USER POSTS
-router.get("/:id", usermiddleware, getPostById);
+router.get("/fetchingPost/:id", usermiddleware, getPostById);
 
 // POSTING THE SINGLE USER POST
-router.post("/:id", usermiddleware, addPostById);
+router.post("/addingPost/:id", usermiddleware, addPostById);
 
 // UPDATING THE SINGLE USER POST
-router.put("/:id", usermiddleware, updatePostById);
+router.put("/updatingPost/:id", usermiddleware, updatePostById);
 
 // DELETING THE SINGLE USER POST
-router.delete("/:id", usermiddleware, deletePostById);
+router.delete("/deletingPost/:id", usermiddleware, deletePostById);
 
 export default router;

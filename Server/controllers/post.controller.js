@@ -18,7 +18,7 @@ const getAllPosts = async (req, res) => {
 
 const getPostById = async (req, res) => {
   try {
-    const post_id = req.params;
+    const post_id = req.params.id;
 
     const singlePost = await prisma.post.findUnique({
       where: {
@@ -42,10 +42,7 @@ const addPostById = async (req, res) => {
   try {
     const propertyData = req.body;
     const tokenUserId = req.user.id;
-    const user_id = req.params;
-    console.log(tokenUserId);
-    
-    
+    const user_id = req.params.id;
 
     if (tokenUserId !== user_id) {
       return res.status(403).json({
@@ -86,7 +83,7 @@ const updatePostById = async (req, res) => {
 
 const deletePostById = async (req, res) => {
   try {
-    const deletedPostId = req.params;
+    const deletedPostId = req.params.id;
     const tokenUserId = req.user.id;
 
     const findPostToDelete = await prisma.post.findUnique({
