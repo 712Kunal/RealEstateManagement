@@ -1,4 +1,4 @@
-import prisma from "../lib/prisma";
+import prisma from "../lib/prisma.js";
 
 const getAllPosts = async (req, res) => {
   try {
@@ -43,9 +43,12 @@ const addPostById = async (req, res) => {
     const propertyData = req.body;
     const tokenUserId = req.user.id;
     const user_id = req.params;
+    console.log(tokenUserId);
+    
+    
 
     if (tokenUserId !== user_id) {
-      res.status(403).json({
+      return res.status(403).json({
         message: "User is not authorized to add the post",
         username: req.user.username,
         email: req.user.email,
@@ -55,12 +58,12 @@ const addPostById = async (req, res) => {
     const newPost = await prisma.post.create({
       data: {
         ...propertyData,
-        user_id: token_id,
+        userId: tokenUserId,
       },
     });
 
     if (newPost) {
-      res.status(200).json({
+      return res.status(200).json({
         message: "User added the post successfully!!",
         username: req.user.username,
         email: req.user.email,

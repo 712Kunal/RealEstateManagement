@@ -45,7 +45,7 @@ model Post {
   Img          String
   address      String
   city         String
-  bedroooms    Int
+  bedrooms    Int
   bathrooms    Int
   latitude     String
   longitude    String
