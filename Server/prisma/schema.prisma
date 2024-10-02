@@ -19,14 +19,15 @@ datasource db {
 // npx prisma generate
 // npx prisma db push - Important command
 model User {
-  id        String                @id @default(auto()) @map("_id") @db.ObjectId
-  username  String                @unique
-  email     String                @unique
-  password  String
-  avatar    String?
-  createdAt DateTime              @default(now())
-  UserOTPs  UserOTPVerification[] //BECAUSE A SINGLE USER CAN HAVE MULTIPLE OTP VERIFICATIONS, THEREFORE WE NEED TO USE AN ARRAY
-  posts     Post[] //BECAUSE A SINGLE USER CAN HAVE MULTIPLE POSTS, THEREFORE WE NEED TO USE AN ARRAY
+  id         String                @id @default(auto()) @map("_id") @db.ObjectId
+  username   String                @unique
+  email      String                @unique
+  password   String
+  avatar     String?
+  createdAt  DateTime              @default(now())
+  UserOTPs   UserOTPVerification[] //BECAUSE A SINGLE USER CAN HAVE MULTIPLE OTP VERIFICATIONS, THEREFORE WE NEED TO USE AN ARRAY
+  posts      Post[] //BECAUSE A SINGLE USER CAN HAVE MULTIPLE POSTS, THEREFORE WE NEED TO USE AN ARRAY
+  savedPosts SavedPost[]
 }
 
 model UserOTPVerification {
@@ -55,6 +56,7 @@ model Post {
   relatedUser  User         @relation(fields: [userId], references: [id])
   cratedAt     DateTime     @default(now())
   postDetail   PostDetail?
+  savedPosts   SavedPost[]
 }
 
 enum Type {
@@ -82,4 +84,15 @@ model PostDetail {
   restaurant  Int?
   postId      String  @unique @db.ObjectId
   relatedPost Post    @relation(fields: [postId], references: [id])
+}
+
+model SavedPost {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String   @db.ObjectId
+  relatedUser User     @relation(fields: [userId], references: [id])
+  postId      String   @db.ObjectId
+  relatedPost Post     @relation(fields: [postId], references: [id])
+  createdAt   DateTime @default(now())
+
+  @@unique([userId, postId])
 }
