@@ -6,6 +6,7 @@ import {
   addPostById,
   updatePostById,
   deletePostById,
+  savePost,
 } from "../controllers/post.controller.js";
 
 const router = express.Router();
@@ -24,5 +25,8 @@ router.put("/updatingPost/:id", usermiddleware, updatePostById);
 
 // DELETING THE SINGLE USER POST
 router.delete("/deletingPost/:id", usermiddleware, deletePostById);
+
+// SAVING THE POSTS
+router.post("/save", usermiddleware, savePost);
 
 export default router;

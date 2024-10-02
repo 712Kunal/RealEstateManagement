@@ -19,6 +19,7 @@ const getAllPosts = async (req, res) => {
 const getPostById = async (req, res) => {
   try {
     const post_id = req.params.id;
+    const tokenUserId = req.user.id;
 
     const singlePost = await prisma.post.findUnique({
       where: {
@@ -35,10 +36,21 @@ const getPostById = async (req, res) => {
       },
     });
 
+    // CHECK IF THE USER SAVED THAT PERTICULAR POST OR NOT
+    const savedPost = await prisma.savedPost.findUnique({
+      where: {
+        userId_postId: {
+          userId: tokenUserId,
+          postId: post_id,
+        },
+      },
+    });
+
     if (singlePost) {
       res.status(200).json({
         message: "Single post fetched successfully!!",
         SinglePost: singlePost,
+        isSaved: savedPost ? true : false,
       });
     }
   } catch (error) {
@@ -131,10 +143,57 @@ const deletePostById = async (req, res) => {
   }
 };
 
+const savePost = async (req, res) => {
+  try {
+    const tokenUserId = req.user.id;
+    const postId = req.body.postId;
+
+    // CHECK IF ANY POST IS SAVED BY THE USER
+    const savedPost = await prisma.savedPost.findUnique({
+      where: {
+        userId_postId: {
+          userId: tokenUserId,
+          postId: postId,
+        },
+      },
+    });
+
+    // IF POST EXIST, THEN USER CAN DELETE THE POST AND IF NOT, USER CAN CREATE THE POST
+    if (savedPost) {
+      const unsavePost = await prisma.savedPost.delete({
+        where: {
+          id: savedPost.id,
+        },
+      });
+      if (unsavePost) {
+        res
+          .status(200)
+          .json({ message: "User unsaved the post successfully!!" });
+      }
+    } else {
+      const savePost = await prisma.savedPost.create({
+        where: {
+          userId_postId: {
+            userId: tokenUserId,
+            postId: postId,
+          },
+        },
+      });
+      if (savePost) {
+        res.status(200).json({ message: "User saved the post successfully!!" });
+      }
+    }
+  } catch (error) {
+    console.error(`SavePost error => ${error}`);
+    res.status(500).json({ error: "Failed to save the post!!" });
+  }
+};
+
 export {
   getAllPosts,
   getPostById,
   addPostById,
   updatePostById,
   deletePostById,
+  savePost,
 };
