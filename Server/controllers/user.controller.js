@@ -131,33 +131,44 @@ const deleteUserById = async (req, res) => {
   }
 };
 
-const AllprofilePosts = (req, res) => {
+const AllprofilePosts = async (req, res) => {
   try {
     const tokenUserId = req.user.id;
 
-    // FETCH ALL THE POSTS WHICH ARE UPLOADED BY THE USER 
+    // FETCH ALL THE POSTS WHICH ARE UPLOADED BY THE USER
     const userProfilePosts = await prisma.post.findMany({
       where: {
-        userId: tokenUserId
-      }
-    }) 
+        userId: tokenUserId,
+      },
+    });
 
     // FETCHING ALL THE SAVED POSTS WHICH ARE SAVED BY THE USER
     const userSavedPosts = await prisma.savedPost.findMany({
       where: {
-        userId: tokenUserId
+        userId: tokenUserId,
       },
       include: {
-        relatedPost: true
-      }
-    })
+        relatedPost: true,
+      },
+    });
 
     if (userProfilePosts || userSavedPosts) {
-      res.status(200).json({message: "Profile posts and saved posts on profile fetched successfully!",user_Profile_Posts: userProfilePosts,Saved_Profile_Posts: userSavedPosts})
+      res.status(200).json({
+        message:
+          "Profile posts and saved posts on profile fetched successfully!",
+        user_Profile_Posts: userProfilePosts,
+        Saved_Profile_Posts: userSavedPosts,
+      });
     }
   } catch (error) {
     console.error(`All profile posts error => ${error}`);
     res.status(500).json({ error: "Failed to fetch all the profile posts!!" });
   }
 };
-export { getAllUsers, getUserById, updateUserById, deleteUserById };
+export {
+  getAllUsers,
+  getUserById,
+  updateUserById,
+  deleteUserById,
+  AllprofilePosts,
+};
