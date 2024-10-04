@@ -1,32 +1,69 @@
-import React from "react";
+import { React, useState } from "react";
+import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import Button from "@mui/material/Button";
 
 function Signup() {
+  const [is2faOpen, setIs2faOpen] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("kfjkdls");
+
+    const formData = new FormData(e.target);
+
+    const username = formData.get("username");
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    console.log(
+      `Username: ${username}, Email: ${email}, Password: ${password}`
+    );
+
+    try {
+      const response = await axios.post("http://localhost:3005/api/auth/signup", {
+        username,
+        email,
+        password,
+      });
+      console.log(response.data);
+      
+    } catch (error) {
+
+    }
+  };
+
   return (
     <div className="w-full h-screen overflow-hidden">
       <div className="flex justify-between items-center">
         <div className="ml-52 flex justify-center w-96 h-96">
-          <form className="size-full max-w-[360px] flex flex-col items-center justify-center gap-4">
+          <form
+            onSubmit={handleSubmit}
+            className="size-full max-w-[360px] flex flex-col items-center justify-center gap-4"
+          >
             <h1 className="text-4xl font-Fredoka text-center text-white font-semibold mb-2">
               Create an account
             </h1>
             <input
+              name="username"
               className="w-full bg-[#18181b] px-4 py-3 rounded-md border border-slate-700 outline-none text-slate-300 placeholder:text-gray-2 font-exo tracking-widest text-base xl:text-lg font-medium"
               type="text"
               placeholder="USERNAME"
             />
             <input
+              name="email"
               className="w-full bg-[#18181b] px-4 py-3 rounded-md border border-slate-700 outline-none text-slate-300 placeholder:text-gray-2 font-exo tracking-widest text-base xl:text-lg font-medium"
               type="email"
               placeholder="EMAIL"
             />
             <input
+              name="password"
               className="w-full bg-[#18181b] px-4 py-3 rounded-md border border-slate-700 outline-none text-slate-300 placeholder:text-gray-2 font-exo tracking-widest text-base xl:text-lg font-medium"
               type="password"
               placeholder="PASSWORD"
             />
             <Button
+              type="submit"
               variant="contained"
               className="w-full tracking-wide !font-sans !text-xl text-white !p-2 rounded-lg"
             >
