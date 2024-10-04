@@ -1,13 +1,14 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
+import Button from "@mui/material/Button";
 
 function Signup() {
   return (
-    <div className="w-full h-screen overflow-hidden bg-gray-900">
+    <div className="w-full h-screen overflow-hidden">
       <div className="flex justify-between items-center">
         <div className="ml-52 flex justify-center w-96 h-96">
           <form className="size-full max-w-[360px] flex flex-col items-center justify-center gap-4">
-            <h1 className="text-4xl font-Fredoka text-center text-white font-semibold mb-5">
+            <h1 className="text-4xl font-Fredoka text-center text-white font-semibold mb-2">
               Create an account
             </h1>
             <input
@@ -25,23 +26,30 @@ function Signup() {
               type="password"
               placeholder="PASSWORD"
             />
-            <button className="w-full bg-[#5b21b6] font-sans tracking-wide text-xl text-white p-3 rounded-lg hover:bg-[#4c1d95] transition duration-300">
+            <Button
+              variant="contained"
+              className="w-full tracking-wide !font-sans !text-xl text-white !p-2 rounded-lg"
+            >
               Create Account
-            </button>
-            
+            </Button>
             <div className="w-full flex items-center my-1">
               <div className="flex-grow h-px bg-gray-600"></div>
-              <span className="px-4 text-sm text-gray-400">OR CONTINUE WITH</span>
+              <span className="px-4 text-sm text-gray-400">
+                OR CONTINUE WITH
+              </span>
               <div className="flex-grow h-px bg-gray-600"></div>
             </div>
-            
+
             <button className="w-full flex items-center justify-center gap-2 bg-white text-gray-800 font-semibold py-3 px-4 rounded-lg hover:bg-gray-100 transition duration-300">
               <FcGoogle className="text-2xl" />
               <span>Sign up with Google</span>
             </button>
-            
+
             <p className="text-slate-200">
-              Already have an account? <a className="text-[#645cf8] hover:underline cursor-pointer">Login</a>
+              Already have an account?{" "}
+              <a className="text-[#645cf8] hover:underline cursor-pointer">
+                Login
+              </a>
             </p>
           </form>
         </div>
