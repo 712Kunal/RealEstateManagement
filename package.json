@@ -1,4 +1,13 @@
+
 {
+ "name": "root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client"  
+},
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5"
