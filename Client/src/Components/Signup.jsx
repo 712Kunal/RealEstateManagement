@@ -75,7 +75,15 @@ function Signup() {
             >
               Create Account
             </Button>
-            <TwoFactorAuth open={is2faOpen} onVerify={handle2faVerify} />
+
+            <TwoFactorAuth
+              open={is2faOpen}
+              onVerify={handle2faVerify}
+              onClose={() => {
+                setIs2faOpen(false);
+              }}
+            />
+            
             <div className="w-full flex items-center my-1">
               <div className="flex-grow h-px bg-gray-600"></div>
               <span className="px-4 text-sm text-gray-400">
