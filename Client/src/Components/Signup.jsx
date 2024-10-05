@@ -2,13 +2,13 @@ import { React, useState } from "react";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import Button from "@mui/material/Button";
+import TwoFactorAuth from "./TwoFactorAuth";
 
 function Signup() {
   const [is2faOpen, setIs2faOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("kfjkdls");
 
     const formData = new FormData(e.target);
 
@@ -16,21 +16,27 @@ function Signup() {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    console.log(
-      `Username: ${username}, Email: ${email}, Password: ${password}`
-    );
-
     try {
-      const response = await axios.post("http://localhost:3005/api/auth/signup", {
-        username,
-        email,
-        password,
-      });
-      console.log(response.data);
-      
-    } catch (error) {
+      const response = await axios.post(
+        "http://localhost:3005/api/auth/signup",
+        {
+          username,
+          email,
+          password,
+        }
+      );
 
-    }
+      setIs2faOpen(true);
+    } catch (error) {}
+  };
+
+  const handle2faVerify = (otpCode) => {
+    //SEND THE OTP TO THE BACKEND FOR THE VERIFICATION
+
+    console.log(otpCode);
+
+    //CLOSE THE POPUP AFTER VERIFICATION
+    setIs2faOpen(false);
   };
 
   return (
@@ -69,6 +75,7 @@ function Signup() {
             >
               Create Account
             </Button>
+            <TwoFactorAuth open={is2faOpen} onVerify={handle2faVerify} />
             <div className="w-full flex items-center my-1">
               <div className="flex-grow h-px bg-gray-600"></div>
               <span className="px-4 text-sm text-gray-400">
