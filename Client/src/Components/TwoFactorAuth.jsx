@@ -7,6 +7,35 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
   const [code, setCode] = useState(["", "", "", ""]);
   const inputRef = useRef([]);
 
+  useEffect(() => {
+    if (open && inputRef.current[0]) {
+      inputRef.current[0].focus();
+    }
+  }, [open]);
+
+  const InputHandle = (value, index) => {
+    if (digit.length <= 1) {
+      // IF THE CODE IS ['1', '2', '', ''],
+      // THEN THE newCode WILL ALSO BE ['1', '2', '', '', ] ,THE COPY OF code ARRAY IS STORED IN THE newCode
+      const newCode = [...code];
+      newCode[index] = value;
+      setCode(newCode); // UPDATE THE CODE ARRAY
+
+      if (value !== "" && index < 4) {
+        inputRef.current[index + 1].focus();
+      }
+    }
+  };
+
+  const handleKeyDown = (index, event, value) => {
+    if (event.key === "Backspace" && index > 0 && code[index] === "") {
+      inputRef.current[index - 1].focus();
+    }
+    if (event.key === "space" && 0 < index < 4 && code[index] === value) {
+      inputRef.current[index + 1].focus();
+    }
+  };
+
   return (
     <Dialog
       open={open}
@@ -26,12 +55,13 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
         </p>
 
         <div className="flex justify-center space-x-8 mt-5">
-          {[0, 1, 2, 3].map((index) => {
+          {code.map((digit, index) => {
             return (
               <TextField
                 type="text"
                 inputMode="Numeric"
                 key={index}
+                value={digit}
                 ref={(el) => {
                   inputRef.current[index] = el;
                 }}
@@ -44,6 +74,12 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
                 InputProps={{
                   className:
                     "!border-[2px] !border-cyan-300 !shadow-md !shadow-slate-500",
+                }}
+                onChange={(e) => {
+                  InputHandle(e.target.value, index);
+                }}
+                onKeyDown={(e) => {
+                  handleKeyDown(index, e, digit);
                 }}
               />
             );
