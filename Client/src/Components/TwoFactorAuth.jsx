@@ -5,7 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 function TwoFactorAuth({ open, onVerify, onClose }) {
   const [code, setCode] = useState(["", "", "", ""]);
-  const inputs = useRef([]);
+  const inputRef = useRef([]);
 
   return (
     <Dialog
@@ -15,7 +15,7 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
         className: "!bg-[#18181b] !text-white !shadow-md !shadow-cyan-500",
       }}
     >
-      <CloseIcon className="text-red-400 mr-1 mt-1 self-end !text-3xl"/>
+      <CloseIcon className="text-red-400 mr-1 mt-1 self-end !text-3xl" />
       <DialogTitle className="!font-old !text-4xl !font-normal">
         Two-Factor Authentication
       </DialogTitle>
@@ -30,13 +30,16 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
             return (
               <TextField
                 type="text"
-                inputMode="numeric"
+                inputMode="Numeric"
                 key={index}
+                ref={(el) => {
+                  inputRef.current[index] = el;
+                }}
                 variant="outlined"
                 className="!w-16 !h-16"
                 inputProps={{
                   maxLength: 1,
-                  className: "!text-center",
+                  className: "!text-center !text-white !text-xl",
                 }}
                 InputProps={{
                   className:
