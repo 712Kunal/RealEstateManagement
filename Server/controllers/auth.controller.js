@@ -52,6 +52,7 @@ const signup = async (req, res) => {
       if (sendingMail.success) {
         res.status(201).json({
           message: "User registered successfully and otp sent successfully!!",
+          userId: newUser.id,
           username: username,
           email: email,
           password: password,
@@ -61,7 +62,6 @@ const signup = async (req, res) => {
       res.status(201).json({
         message: "User registered successfully but failed to send OTP",
         username: username,
-        userId: newUser.id,
         email: email,
       });
     }
