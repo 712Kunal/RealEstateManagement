@@ -61,6 +61,7 @@ const signup = async (req, res) => {
       res.status(201).json({
         message: "User registered successfully but failed to send OTP",
         username: username,
+        userId: newUser.id,
         email: email,
       });
     }
@@ -159,19 +160,31 @@ const google = (req, res) => {
   //DB LOGIN WITH GOOGLE OPERATION
 };
 
-const verifyEnteredOTP = async () => {
+const verifyEnteredOTP = async (req, res) => {
   try {
-    const enterCode = req.body;
-    const user_id = req.user.id;
+    const { otp, userId } = req.body;
+    console.log(`user id: ${userId}`);
 
-    const verifyOTP = await prisma.userOTPVerification.findUnique({
+    if (!otp && !userId) {
+      res.status(400).json({ message: "otp and user is required" });
+    }
+
+    const verifyOTP = await prisma.userOTPVerification.findFirst({
       where: {
-        otp: enterCode,
-        userId: user_id,
+        otp: otp,
+        userId: userId,
+        expiredAt: {
+          gt: new Date(),
+        },
       },
     });
 
     if (verifyOTP) {
+      const deleteOTP = await prisma.userOTPVerification.delete({
+        where: {
+          id: verifyOTP.id,
+        },
+      });
       res.status(200).json({ message: "User verified OTP correctly!!" });
     } else {
       res.status(403).json({ message: "User entered wroung OTP" });
@@ -190,4 +203,5 @@ export {
   signupSchema,
   loginSchema,
   validateInput,
+  verifyEnteredOTP,
 };

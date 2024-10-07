@@ -21,6 +21,6 @@ router.post("/logout", userMiddleware, logout);
 
 router.post("/google", google);
 
-router.post("/getOTPVerification", userMiddleware, verifyEnteredOTP);
+router.post("/getOTPVerification", verifyEnteredOTP);
 
 export default router;

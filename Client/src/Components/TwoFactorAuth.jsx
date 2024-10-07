@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import Button from "@mui/material/Button";
 import { Dialog, DialogTitle, DialogContent, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -45,10 +45,10 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
       console.log(`Please enter the 4 digit code`);
     }
   };
-  
+
   const confirmClose = () => {
     setShowCloseConfirm(false);
-    onclose();
+    onClose();
   };
 
   const cancelClose = () => {
