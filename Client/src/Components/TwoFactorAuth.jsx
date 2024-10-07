@@ -70,7 +70,7 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
     >
       {showCloseConfirm ? (
         <DialogContent>
-          <p className="text-center mb-4">
+          <p className="text-center mb-4 text-xl">
             Are you sure you want to cancel the verification process?
           </p>
           <div className="flex justify-center space-x-4">
@@ -94,7 +94,7 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
       ) : (
         <>
           <CloseIcon
-            className="text-red-400 mr-1 mt-1 self-end !text-3xl"
+            className="text-red-400 mr-1 mt-1 self-end !text-3xl !cursor-pointer"
             onClick={handleClose}
           />
           <DialogTitle className="!font-old !text-4xl !font-normal">

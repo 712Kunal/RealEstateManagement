@@ -30,10 +30,18 @@ function Signup() {
     } catch (error) {}
   };
 
-  const handle2faVerify = (otpCode) => {
+  const handle2faVerify = async (otpCode) => {
     //SEND THE OTP TO THE BACKEND FOR THE VERIFICATION
 
-    console.log(otpCode);
+    try {
+      const verifyOTPResponse = await axios.post(
+        "http://localhost:3005/api/auth/getOTPVerification",
+        {
+          userId,
+          otp: otpCode
+        }
+      );
+    } catch (error) {}
 
     //CLOSE THE POPUP AFTER VERIFICATION
     setIs2faOpen(false);
@@ -83,7 +91,7 @@ function Signup() {
                 setIs2faOpen(false);
               }}
             />
-            
+
             <div className="w-full flex items-center my-1">
               <div className="flex-grow h-px bg-gray-600"></div>
               <span className="px-4 text-sm text-gray-400">
