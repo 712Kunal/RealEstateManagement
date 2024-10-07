@@ -159,9 +159,23 @@ const google = (req, res) => {
   //DB LOGIN WITH GOOGLE OPERATION
 };
 
-const verifyEnteredOTP = () => {
+const verifyEnteredOTP = async () => {
   try {
-    
+    const enterCode = req.body;
+    const user_id = req.user.id;
+
+    const verifyOTP = await prisma.userOTPVerification.findUnique({
+      where: {
+        otp: enterCode,
+        userId: user_id,
+      },
+    });
+
+    if (verifyOTP) {
+      res.status(200).json({ message: "User verified OTP correctly!!" });
+    } else {
+      res.status(403).json({ message: "User entered wroung OTP" });
+    }
   } catch (error) {
     console.error(`Verifying OTP error => ${error}`);
     res.status(500).json({ error: "Failed to verify the OTP!!" });

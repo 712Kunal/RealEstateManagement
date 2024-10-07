@@ -8,7 +8,7 @@ import {
   signup,
   loginSchema,
   signupSchema,
-  verifyEnteredOTP
+  verifyEnteredOTP,
 } from "../controllers/auth.controller.js";
 
 const router = express.Router();
@@ -21,6 +21,6 @@ router.post("/logout", userMiddleware, logout);
 
 router.post("/google", google);
 
-router.post("/getOTPVerification", verifyEnteredOTP);
+router.post("/getOTPVerification", userMiddleware, verifyEnteredOTP);
 
 export default router;
