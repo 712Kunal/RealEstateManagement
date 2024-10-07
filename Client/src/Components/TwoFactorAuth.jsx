@@ -45,7 +45,7 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
       console.log(`Please enter the 4 digit code`);
     }
   };
-
+  
   const confirmClose = () => {
     setShowCloseConfirm(false);
     onclose();
