@@ -159,6 +159,15 @@ const google = (req, res) => {
   //DB LOGIN WITH GOOGLE OPERATION
 };
 
+const verifyEnteredOTP = () => {
+  try {
+    
+  } catch (error) {
+    console.error(`Verifying OTP error => ${error}`);
+    res.status(500).json({ error: "Failed to verify the OTP!!" });
+  }
+};
+
 export {
   signup,
   login,
