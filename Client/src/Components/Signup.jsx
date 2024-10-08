@@ -63,7 +63,7 @@ function Signup() {
           otp: otpCode,
         }
       );
-
+      
       console.log(verifyOTPResponse.data);
 
       // DISPATCH ACTION TO UPDATE VERIFIED STATUS IN REDUX
