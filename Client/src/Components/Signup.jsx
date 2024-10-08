@@ -1,15 +1,23 @@
 import { React, useState } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
 import Button from "@mui/material/Button";
 import TwoFactorAuth from "./TwoFactorAuth";
+import {
+  setUser,
+  setVerified,
+  selectUser,
+} from "../Features/Auth/AuthSlice.js";
 
 function Signup() {
   const [is2faOpen, setIs2faOpen] = useState(false);
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const formData = new FormData(e.target);
 
     const username = formData.get("username");
@@ -28,23 +36,38 @@ function Signup() {
 
       console.log(response.data);
 
+      dispatch(
+        setUser({
+          id: response.data.userId,
+          username: response.data.username,
+          email: response.data.email,
+        })
+      );
+
       setIs2faOpen(true);
     } catch (error) {}
   };
 
   const handle2faVerify = async (otpCode) => {
-    //SEND THE OTP TO THE BACKEND FOR THE VERIFICATION
+    if (!user) {
+      console.error(`No user data found!!`);
+      return;
+    }
 
+    //SEND THE OTP TO THE BACKEND FOR THE VERIFICATION
     try {
       const verifyOTPResponse = await axios.post(
         "http://localhost:3005/api/auth/getOTPVerification",
         {
-          userId,
+          userId: user.id,
           otp: otpCode,
         }
       );
 
       console.log(verifyOTPResponse.data);
+
+      // DISPATCH ACTION TO UPDATE VERIFIED STATUS IN REDUX
+      dispatch(setVerified());
     } catch (error) {
       console.error(`otp verify failed: ${error}`);
     }
