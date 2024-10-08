@@ -55,7 +55,6 @@ const signup = async (req, res) => {
           userId: newUser.id,
           username: username,
           email: email,
-          password: password,
         });
       }
     } catch (error) {
@@ -63,6 +62,7 @@ const signup = async (req, res) => {
         message: "User registered successfully but failed to send OTP",
         username: username,
         email: email,
+        userId: newUser.id,
       });
     }
   } catch (error) {
@@ -163,9 +163,8 @@ const google = (req, res) => {
 const verifyEnteredOTP = async (req, res) => {
   try {
     const { otp, userId } = req.body;
-    console.log(`user id: ${userId}`);
 
-    if (!otp && !userId) {
+    if (!otp || !userId) {
       res.status(400).json({ message: "otp and user is required" });
     }
 
@@ -180,7 +179,7 @@ const verifyEnteredOTP = async (req, res) => {
     });
 
     if (verifyOTP) {
-      const deleteOTP = await prisma.userOTPVerification.delete({
+      await prisma.userOTPVerification.delete({
         where: {
           id: verifyOTP.id,
         },
