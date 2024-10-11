@@ -19,7 +19,7 @@ function Signup() {
   useEffect(() => {
     console.log("Current user data in Redux store:", user);
   }, [user]);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
