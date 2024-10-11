@@ -4,8 +4,6 @@ import { Dialog, DialogTitle, DialogContent, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 function TwoFactorAuth({ open, onVerify, onClose }) {
-  console.log(`kdjfksdkfjkf`);
-  
   const [code, setCode] = useState(["", "", "", ""]);
   const [showCloseConfirm, setShowCloseConfirm] = useState(false);
   const inputRefs = useRef([]);

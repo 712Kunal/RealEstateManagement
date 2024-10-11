@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
@@ -15,7 +15,7 @@ function Signup() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
-  // Add this useEffect to log the user data whenever it changes
+  // ADD THE USEEFFECT HOOK TO LOG THE CURRENT USER DATA IN THE REDUX STORE
   useEffect(() => {
     console.log("Current user data in Redux store:", user);
   }, [user]);
