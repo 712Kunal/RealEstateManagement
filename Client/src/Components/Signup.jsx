@@ -15,6 +15,11 @@ function Signup() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
+  // Add this useEffect to log the user data whenever it changes
+  useEffect(() => {
+    console.log("Current user data in Redux store:", user);
+  }, [user]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -45,7 +50,6 @@ function Signup() {
       );
 
       setIs2faOpen(true);
-      console.log(is2faOpen);
     } catch (error) {
       console.error(error);
     }
