@@ -78,44 +78,44 @@ function Signup() {
 
   return (
     <div className="w-full h-screen overflow-hidden">
-      <div className="flex justify-between items-center">
-        <div className="ml-52 flex justify-center w-96 h-96">
+      <div className="flex justify-evenly items-center">
+        <div className="bg-gray-900 p-4 rounded-xl shadow-2xl">
           <form
             onSubmit={handleSubmit}
-            className="size-full max-w-[360px] flex flex-col items-center justify-center gap-4"
+            className="flex flex-col items-center justify-center gap-6 w-full max-w-md"
           >
-            <h1 className="text-4xl font-Fredoka text-center text-white font-semibold mb-2">
-              Create an account
+            <h1 className="text-5xl text-purple-500 font-Fredoka mb-2">
+              Create An Account
             </h1>
             <input
-              name="username"
-              className="w-full bg-[#18181b] px-4 py-3 rounded-md border border-slate-700 outline-none text-slate-300 placeholder:text-gray-2 font-exo tracking-widest text-base xl:text-lg font-medium"
+              className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
               type="text"
               placeholder="USERNAME"
+              name="username"
             />
             <input
-              name="email"
-              className="w-full bg-[#18181b] px-4 py-3 rounded-md border border-slate-700 outline-none text-slate-300 placeholder:text-gray-2 font-exo tracking-widest text-base xl:text-lg font-medium"
+              className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
               type="email"
               placeholder="EMAIL"
+              name="email"
             />
             <input
-              name="password"
-              className="w-full bg-[#18181b] px-4 py-3 rounded-md border border-slate-700 outline-none text-slate-300 placeholder:text-gray-2 font-exo tracking-widest text-base xl:text-lg font-medium"
+              className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
               type="password"
               placeholder="PASSWORD"
+              name="password"
             />
             <Button
-              type="submit"
+              className="!w-full !text-2xl !rounded-lg !tracking-wider !p-3 !text-white !bg-purple-600 !hover:bg-purple-800 !transition !duration-300"
               variant="contained"
-              className="w-full tracking-wide !font-sans !text-xl text-white !p-2 rounded-lg"
+              type="submit"
             >
               Create Account
             </Button>
 
-            <div className="w-full flex items-center my-1">
+            <div className="w-full flex items-center my-2">
               <div className="flex-grow h-px bg-gray-600"></div>
-              <span className="px-4 text-sm text-gray-400">
+              <span className="text-gray-400 text-md px-4">
                 OR CONTINUE WITH
               </span>
               <div className="flex-grow h-px bg-gray-600"></div>
@@ -126,11 +126,14 @@ function Signup() {
               <span>Sign up with Google</span>
             </button>
 
-            <p className="text-slate-200">
+            <p className="text-gray-400">
               Already have an account?{" "}
-              <a className="text-[#645cf8] hover:underline cursor-pointer">
+              <span
+                className="text-cyan-400 cursor-pointer hover:underline font-Fredoka transition duration-300"
+                onClick={() => Navigate("/login")}
+              >
                 Login
-              </a>
+              </span>
             </p>
           </form>
         </div>
