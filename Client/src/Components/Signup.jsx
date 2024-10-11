@@ -45,7 +45,10 @@ function Signup() {
       );
 
       setIs2faOpen(true);
-    } catch (error) {}
+      console.log(is2faOpen);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handle2faVerify = async (otpCode) => {
