@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
 import Button from "@mui/material/Button";
 import TwoFactorAuth from "./TwoFactorAuth";
+import TwofaVerifyPopup from "./TwofaVerifyPopup";
+
 import {
   setUser,
   setVerified,
@@ -13,13 +15,14 @@ import {
 function Signup() {
   const [is2faOpen, setIs2faOpen] = useState(false);
   const dispatch = useDispatch();
+  const [twoFaVerified, setTwoFaVerified] = useState(false);
   const user = useSelector(selectUser);
 
   // ADD THE USEEFFECT HOOK TO LOG THE CURRENT USER DATA IN THE REDUX STORE
   useEffect(() => {
     console.log("Current user data in Redux store:", user);
   }, [user]);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -72,7 +75,8 @@ function Signup() {
       );
 
       console.log(verifyOTPResponse.data);
-
+      setTwoFaVerified(true);
+      console.log(`After verified : ${twoFaVerified}`);
       // DISPATCH ACTION TO UPDATE VERIFIED STATUS IN REDUX
       dispatch(setVerified());
     } catch (error) {
@@ -161,6 +165,15 @@ function Signup() {
             }}
           />
         </div>
+      ) : null}
+
+      {twoFaVerified ? (
+        <TwofaVerifyPopup
+          open={twoFaVerified}
+          onClose={() => {
+            setTwoFaVerified(false);
+          }}
+        />
       ) : null}
     </div>
   );
