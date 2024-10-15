@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import { Dialog, DialogTitle, DialogContent, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-function TwoFactorAuth({ open, onVerify, onClose }) {
+function TwoFactorAuth({ open, onVerify, onClose, onResend }) {
   const [code, setCode] = useState(["", "", "", ""]);
   const [showCloseConfirm, setShowCloseConfirm] = useState(false);
   const inputRefs = useRef([]);
@@ -58,6 +58,11 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
 
   const handleClose = () => {
     setShowCloseConfirm(true);
+  };
+
+  const handleResend = () => {
+    setCode(["", "", "", ""]);
+    onResend();
   };
 
   return (
@@ -140,7 +145,7 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
               </Button>
               <p className="text-[0.9rem] text-center tracking-widest mt-4 text-red-200 text-muted-foreground">
                 Didn't receive the code?{" "}
-                <Button variant="link" className="!p-2 !bg-green-700">
+                <Button variant="link" className="!p-2 !bg-green-700" onClick={handleResend}>
                   Re-send
                 </Button>
               </p>
