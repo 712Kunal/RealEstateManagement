@@ -60,11 +60,6 @@ function TwoFactorAuth({ open, onVerify, onClose, onResend }) {
     setShowCloseConfirm(true);
   };
 
-  const handleResend = () => {
-    setCode(["", "", "", ""]);
-    onResend();
-  };
-
   return (
     <>
       <Dialog
@@ -143,12 +138,6 @@ function TwoFactorAuth({ open, onVerify, onClose, onResend }) {
               >
                 Verify
               </Button>
-              <p className="text-[0.9rem] text-center tracking-widest mt-4 text-red-200 text-muted-foreground">
-                Didn't receive the code?{" "}
-                <Button variant="link" className="!p-2 !bg-green-700" onClick={handleResend}>
-                  Re-send
-                </Button>
-              </p>
             </DialogContent>
           </div>
         )}
