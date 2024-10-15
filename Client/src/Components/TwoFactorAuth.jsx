@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import { Dialog, DialogTitle, DialogContent, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-function TwoFactorAuth({ open, onVerify, onClose, onResend }) {
+function TwoFactorAuth({ open, onVerify, onClose }) {
   const [code, setCode] = useState(["", "", "", ""]);
   const [showCloseConfirm, setShowCloseConfirm] = useState(false);
   const inputRefs = useRef([]);
@@ -65,6 +65,7 @@ function TwoFactorAuth({ open, onVerify, onClose, onResend }) {
       <Dialog
         open={open}
         onClose={onClose}
+        disableBackdropClick
         disableEscapeKeyDown
         PaperProps={{
           className: "!bg-[#18181b] !text-white !shadow-md !shadow-cyan-500",

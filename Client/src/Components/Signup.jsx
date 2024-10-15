@@ -14,8 +14,9 @@ import {
 
 function Signup() {
   const [is2faOpen, setIs2faOpen] = useState(false);
-  const dispatch = useDispatch();
   const [twoFaVerified, setTwoFaVerified] = useState(false);
+  const [error, setError] = useState("");
+  const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
   // ADD THE USEEFFECT HOOK TO LOG THE CURRENT USER DATA IN THE REDUX STORE
@@ -54,7 +55,7 @@ function Signup() {
 
       setIs2faOpen(true);
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data.message);
     }
   };
 
@@ -122,6 +123,8 @@ function Signup() {
           >
             Create Account
           </Button>
+
+          {error ? <p className="text-red-500 text-center">{error}</p> : null}
 
           <div className="w-full flex items-center my-2">
             <div className="flex-grow h-px bg-gray-600"></div>
