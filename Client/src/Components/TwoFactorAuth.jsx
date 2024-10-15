@@ -94,7 +94,7 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
             </div>
           </DialogContent>
         ) : (
-          <>
+          <div className="bg-[url('src/assets/SVG/popup.svg')] bg-cover bg-no-repeat bg-center">
             <CloseIcon
               className="text-red-400 mr-1 mt-1 self-end !text-3xl !cursor-pointer"
               onClick={handleClose}
@@ -103,7 +103,7 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
               Two-Factor Authentication
             </DialogTitle>
             <DialogContent>
-              <p className="!font-exo !tracking-wide !text-xl !font-extralight">
+              <p className="!font-exo !tracking-wide !text-xl !font-extralight !mt-10">
                 We've sent a 4-digit code to your email. Please enter it below
                 to verify your identity.
               </p>
@@ -145,7 +145,7 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
                 </Button>
               </p>
             </DialogContent>
-          </>
+          </div>
         )}
       </Dialog>
     </>
