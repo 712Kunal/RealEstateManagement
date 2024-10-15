@@ -43,8 +43,6 @@ function Signup() {
         }
       );
 
-      console.log(response.data);
-
       dispatch(
         setUser({
           id: response.data.userId,
@@ -52,10 +50,10 @@ function Signup() {
           email: response.data.email,
         })
       );
-
+      setError("");
       setIs2faOpen(true);
     } catch (error) {
-      console.error(error.response.data.message);
+      setError(error.response.data.error);
     }
   };
 
@@ -80,8 +78,9 @@ function Signup() {
       console.log(`After verified : ${twoFaVerified}`);
       // DISPATCH ACTION TO UPDATE VERIFIED STATUS IN REDUX
       dispatch(setVerified());
+      setError("");
     } catch (error) {
-      console.error(`otp verify failed: ${error}`);
+      setError(error.response.data.error);
     }
 
     //CLOSE THE POPUP AFTER VERIFICATION
@@ -124,7 +123,7 @@ function Signup() {
             Create Account
           </Button>
 
-          {error ? <p className="text-red-500 text-center">{error}</p> : null}
+          {error ? <p className="text-red-400 text-center">{error}</p> : null}
 
           <div className="w-full flex items-center my-2">
             <div className="flex-grow h-px bg-gray-600"></div>

@@ -5,6 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 function TwoFactorAuth({ open, onVerify, onClose }) {
   const [code, setCode] = useState(["", "", "", ""]);
+  const [error, setError] = useState("");
   const [showCloseConfirm, setShowCloseConfirm] = useState(false);
   const inputRefs = useRef([]);
 
@@ -43,7 +44,7 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
       }
       setCode(["", "", "", ""]);
     } catch (error) {
-      console.log(`Please enter the 4 digit code`);
+      setError("Please enter the 4 digit code");
     }
   };
 
@@ -139,6 +140,9 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
               >
                 Verify
               </Button>
+              {error ? (
+                <p className="text-red-400 text-center">{error}</p>
+              ) : null}
             </DialogContent>
           </div>
         )}
