@@ -36,15 +36,15 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
     }
   };
 
-  const handleVerify = () => {
+  const handleVerify = async () => {
     const fullCode = code.join("");
     try {
       if (fullCode.length === 4) {
-        onVerify(fullCode);
+        await onVerify(fullCode);
       }
       setCode(["", "", "", ""]);
     } catch (error) {
-      setError("Please enter the 4 digit code");
+      setError("Please enter the valid 4 digit code");
     }
   };
 
@@ -66,7 +66,6 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
       <Dialog
         open={open}
         onClose={onClose}
-        disableBackdropClick
         disableEscapeKeyDown
         PaperProps={{
           className: "!bg-[#18181b] !text-white !shadow-md !shadow-cyan-500",

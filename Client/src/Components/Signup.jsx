@@ -72,15 +72,12 @@ function Signup() {
           otp: otpCode,
         }
       );
-
-      console.log(verifyOTPResponse.data);
       setTwoFaVerified(true);
-      console.log(`After verified : ${twoFaVerified}`);
       // DISPATCH ACTION TO UPDATE VERIFIED STATUS IN REDUX
       dispatch(setVerified());
       setError("");
     } catch (error) {
-      setError(error.response.data.error);
+      throw new Error(error.response.data.error);
     }
 
     //CLOSE THE POPUP AFTER VERIFICATION
@@ -110,7 +107,7 @@ function Signup() {
             type="email"
             placeholder="EMAIL"
             name="email"
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
             title="Please enter a valid email address"
           />
           <input
