@@ -1,10 +1,30 @@
 import React from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
+import { form } from "framer-motion/client";
 
 function Login() {
-  const handleSubmit = () => {
+  const handleSubmit = async(e) => {
+    e.preventDefault();
 
+    const formData = new FormData(e.target);
+
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3005/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
