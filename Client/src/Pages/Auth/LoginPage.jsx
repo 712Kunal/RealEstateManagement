@@ -1,6 +1,5 @@
 import React from 'react'
-import Signup from '../../Components/Signup.jsx'
-
+import Login from '../../Components/Login.jsx'
 
 function SignupPage() {
   return (
@@ -18,11 +17,11 @@ function SignupPage() {
 
       {/* Content */}
       <div className="relative z-10 flex grow md:flex-row justify-evenly items-center w-full max-w-6xl mx-auto p-5">
-        <Signup />
+        <Login />
         <img
-          src="src/assets/signup.png"
+          src="src/assets/login.jpg"
           className="hidden md:block mt-0 w-1/2 h-1/2"
-          alt="signup page picture"
+          alt="login page picture"
         />
       </div>
     </div>
