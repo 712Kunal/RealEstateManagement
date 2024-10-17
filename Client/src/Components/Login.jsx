@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import apiRequest from "../lib/apiRequest.js";
 
@@ -21,7 +21,6 @@ function Login() {
         email,
         password,
       });
-
     } catch (error) {
       setError(error.response.data.error);
     }
@@ -35,7 +34,7 @@ function Login() {
           className="flex flex-col items-center justify-center gap-6 w-full max-w-md"
         >
           <h1 className="text-5xl text-purple-500 font-Fredoka mb-2">
-            Create An Account
+            Welcome Back!
           </h1>
           <input
             className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
@@ -58,7 +57,7 @@ function Login() {
             variant="contained"
             type="submit"
           >
-            Create Account
+            LOGIN
           </Button>
 
           {error ? <p className="text-red-400 text-center">{error}</p> : null}
