@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { setUser } from "../Features/Auth/AuthSlice.js";
 import Button from "@mui/material/Button";
 import apiRequest from "../lib/apiRequest.js";
 
 function Login() {
+  const navigate = useNavigate();
   const [error, setError] = useState("");
   const dispatch = useDispatch();
 
@@ -50,6 +52,9 @@ function Login() {
           <h1 className="text-5xl text-purple-500 font-Fredoka mb-2">
             Welcome Back!
           </h1>
+          <p className="text-slate-200 dark:text-gray-400">
+            Please sign in to continue
+          </p>
           <input
             className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
             type="text"
@@ -69,6 +74,16 @@ function Login() {
           >
             LOGIN
           </Button>
+
+          <p className="text-gray-400">
+            Don't have an account ?{" "}
+            <span
+              className="text-cyan-400 cursor-pointer hover:underline font-Fredoka transition duration-300"
+              onClick={() => navigate("/signup")}
+            >
+              Signup
+            </span>
+          </p>
 
           {error ? <p className="text-red-400 text-center">{error}</p> : null}
         </form>
