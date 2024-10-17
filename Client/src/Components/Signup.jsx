@@ -26,6 +26,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
     const formData = new FormData(e.target);
 
@@ -34,14 +35,11 @@ function Signup() {
     const password = formData.get("password");
 
     try {
-      const response = await apiRequest.post(
-        "/auth/signup",
-        {
-          username,
-          email,
-          password,
-        }
-      );
+      const response = await apiRequest.post("/auth/signup", {
+        username,
+        email,
+        password,
+      });
 
       dispatch(
         setUser({
@@ -123,7 +121,7 @@ function Signup() {
             variant="contained"
             type="submit"
           >
-            Create Account  
+            Create Account
           </Button>
 
           {error ? <p className="text-red-400 text-center">{error}</p> : null}
@@ -149,15 +147,6 @@ function Signup() {
             </span>
           </p>
         </form>
-      </div>
-
-      {/* IMAGE RENDERING */}
-      <div className="w-2/5 h-3/4">
-        <img
-          className="w-full h-full object-cover"
-          src="src\assets\signup.png"
-          alt="#SignUp_image"
-        />
       </div>
 
       {is2faOpen ? (

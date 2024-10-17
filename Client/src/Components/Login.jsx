@@ -4,8 +4,12 @@ import Button from "@mui/material/Button";
 import apiRequest from "../lib/apiRequest.js";
 
 function Login() {
-  const handleSubmit = async(e) => {
+  const [error, setError] = useState("");
+
+  // HANDLE LOGIN SUBMIT
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
     const formData = new FormData(e.target);
 
@@ -13,17 +17,13 @@ function Login() {
     const password = formData.get("password");
 
     try {
-      const response = await apiRequest.post(
-        "/auth/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await apiRequest.post("/auth/login", {
+        email,
+        password,
+      });
 
-      console.log(response);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.error);
     }
   };
 
