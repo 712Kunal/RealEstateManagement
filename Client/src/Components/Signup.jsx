@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import apiRequest from "../lib/apiRequest.js";
 import { FcGoogle } from "react-icons/fc";
@@ -15,6 +16,7 @@ import {
 function Signup() {
   const [is2faOpen, setIs2faOpen] = useState(false);
   const [twoFaVerified, setTwoFaVerified] = useState(false);
+  const navigate = useNavigate();
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -41,11 +43,15 @@ function Signup() {
         password,
       });
 
+      console.log(response.data);
+
       dispatch(
         setUser({
           id: response.data.userId,
           username: response.data.username,
           email: response.data.email,
+          avatar: response.data.avatar,
+          createdAt: response.data.createdAt,
         })
       );
       setError("");
@@ -83,7 +89,7 @@ function Signup() {
   };
 
   return (
-    <div className="w-full h-screen overflow-hidden">
+    <div className="w-full h-screen overflow-hidden flex justify-center items-center">
       <div className="bg-gray-900 p-4 rounded-xl shadow-2xl w-full max-w-md">
         <form
           onSubmit={handleSubmit}
@@ -141,7 +147,7 @@ function Signup() {
             Already have an account?{" "}
             <span
               className="text-cyan-400 cursor-pointer hover:underline font-Fredoka transition duration-300"
-              onClick={() => Navigate("/login")}
+              onClick={() => navigate("/login")}
             >
               Login
             </span>

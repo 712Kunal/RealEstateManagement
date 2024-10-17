@@ -55,6 +55,8 @@ const signup = async (req, res) => {
           userId: newUser.id,
           username: username,
           email: email,
+          avatar: newUser.avatar,
+          createdAt: newUser.createdAt,
         });
       }
     } catch (error) {
@@ -63,6 +65,8 @@ const signup = async (req, res) => {
         username: username,
         email: email,
         userId: newUser.id,
+        avatar: newUser.avatar,
+        createdAt: newUser.createdAt,
       });
     }
   } catch (error) {

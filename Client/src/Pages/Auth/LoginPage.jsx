@@ -19,8 +19,8 @@ function LoginPage() {
       <div className="relative z-10 flex grow md:flex-row justify-evenly items-center w-full max-w-6xl mx-auto p-5">
         <Login />
         <img
-          src="src/assets/login.jpg"
-          className="hidden md:block mt-0 w-1/2 h-1/2"
+          src="src/assets/login.png"
+          className="hidden md:block mt-0 w-2/3 h-1/2"
           alt="login page picture"
         />
       </div>

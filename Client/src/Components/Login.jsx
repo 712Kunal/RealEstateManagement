@@ -27,7 +27,7 @@ function Login() {
   };
 
   return (
-    <div className="w-full h-screen overflow-hidden">
+    <div className="w-full h-screen overflow-hidden flex justify-center items-center">
       <div className="bg-gray-900 p-4 rounded-xl shadow-2xl w-full max-w-md">
         <form
           onSubmit={handleSubmit}
