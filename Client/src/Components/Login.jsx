@@ -1,10 +1,15 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser, setUser } from "../Features/Auth/AuthSlice.js";
 import Button from "@mui/material/Button";
 import apiRequest from "../lib/apiRequest.js";
+import { data } from "framer-motion/client";
 
 function Login() {
   const [error, setError] = useState("");
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
   // HANDLE LOGIN SUBMIT
   const handleSubmit = async (e) => {
@@ -21,6 +26,17 @@ function Login() {
         email,
         password,
       });
+
+      dispatch(
+        setUser({
+          id: response.data.userId,
+          username: response.data.username,
+          email: response.data.email,
+          avatar: response.data.avatar,
+          createdAt: response.data.createdAt,
+        })
+      );
+      setError(""); // CLEAR THE ERROR MESSAGE
     } catch (error) {
       setError(error.response.data.error);
     }

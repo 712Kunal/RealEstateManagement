@@ -43,8 +43,6 @@ function Signup() {
         password,
       });
 
-      console.log(response.data);
-
       dispatch(
         setUser({
           id: response.data.userId,

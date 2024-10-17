@@ -126,6 +126,9 @@ const login = async (req, res) => {
         message: "User logedin successfully!!",
         username: user.username,
         email: user.email,
+        userId: user.id,
+        avatar: user.avatar,
+        createdAt: user.createdAt,
       });
   } catch (error) {
     console.error(`Login error => ${error}`);
