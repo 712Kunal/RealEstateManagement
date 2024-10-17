@@ -18,12 +18,12 @@ function Login() {
 
     const formData = new FormData(e.target);
 
-    const email = formData.get("email");
+    const username = formData.get("username");
     const password = formData.get("password");
 
     try {
       const response = await apiRequest.post("/auth/login", {
-        email,
+        username,
         password,
       });
 
@@ -38,7 +38,7 @@ function Login() {
       );
       setError(""); // CLEAR THE ERROR MESSAGE
     } catch (error) {
-      setError(error.response.data.error);
+      setError(error);
     }
   };
 
@@ -54,11 +54,11 @@ function Login() {
           </h1>
           <input
             className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
-            type="email"
-            placeholder="EMAIL"
-            name="email"
-            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-            title="Please enter a valid email address"
+            type="text"
+            placeholder="USERNAME"
+            name="username"
+            pattern="^[a-zA-Z0-9_]{3,15}$"
+            title="Username must be between 3 and 15 characters long and can only contain letters, numbers, and underscores."
           />
           <input
             className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
