@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import apiRequest from "../lib/apiRequest.js";
 import { FcGoogle } from "react-icons/fc";
 import Button from "@mui/material/Button";
 import TwoFactorAuth from "./TwoFactorAuth";
@@ -34,8 +34,8 @@ function Signup() {
     const password = formData.get("password");
 
     try {
-      const response = await axios.post(
-        "http://localhost:3005/api/auth/signup",
+      const response = await apiRequest.post(
+        "/auth/signup",
         {
           username,
           email,
@@ -65,8 +65,8 @@ function Signup() {
 
     //SEND THE OTP TO THE BACKEND FOR THE VERIFICATION
     try {
-      const verifyOTPResponse = await axios.post(
-        "http://localhost:3005/api/auth/getOTPVerification",
+      const verifyOTPResponse = await apiRequest.post(
+        "/auth/getOTPVerification",
         {
           userId: user.id,
           otp: otpCode,

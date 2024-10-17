@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
-import { form } from "framer-motion/client";
+import apiRequest from "../lib/apiRequest.js";
 
 function Login() {
   const handleSubmit = async(e) => {
@@ -13,8 +13,8 @@ function Login() {
     const password = formData.get("password");
 
     try {
-      const response = await axios.post(
-        "http://localhost:3005/api/auth/login",
+      const response = await apiRequest.post(
+        "/auth/login",
         {
           email,
           password,
