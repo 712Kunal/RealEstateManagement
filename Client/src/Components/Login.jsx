@@ -1,15 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUser, setUser } from "../Features/Auth/AuthSlice.js";
+import { useDispatch } from "react-redux";
+import { setUser } from "../Features/Auth/AuthSlice.js";
 import Button from "@mui/material/Button";
 import apiRequest from "../lib/apiRequest.js";
-import { data } from "framer-motion/client";
 
 function Login() {
   const [error, setError] = useState("");
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
 
   // HANDLE LOGIN SUBMIT
   const handleSubmit = async (e) => {
@@ -38,7 +36,7 @@ function Login() {
       );
       setError(""); // CLEAR THE ERROR MESSAGE
     } catch (error) {
-      setError(error);
+      setError(error.response.data.message);
     }
   };
 
@@ -57,16 +55,12 @@ function Login() {
             type="text"
             placeholder="USERNAME"
             name="username"
-            pattern="^[a-zA-Z0-9_]{3,15}$"
-            title="Username must be between 3 and 15 characters long and can only contain letters, numbers, and underscores."
           />
           <input
             className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
             type="password"
             placeholder="PASSWORD"
             name="password"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-            title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)"
           />
           <Button
             className="!w-full !text-2xl !rounded-lg !tracking-wider !p-3 !text-white !bg-purple-600 !hover:bg-purple-800 !transition !duration-300"

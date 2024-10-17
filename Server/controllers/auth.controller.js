@@ -86,17 +86,17 @@ const login = async (req, res) => {
     });
 
     if (!user) {
-      res
+      return res
         .status(401)
-        .json({ message: "Invalid Credentials!!,User doesn't exist" });
+        .json({ message: "Invalid Credentials !!, User doesn't exist" });
     }
 
     // CHECK IF THE PASSWORD IS CORRECT
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      res
+      return res
         .status(401)
-        .json({ message: "Invalid Credentials!!,Invalid password" });
+        .json({ message: "Invalid Credentials !!, Invalid password" });
     }
 
     // GERNERATE COOKIE TOKEN AND GENERATE IT TO THE USER
