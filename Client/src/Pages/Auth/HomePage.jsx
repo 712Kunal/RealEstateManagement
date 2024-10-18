@@ -2,7 +2,7 @@ import React from 'react'
 
 function HomePage() {
   return (
-    <div>HomePage</div>
+    <div className='text-9xl text-white'>HomePage</div>
   )
 }
 
