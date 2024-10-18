@@ -1,6 +1,5 @@
-import React from 'react'
-import Signup from '../../Components/Signup.jsx'
-
+import React from "react";
+import Signup from "../../Components/Signup.jsx";
 
 function SignupPage() {
   return (
@@ -26,7 +25,7 @@ function SignupPage() {
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default SignupPage
+export default SignupPage;

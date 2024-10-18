@@ -1,5 +1,5 @@
-import React from 'react'
-import Login from '../../Components/Login.jsx'
+import React from "react";
+import Login from "../../Components/Login.jsx";
 
 function LoginPage() {
   return (
@@ -25,7 +25,7 @@ function LoginPage() {
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default LoginPage
+export default LoginPage;

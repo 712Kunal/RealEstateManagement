@@ -45,6 +45,7 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
       setCode(["", "", "", ""]);
     } catch (error) {
       setError("Please enter the valid 4 digit code");
+      setCode(["", "", "", ""]);
     }
   };
 
