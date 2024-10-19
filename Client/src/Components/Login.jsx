@@ -37,6 +37,7 @@ function Login() {
         })
       );
       setError(""); // CLEAR THE ERROR MESSAGE
+      navigate("/");
     } catch (error) {
       setError(error.response.data.message);
     }

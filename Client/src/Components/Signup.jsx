@@ -53,6 +53,7 @@ function Signup() {
         })
       );
       setError("");
+      navigate("/");
       setIs2faOpen(true);
     } catch (error) {
       setError(error.response.data.error);
