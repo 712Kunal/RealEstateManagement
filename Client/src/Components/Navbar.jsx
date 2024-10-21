@@ -14,10 +14,10 @@ function Navbar() {
       <nav className="flex flex-grow items-center justify-between mx-4 py-3">
         {/* LOGO */}
         <div className="flex items-center gap-20">
-          <img 
-            src="src/assets/logo.png" 
-            alt="logo" 
-            className="w-52 mt-1 hover:scale-105 transition-transform duration-300" 
+          <img
+            src="src/assets/logo.png"
+            alt="logo"
+            className="w-52 mt-1 hover:scale-105 transition-transform duration-300"
           />
 
           {/* NAVBAR ITEMS */}
@@ -44,10 +44,10 @@ function Navbar() {
         </div>
 
         <div className="buttons flex items-center justify-center gap-5">
-          <button className="bg-gradient-to-r from-teal-400 to-emerald-400 text-white px-5 py-2 rounded-xl font-semibold hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+          <button className="bg-gradient-to-r from-teal-400 to-emerald-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
             Login
           </button>
-          <button className="bg-gradient-to-r from-violet-400 to-purple-500 text-white px-5 py-2 rounded-xl font-semibold hover:from-purple-500 hover:to-violet-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+          <button className="bg-gradient-to-r from-violet-400 to-purple-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-purple-500 hover:to-violet-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
             Sign up
           </button>
         </div>
