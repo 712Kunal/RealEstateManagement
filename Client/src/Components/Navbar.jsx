@@ -48,16 +48,27 @@ function Navbar() {
           </div>
         </div>
 
-        <div className="nav-right hidden md:flex items-center justify-end h-full gap-5 basis-2/5 border-2 border-pink-500">
+        <div className="nav-right hidden md:flex items-center justify-end h-full gap-5 basis-2/5">
           <button className="bg-gradient-to-r from-teal-400 to-emerald-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
             Login
           </button>
           <button className="bg-gradient-to-r from-violet-400 to-purple-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-purple-500 hover:to-violet-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
             Sign up
           </button>
-          <div className="menu-icon cursor-pointer">
-          <IoMenu />
-          </div>
+        </div>
+
+        <div className="menu-icon text-white cursor-pointer block md:hidden mr-4">
+          {" "}
+          <IoMenu className="text-4xl" />
+        </div>
+
+        <div className="menu text-white block md:hidden">
+          <a href="">HOME</a>
+          <a href="">ABOUT</a>
+          <a href="">CONTACT</a>
+          <a href="">AGENT</a>
+          <a href="">SIGN UP</a>
+          <a href="">LOGIN</a>
         </div>
       </nav>
     </div>
