@@ -11,7 +11,7 @@ function Navbar() {
         backgroundPosition: "center",
       }}
     >
-      <nav className="flex flex-grow items-center justify-between">
+      <nav className="flex flex-grow items-center justify-between mx-2">
         {/* LOGO */}
         <div className="nav-left flex items-center gap-12 basis-2/3 border-2 border-white">
           <a
@@ -19,7 +19,7 @@ function Navbar() {
             className="flex items-center gap-2 font-old text-white hover:scale-105 transition-transform duration-300"
           >
             <img src="src/assets/logo.png" alt="logo" className="w-10" />
-            <span>REALEZY</span>
+            <span className="text-xl">REAL_EZY</span>
           </a>
 
           {/* NAVBAR ITEMS */}
