@@ -19,7 +19,7 @@ function Navbar() {
             className="flex items-center gap-2 text-white hover:scale-105 transition-transform duration-300"
           >
             <img src="src/assets/logo.png" alt="logo" className="w-10" />
-            <span className="text-xl font-rubik font-rubik-normal">REAL_EZY</span>
+            <span className="text-2xl font-courgette">REAL_EZY</span>
           </a>
 
           {/* NAVBAR ITEMS */}
