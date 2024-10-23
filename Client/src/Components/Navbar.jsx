@@ -11,9 +11,9 @@ function Navbar() {
         backgroundPosition: "center",
       }}
     >
-      <nav className="flex flex-grow items-center justify-between mx-4 py-3">
+      <nav className="flex flex-grow items-center justify-between">
         {/* LOGO */}
-        <div className="flex items-center gap-20">
+        <div className="nav-left flex items-center gap-12 basis-2/3 border-2 border-white">
           <img
             src="src/assets/logo.png"
             alt="logo"
@@ -22,7 +22,7 @@ function Navbar() {
 
           {/* NAVBAR ITEMS */}
           <div>
-            <ul className="flex items-center justify-around gap-16 text-white text-lg">
+            <ul className="flex items-center justify-around gap-12 text-white text-lg">
               <li className="cursor-pointer hover:text-emerald-300 transition-colors duration-300 relative group">
                 Home
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-300 group-hover:w-full transition-all duration-300"></span>
@@ -43,7 +43,7 @@ function Navbar() {
           </div>
         </div>
 
-        <div className="buttons flex items-center justify-center gap-5">
+        <div className="nav-right flex items-center justify-end h-full gap-5 basis-2/5 border-2 border-pink-500">
           <button className="bg-gradient-to-r from-teal-400 to-emerald-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
             Login
           </button>
