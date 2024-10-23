@@ -14,11 +14,13 @@ function Navbar() {
       <nav className="flex flex-grow items-center justify-between">
         {/* LOGO */}
         <div className="nav-left flex items-center gap-12 basis-2/3 border-2 border-white">
-          <img
-            src="src/assets/logo.png"
-            alt="logo"
-            className="w-52 mt-1 hover:scale-105 transition-transform duration-300"
-          />
+          <a
+            href="/"
+            className="flex items-center gap-2 font-old text-white hover:scale-105 transition-transform duration-300"
+          >
+            <img src="src/assets/logo.png" alt="logo" className="w-10" />
+            <span>REALEZY</span>
+          </a>
 
           {/* NAVBAR ITEMS */}
           <div>
