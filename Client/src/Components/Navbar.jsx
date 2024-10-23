@@ -1,9 +1,9 @@
-import React from "react";
+import {React, useState} from "react";
 import { IoMenu } from "react-icons/io5";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  
+
   return (
     <div
       className="w-full overflow-x-hidden fixed top-0 left-0 right-0 z-50 drop-shadow-lg"
@@ -61,7 +61,7 @@ function Navbar() {
 
         <div className="menu-icon block text-white cursor-pointer md:hidden mr-4 z-20">
           {" "}
-          <IoMenu className="text-4xl" />
+          <IoMenu className="text-4xl" onClick={() => setMenuOpen(!menuOpen)} />
         </div>
       </nav>
     </div>
