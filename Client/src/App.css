@@ -6,3 +6,8 @@
 
 /* LOGO FONT */
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+/* Mobile (<640px): Smallest size
+sm (≥640px): Slightly larger
+md (≥768px): Medium size
+lg (≥1024px): Largest size */
