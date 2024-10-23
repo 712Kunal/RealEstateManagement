@@ -2,6 +2,8 @@ import React from "react";
 import { IoMenu } from "react-icons/io5";
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  
   return (
     <div
       className="w-full overflow-x-hidden fixed top-0 left-0 right-0 z-50 drop-shadow-lg"
@@ -61,15 +63,6 @@ function Navbar() {
           {" "}
           <IoMenu className="text-4xl" />
         </div>
-
-        {/* <div className="menu flex flex-col items-center justify-center absolute right-0 top-0 bottom-0 h-full w-1/2 bg-black text-white md:hidden">
-          <a href="">HOME</a>
-          <a href="">ABOUT</a>
-          <a href="">CONTACT</a>
-          <a href="">AGENT</a>
-          <a href="">SIGN UP</a>
-          <a href="">LOGIN</a>
-        </div> */}
       </nav>
     </div>
   );
