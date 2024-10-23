@@ -1,5 +1,6 @@
-import {React, useState} from "react";
+import { React, useState } from "react";
 import { IoMenu } from "react-icons/io5";
+import Sidebar from "./Sidebar";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -63,6 +64,7 @@ function Navbar() {
           {" "}
           <IoMenu className="text-4xl" onClick={() => setMenuOpen(!menuOpen)} />
         </div>
+        <Sidebar />
       </nav>
     </div>
   );
