@@ -6,6 +6,10 @@ export default {
       fontFamily: {
         exo: ['"Exo 2"', "sans-serif"],
         old: ["'Fredoka'", "sans-serif"],
+        rubik: ["Rubik Wet Paint", "sans-serif"],
+      },
+      fontWeight: {
+        "rubik-normal": 400,
       },
     },
   },
