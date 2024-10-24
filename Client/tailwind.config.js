@@ -7,6 +7,11 @@ export default {
         exo: ['"Exo 2"', "sans-serif"],
         old: ["'Fredoka'", "sans-serif"],
         courgette: ["'Courgette'", "sans-serif"],
+        permanent: ["'Permanent Marker'", "cursive"],
+        sidebar: ["'Montserrat Alternates'", "sans-serif"],
+      },
+      fontWeight: {
+        side: 400,
       },
     },
   },
