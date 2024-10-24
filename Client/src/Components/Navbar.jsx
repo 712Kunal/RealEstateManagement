@@ -15,7 +15,7 @@ function Navbar() {
         backgroundPosition: "center",
       }}
     >
-      <nav className=" w-full flex flex-grow items-center justify-between mx-2">
+      <nav className="w-full flex flex-grow items-center justify-between px-2">
         {/* LOGO */}
         <div className="nav-left flex items-center gap-12 basis-2/3">
           <a
