@@ -34,7 +34,7 @@ function Sidebar() {
     <div className="relative">
       {/* Menu Button */}
       <button
-        className="fixed right-4 top-4 p-2 text-white bg-gray-900 rounded-full cursor-pointer md:hidden z-[51] shadow-lg hover:bg-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+        className="fixed right-4 top-2 p-2 text-white bg-gray-900 rounded-full cursor-pointer md:hidden z-[51] shadow-lg hover:bg-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500"
         onClick={() => setMenuOpen(!menuOpen)}
       >
         {menuOpen ? (
