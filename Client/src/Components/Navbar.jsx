@@ -2,7 +2,6 @@ import { React, useState, useEffect } from "react";
 import Sidebar from "./Sidebar.jsx";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-
 function Navbar() {
   const mobileWidth = useMediaQuery("(max-width:768px)");
   const [isMobile, setIsMobile] = useState(mobileWidth);

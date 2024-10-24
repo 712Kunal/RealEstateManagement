@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { IoMenu } from "react-icons/io5";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
@@ -10,78 +10,101 @@ import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 
 function Sidebar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState("home");
+
+  // Close sidebar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuOpen && !e.target.closest(".sidebar-content")) {
+        setMenuOpen(false);
+      }
+    };
+  }, [menuOpen]);
+
+  const menuItems = [
+    { id: "home", icon: HomeIcon, text: "HOME", path: "" },
+    { id: "about", icon: InfoIcon, text: "ABOUT", path: "" },
+    { id: "contact", icon: ContactPhoneIcon, text: "CONTACT", path: "" },
+    { id: "agent", icon: SupportAgentIcon, text: "AGENT", path: "" },
+    { id: "signup", icon: AddBoxIcon, text: "SIGN UP", path: "" },
+    { id: "login", icon: InputIcon, text: "LOGIN", path: "/login" },
+  ];
 
   return (
     <div className="relative">
-      {/* MENU ICON */}
-      <div className="menu-icon fixed right-2 top-2 text-white bg-[#09090b] rounded-full cursor-pointer md:hidden z-[51]">
+      {/* Menu Button */}
+      <button
+        className="fixed right-4 top-4 p-2 text-white bg-gray-900 rounded-full cursor-pointer md:hidden z-[51] shadow-lg hover:bg-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
         {menuOpen ? (
-          <MenuOpenIcon
-            className="!text-4xl"
-            onClick={() => setMenuOpen(!menuOpen)}
-          />
+          <MenuOpenIcon className="!text-3xl" />
         ) : (
-          <IoMenu className="text-4xl" onClick={() => setMenuOpen(!menuOpen)} />
+          <IoMenu className="text-3xl" />
         )}
-      </div>
+      </button>
 
-      {/* SIDEBAR OVERLAY */}
+      {/* Overlay */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 bg-black/70 backdrop-blur-sm z-40 transition-all duration-300 md:hidden ${
           menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMenuOpen(false)}
       />
 
-      {/* Sidebar content */}
+      {/* Sidebar */}
       <div
-        className={`fixed top-0 right-0 h-screen z-50 bg-[#09090b] w-1/2  transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`sidebar-content fixed top-0 right-0 h-screen z-50 bg-gradient-to-b from-gray-900 to-gray-800 w-64 transform transition-all duration-300 ease-out shadow-2xl md:hidden ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="relative top-12  flex flex-col items-center h-full gap-2 px-2 text-white font-sidebar font-side text-xl">
-          <a
-            href=""
-            className="w-full flex items-center justify-center gap-1 p-2 rounded-lg bg-[#121216] hover:text-emerald-300 transition-colors duration-300"
-          >
-            <HomeIcon className="text-cyan-200" />
-            HOME
-          </a>
-          <a
-            href=""
-            className="w-full flex items-center justify-center gap-1 p-2 bg-[#121216] rounded-lg hover:text-emerald-300 transition-colors duration-300"
-          >
-            <InfoIcon className="text-cyan-200" />
-            ABOUT
-          </a>
-          <a
-            href=""
-            className="w-full flex items-center justify-center gap-1 p-2 bg-[#121216] rounded-lg hover:text-emerald-300 transition-colors duration-300"
-          >
-            <ContactPhoneIcon className="text-cyan-200" />
-            CONTACT
-          </a>
-          <a
-            href=""
-            className="w-full flex items-center justify-center gap-1 p-2 bg-[#121216] rounded-lg hover:text-emerald-300 transition-colors duration-300"
-          >
-            <SupportAgentIcon className="text-cyan-200" />
-            AGENT
-          </a>
-          <a
-            href=""
-            className="w-full flex items-center justify-center gap-1 p-2 bg-[#121216] rounded-lg hover:text-emerald-300 transition-colors duration-300"
-          >
-            <AddBoxIcon className="text-cyan-200" />
-            SIGN UP
-          </a>
-          <a
-            href="/login"
-            className="w-full flex items-center justify-center gap-1 p-2 bg-[#121216] rounded-lg hover:text-emerald-300 transition-colors duration-300"
-          >
-            <InputIcon className="text-cyan-200" />
-            LOGIN
-          </a>
+        {/* Logo Area */}
+        <div className="mt-16 mb-8 px-6">
+          <div className="h-12 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-lg flex items-center justify-center gap-2">
+            <img src="src/assets/logo.png" alt="logo" className="w-8" />
+            <span className="text-xl text-white md:hidden lg:block font-courgette">
+              REAL_EZY
+            </span>
+          </div>
+        </div>
+
+        {/* Navigation Menu */}
+        <nav className="px-4 space-y-2">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <a
+                key={item.id}
+                href={item.path}
+                className={`group w-full flex items-center gap-3 p-3 rounded-lg transition-all duration-300
+                  ${
+                    activeItem === item.id
+                      ? "bg-cyan-500/20 text-cyan-300"
+                      : "hover:bg-gray-800 text-gray-300 hover:text-white"
+                  }`}
+                onClick={() => setActiveItem(item.id)}
+              >
+                <Icon
+                  className={`text-2xl transition-colors duration-300
+                  ${
+                    activeItem === item.id
+                      ? "text-cyan-300"
+                      : "text-gray-400 group-hover:text-white"
+                  }`}
+                />
+                <span className="font-medium tracking-wide">{item.text}</span>
+              </a>
+            );
+          })}
+        </nav>
+
+        {/* Bottom Section */}
+        <div className="absolute bottom-8 left-0 right-0 px-6">
+          <div className="p-4 bg-gray-800/50 rounded-lg">
+            <p className="text-sm text-gray-400 text-center">
+              Need help? Contact support
+            </p>
+          </div>
         </div>
       </div>
     </div>
