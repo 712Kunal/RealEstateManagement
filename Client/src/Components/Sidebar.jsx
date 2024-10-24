@@ -27,7 +27,7 @@ function Sidebar() {
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-8 text-black">
+        <div className="flex flex-col items-center justify-center h-full space-y-8 text-black font-courgette text-xl">
           <a href="" className="hover:text-emerald-300 transition-colors duration-300">HOME</a>
           <a href="" className="hover:text-emerald-300 transition-colors duration-300">ABOUT</a>
           <a href="" className="hover:text-emerald-300 transition-colors duration-300">CONTACT</a>
