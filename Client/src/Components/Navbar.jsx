@@ -1,9 +1,17 @@
-import { React } from "react";
-import Sidebar from "./Sidebar";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { React, useState, useEffect } from "react";
+import Sidebar from "./Sidebar.jsx";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Navbar() {
-  return (
+  const mobileWidth = useMediaQuery("(max-width:768px)");
+  const [isMobile, setIsMobile] = useState(mobileWidth);
+
+  useEffect(() => {
+    setIsMobile(mobileWidth);
+  }, [mobileWidth]);
+
+  return;
+  <>
     <div
       className="w-full overflow-x-hidden fixed top-0 left-0 right-0 z-50 drop-shadow-lg"
       style={{
@@ -57,12 +65,12 @@ function Navbar() {
             Sign up
           </button>
         </div>
-
-        {}
-        <Sidebar />
       </nav>
     </div>
-  );
+
+    {/* CONDITIONAL RENDERING */}
+    {isMobile ? <Sidebar /> : null}
+  </>;
 }
 
 export default Navbar;
