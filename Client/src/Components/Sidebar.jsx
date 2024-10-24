@@ -1,6 +1,12 @@
 import { React, useState } from "react";
 import { IoMenu } from "react-icons/io5";
-
+import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
+import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import InputIcon from "@mui/icons-material/Input";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 
 function Sidebar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,8 +14,15 @@ function Sidebar() {
   return (
     <div className="relative">
       {/* MENU ICON */}
-      <div className="menu-icon fixed right-2 top-2 text-black bg-white rounded-full cursor-pointer md:hidden z-[51]">
-        <IoMenu className="text-4xl" onClick={() => setMenuOpen(!menuOpen)} />
+      <div className="menu-icon fixed right-2 top-2 text-white bg-[#09090b] rounded-full cursor-pointer md:hidden z-[51]">
+        {menuOpen ? (
+          <MenuOpenIcon
+            className="!text-4xl"
+            onClick={() => setMenuOpen(!menuOpen)}
+          />
+        ) : (
+          <IoMenu className="text-4xl" onClick={() => setMenuOpen(!menuOpen)} />
+        )}
       </div>
 
       {/* SIDEBAR OVERLAY */}
@@ -22,45 +35,51 @@ function Sidebar() {
 
       {/* Sidebar content */}
       <div
-        className={`fixed top-0 right-0 h-screen z-50 bg-white w-1/2  transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 right-0 h-screen z-50 bg-[#09090b] w-1/2  transform transition-transform duration-300 ease-in-out md:hidden ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-7 text-black font-sidebar font-side text-xl">
+        <div className="relative top-12  flex flex-col items-center h-full gap-2 px-2 text-white font-sidebar font-side text-xl">
           <a
             href=""
-            className="hover:text-emerald-300 transition-colors duration-300"
+            className="w-full flex items-center justify-center gap-1 p-2 rounded-lg bg-[#121216] hover:text-emerald-300 transition-colors duration-300"
           >
+            <HomeIcon className="text-cyan-200" />
             HOME
           </a>
           <a
             href=""
-            className="hover:text-emerald-300 transition-colors duration-300"
+            className="w-full flex items-center justify-center gap-1 p-2 bg-[#121216] rounded-lg hover:text-emerald-300 transition-colors duration-300"
           >
+            <InfoIcon className="text-cyan-200" />
             ABOUT
           </a>
           <a
             href=""
-            className="hover:text-emerald-300 transition-colors duration-300"
+            className="w-full flex items-center justify-center gap-1 p-2 bg-[#121216] rounded-lg hover:text-emerald-300 transition-colors duration-300"
           >
+            <ContactPhoneIcon className="text-cyan-200" />
             CONTACT
           </a>
           <a
             href=""
-            className="hover:text-emerald-300 transition-colors duration-300"
+            className="w-full flex items-center justify-center gap-1 p-2 bg-[#121216] rounded-lg hover:text-emerald-300 transition-colors duration-300"
           >
+            <SupportAgentIcon className="text-cyan-200" />
             AGENT
           </a>
           <a
             href=""
-            className="hover:text-emerald-300 transition-colors duration-300"
+            className="w-full flex items-center justify-center gap-1 p-2 bg-[#121216] rounded-lg hover:text-emerald-300 transition-colors duration-300"
           >
+            <AddBoxIcon className="text-cyan-200" />
             SIGN UP
           </a>
           <a
             href="/login"
-            className="hover:text-emerald-300 transition-colors duration-300"
+            className="w-full flex items-center justify-center gap-1 p-2 bg-[#121216] rounded-lg hover:text-emerald-300 transition-colors duration-300"
           >
+            <InputIcon className="text-cyan-200" />
             LOGIN
           </a>
         </div>

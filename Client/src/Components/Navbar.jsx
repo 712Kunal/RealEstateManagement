@@ -37,7 +37,7 @@ function Navbar() {
 
             {/* NAVBAR ITEMS */}
             <div className="hidden md:block">
-              <ul className="flex items-center justify-around gap-12 text-white text-lg">
+              <ul className="flex items-center justify-around gap-12 text-white text-lg font-sidebar font-side">
                 <li className="cursor-pointer hover:text-emerald-300 transition-colors duration-300 relative group">
                   Home
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-300 group-hover:w-full transition-all duration-300"></span>
