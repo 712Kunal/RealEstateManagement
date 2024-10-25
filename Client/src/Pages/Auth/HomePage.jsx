@@ -19,6 +19,7 @@ function HomePage() {
             voluptatem, quia, voluptas, doloremque consequuntur velit
             perferendis.
           </p>
+          
         </div>
       </section>
     </div>
