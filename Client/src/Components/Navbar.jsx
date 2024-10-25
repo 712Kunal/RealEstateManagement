@@ -24,10 +24,7 @@ function Navbar() {
         <nav className="w-full flex flex-grow items-center justify-between px-2">
           {/* LOGO */}
           <div className="nav-left flex items-center gap-12 basis-2/3">
-            <a
-              href="/"
-              className="flex items-center gap-2 text-white"
-            >
+            <a href="/" className="flex items-center gap-2 text-white">
               <img src="src/assets/logo.png" alt="logo" className="w-10" />
               <span className="text-2xl md:hidden lg:block font-courgette">
                 REAL_EZY
