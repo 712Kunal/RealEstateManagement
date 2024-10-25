@@ -16,9 +16,8 @@ function HomePage() {
             Find Real Estate & Get Your Dream Place
           </h1>
           <p className="text-white/90 text-lg md:text-xl max-w-2xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem
-            voluptatem, quia, voluptas, doloremque consequuntur velit
-            perferendis.
+            Discover a seamless way to find and manage your perfect property
+            with our cutting-edge real estate platform.
           </p>
           <SearchBar />
           <div className="boxes w-full flex gap-5 justify-center items-center flex-wrap md:gap-16 lg:gap-20 text-white ">
