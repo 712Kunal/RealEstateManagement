@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import { FcSearch } from "react-icons/fc";
 
 function SearchBar() {
   const types = ["Buy", "Rent"];
@@ -23,7 +24,7 @@ function SearchBar() {
             <button
               key={type}
               onClick={() => switchType(type)}
-              className={`py-4 px-9 border border-slate-200 cursor-pointer first:rounded-tl-lg first:rounded-tr-none last:rounded-tl-none last:rounded-tr-lg ${
+              className={`py-4 px-9 border border-b-0 border-slate-200 cursor-pointer first:rounded-tl-lg first:rounded-tr-none last:rounded-tl-none last:rounded-tr-lg ${
                 querry.type === type ? "bg-slate-100" : ""
               }`}
             >
@@ -32,9 +33,15 @@ function SearchBar() {
           );
         })}
       </div>
-      <form>
-        <input type="text" name="location" placeholder="City Location" />
+      <form className="border flex justify-between h-16 gap-1">
         <input
+          className="w-52 px-5 py-0 border-none"
+          type="text"
+          name="location"
+          placeholder="City Location"
+        />
+        <input
+          className="w-52 px-5 py-0 border-none"
           type="number"
           name="minPrice"
           min={0}
@@ -42,13 +49,16 @@ function SearchBar() {
           placeholder="Min Price"
         />
         <input
+          className="w-52 px-5 py-0 border-none"
           type="number"
           name="maxPrice"
           min={0}
           max={1000000}
           placeholder="Max Price"
         />
-        <button>Search</button>
+        <button className="p-2 bg-yellow-300">
+          <FcSearch className="text-4xl" />
+        </button>
       </form>
     </div>
   );
