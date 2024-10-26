@@ -1,18 +1,37 @@
-import React from "react";
+import { React, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Dialog, DialogTitle, Typography, DialogContent } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function TwofaVerifyPopup({ open, onClose }) {
+  const navigate = useNavigate();
+
+  // SET THE TIMEOUT FOR THE POPUP TO CLOSE
+  const delay = 3000;
+
+  useEffect(() => {
+    if (open) {
+      // SET A TIMEOUT TO CLOSE THE POPUP AFTER A SPECIFIED TIME
+      const timer = setTimeout(() => {
+        // CLOSE THE POPUP
+        onClose();
+        // NAVIGATE TO LANDING PAGE AFTER CLOSING THE POPUP
+        navigate("/");
+      }, delay);
+      return () => clearTimeout(timer);
+    }
+  }, [open, onClose, navigate, delay]);
+
   const svgVariants = {
     hidden: { opacity: 0, scale: 0.5 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
-      transition: { 
+      transition: {
         duration: 1.5, // Increased from 0.5 to 1.5 seconds
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const pathVariants = {
@@ -20,12 +39,12 @@ function TwofaVerifyPopup({ open, onClose }) {
     visible: {
       pathLength: 1,
       fill: "rgba(34, 197, 94, 1)", // Tailwind's green-500
-      transition: { 
+      transition: {
         duration: 2, // Increased from 1 to 2 seconds
         ease: "easeInOut",
-        fill: { delay: 1.5, duration: 1 } // Increased delay and duration
-      }
-    }
+        fill: { delay: 1.5, duration: 1 }, // Increased delay and duration
+      },
+    },
   };
 
   return (
@@ -38,7 +57,11 @@ function TwofaVerifyPopup({ open, onClose }) {
         <DialogTitle className="!text-3xl !text-white !font-bold mb-4">
           Authentication Successful
         </DialogTitle>
-        <Typography variant="h6" component="h2" className="!text-slate-300 mb-6">
+        <Typography
+          variant="h6"
+          component="h2"
+          className="!text-slate-300 mb-6"
+        >
           You have successfully verified your identity.
         </Typography>
 
