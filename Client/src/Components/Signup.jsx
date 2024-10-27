@@ -21,7 +21,6 @@ function Signup() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
-  // ADD THE USEEFFECT HOOK TO LOG THE CURRENT USER DATA IN THE REDUX STORE
   useEffect(() => {
     console.log("Current user data in Redux store:", user);
   }, [user]);
@@ -31,7 +30,6 @@ function Signup() {
     setError("");
 
     const formData = new FormData(e.target);
-
     const username = formData.get("username");
     const email = formData.get("email");
     const password = formData.get("password");
@@ -65,7 +63,6 @@ function Signup() {
       return;
     }
 
-    //SEND THE OTP TO THE BACKEND FOR THE VERIFICATION
     try {
       const verifyOTPResponse = await apiRequest.post(
         "/auth/getOTPVerification",
@@ -75,29 +72,27 @@ function Signup() {
         }
       );
       setTwoFaVerified(true);
-      // DISPATCH ACTION TO UPDATE VERIFIED STATUS IN REDUX
       dispatch(setVerified());
       setError("");
     } catch (error) {
       throw new Error(error.response.data.error);
     }
 
-    //CLOSE THE POPUP AFTER VERIFICATION
     setIs2faOpen(false);
   };
 
   return (
     <div className="w-full h-screen overflow-hidden flex justify-center items-center">
-      <div className="bg-gray-900 p-4 rounded-xl shadow-2xl w-full max-w-md">
+      <div className="backdrop-blur-lg bg-gray-900/40 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-700/50">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center justify-center gap-6 w-full max-w-md"
         >
-          <h1 className="text-5xl text-purple-500 font-Fredoka mb-2">
+          <h1 className="text-5xl bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent font-Fredoka mb-2">
             Create An Account
           </h1>
           <input
-            className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
+            className="w-full text-gray-100 rounded-lg px-4 py-3 bg-gray-800/50 border border-gray-700/50 outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition duration-300 placeholder:text-gray-400 placeholder:tracking-widest text-xl font-medium"
             type="text"
             placeholder="USERNAME"
             name="username"
@@ -105,7 +100,7 @@ function Signup() {
             title="Username must be between 3 and 15 characters long and can only contain letters, numbers, and underscores."
           />
           <input
-            className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
+            className="w-full text-gray-100 rounded-lg px-4 py-3 bg-gray-800/50 border border-gray-700/50 outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition duration-300 placeholder:text-gray-400 placeholder:tracking-widest text-xl font-medium"
             type="email"
             placeholder="EMAIL"
             name="email"
@@ -113,7 +108,7 @@ function Signup() {
             title="Please enter a valid email address"
           />
           <input
-            className="w-full text-gray-200 rounded-lg px-4 py-3 bg-gray-800 outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 placeholder:tracking-widest text-xl font-medium"
+            className="w-full text-gray-100 rounded-lg px-4 py-3 bg-gray-800/50 border border-gray-700/50 outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition duration-300 placeholder:text-gray-400 placeholder:tracking-widest text-xl font-medium"
             type="password"
             placeholder="PASSWORD"
             name="password"
@@ -121,22 +116,22 @@ function Signup() {
             title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)"
           />
           <Button
-            className="!w-full !text-2xl !rounded-lg !tracking-wider !p-3 !text-white !bg-purple-600 !hover:bg-purple-800 !transition !duration-300"
+            className="!w-full !text-2xl !rounded-lg !tracking-wider !p-3 !text-white !bg-gradient-to-r !from-violet-600 !to-indigo-600 hover:!from-violet-700 hover:!to-indigo-700 !transition !duration-300 !shadow-lg hover:!shadow-violet-500/25"
             variant="contained"
             type="submit"
           >
             Create Account
           </Button>
 
-          {error ? <p className="text-red-400 text-center">{error}</p> : null}
+          {error && <p className="text-red-400 text-center">{error}</p>}
 
           <div className="w-full flex items-center my-2">
-            <div className="flex-grow h-px bg-gray-600"></div>
+            <div className="flex-grow h-px bg-gray-700/50"></div>
             <span className="text-gray-400 text-md px-4">OR CONTINUE WITH</span>
-            <div className="flex-grow h-px bg-gray-600"></div>
+            <div className="flex-grow h-px bg-gray-700/50"></div>
           </div>
 
-          <button className="w-full flex items-center justify-center gap-2 bg-white text-gray-800 font-semibold py-3 px-4 rounded-lg hover:bg-gray-100 transition duration-300">
+          <button className="w-full flex items-center justify-center gap-2 bg-gray-800/50 border border-gray-700/50 text-gray-100 font-semibold py-3 px-4 rounded-lg hover:bg-gray-700/50 transition duration-300">
             <FcGoogle className="text-2xl" />
             <span>Sign up with Google</span>
           </button>
@@ -144,7 +139,7 @@ function Signup() {
           <p className="text-gray-400">
             Already have an account?{" "}
             <span
-              className="text-cyan-400 cursor-pointer hover:underline font-Fredoka transition duration-300"
+              className="text-violet-400 cursor-pointer hover:text-violet-300 hover:underline font-Fredoka transition duration-300"
               onClick={() => navigate("/login")}
             >
               Login
@@ -153,26 +148,22 @@ function Signup() {
         </form>
       </div>
 
-      {is2faOpen ? (
+      {is2faOpen && (
         <div>
           <TwoFactorAuth
             open={is2faOpen}
             onVerify={handle2faVerify}
-            onClose={() => {
-              setIs2faOpen(false);
-            }}
+            onClose={() => setIs2faOpen(false)}
           />
         </div>
-      ) : null}
+      )}
 
-      {twoFaVerified ? (
+      {twoFaVerified && (
         <TwofaVerifyPopup
           open={twoFaVerified}
-          onClose={() => {
-            setTwoFaVerified(false);
-          }}
+          onClose={() => setTwoFaVerified(false)}
         />
-      ) : null}
+      )}
     </div>
   );
 }
