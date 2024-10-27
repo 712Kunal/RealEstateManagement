@@ -1,10 +1,12 @@
 import { React, useState, useEffect } from "react";
 import Sidebar from "./Sidebar.jsx";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const mobileWidth = useMediaQuery("(max-width:768px)");
   const [isMobile, setIsMobile] = useState(mobileWidth);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsMobile(mobileWidth);
@@ -55,10 +57,16 @@ function Navbar() {
           </div>
 
           <div className="nav-right hidden md:flex items-center justify-end h-full gap-5 basis-2/5">
-            <button className="bg-gradient-to-r from-teal-400 to-emerald-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+            <button
+              onClick={() => navigate("/login")}
+              className="bg-gradient-to-r from-teal-400 to-emerald-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+            >
               Login
             </button>
-            <button className="bg-gradient-to-r from-violet-400 to-purple-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-purple-500 hover:to-violet-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+            <button
+              onClick={() => navigate("/signup")}
+              className="bg-gradient-to-r from-violet-400 to-purple-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-purple-500 hover:to-violet-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+            >
               Sign up
             </button>
           </div>
