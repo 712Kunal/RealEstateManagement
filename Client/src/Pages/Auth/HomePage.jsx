@@ -20,7 +20,7 @@ function HomePage() {
             with our cutting-edge real estate platform.
           </p>
           <SearchBar />
-          <div className="boxes w-full flex gap-5 justify-center items-center flex-wrap md:gap-16 lg:gap-20 text-white ">
+          <div className="boxes hidden w-full md:flex gap-5 justify-center items-center flex-wrap md:gap-16 lg:gap-20 text-white ">
             <div className="box border border-slate-50 p-2 rounded-lg">
               <h1 className="text-2xl font-bold">16 +</h1>
               <h2 className="text-xl font-semibold">Years Of Experience</h2>

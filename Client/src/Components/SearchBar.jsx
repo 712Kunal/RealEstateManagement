@@ -18,7 +18,7 @@ function SearchBar() {
 
   return (
     <div className="flex flex-col items-start">
-      <div className="type">
+      <div className="type mx-2 md:mx-0 lg:mx-0">
         {types.map((type) => {
           return (
             <button
@@ -33,15 +33,15 @@ function SearchBar() {
           );
         })}
       </div>
-      <form className="border flex justify-between h-16 gap-1">
+      <form className="flex flex-col gap-1 w-screen p-2 md:flex-row md:w-auto md:justify-between h-16 lg:gap-2 lg:p-0">
         <input
-          className="w-52 px-5 py-0 border-none"
+          className="w-full rounded-lg py-2 md:w-52 px-5 md:py-0 border-none"
           type="text"
           name="location"
           placeholder="City Location"
         />
         <input
-          className="w-52 px-5 py-0 border-none"
+          className="w-full rounded-lg py-2 md:w-52 px-5 md:py-0 border-none"
           type="number"
           name="minPrice"
           min={0}
@@ -49,14 +49,14 @@ function SearchBar() {
           placeholder="Min Price"
         />
         <input
-          className="w-52 px-5 py-0 border-none"
+          className="w-full rounded-lg py-2 md:w-52 px-5 md:py-0 border-none"
           type="number"
           name="maxPrice"
           min={0}
           max={1000000}
           placeholder="Max Price"
         />
-        <button className="p-2 bg-yellow-300">
+        <button className="p-2 rounded-lg bg-yellow-300">
           <FcSearch className="text-4xl" />
         </button>
       </form>
