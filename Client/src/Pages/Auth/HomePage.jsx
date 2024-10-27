@@ -11,8 +11,8 @@ function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/60"></div>
 
         {/* Content */}
-        <div className="relative container mx-auto flex flex-col items-center justify-center h-full px-4 gap-3 text-center">
-          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold mb-6 max-w-3xl">
+        <div className="relative container mx-auto flex flex-col items-center justify-center h-full px-0 md:px-4 gap-5 md:gap-7 lg:gap-9 text-center">
+          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-6 max-w-3xl">
             Find Real Estate & Get Your Dream Place
           </h1>
           <p className="text-white/90 text-lg font-semibold md:text-xl max-w-2xl font-sidebar">
