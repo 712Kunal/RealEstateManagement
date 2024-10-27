@@ -15,7 +15,7 @@ function HomePage() {
           <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold mb-6 max-w-3xl">
             Find Real Estate & Get Your Dream Place
           </h1>
-          <p className="text-white/90 text-lg md:text-xl max-w-2xl">
+          <p className="text-white/90 text-lg font-semibold md:text-xl max-w-2xl font-sidebar">
             Discover a seamless way to find and manage your perfect property
             with our cutting-edge real estate platform.
           </p>

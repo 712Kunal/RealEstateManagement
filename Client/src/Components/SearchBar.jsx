@@ -1,7 +1,15 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { FcSearch } from "react-icons/fc";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function SearchBar() {
+  const mobileWidth = useMediaQuery("(max-width:768px)");
+  const [isMobile, setIsMobile] = useState(mobileWidth);
+
+  useEffect(() => {
+    setIsMobile(mobileWidth);
+  }, [mobileWidth]);
+
   const types = ["Buy", "Rent"];
   const [querry, setQuerry] = useState({
     type: "Buy",
@@ -55,7 +63,11 @@ function SearchBar() {
           placeholder="Max Price"
         />
         <button className="p-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 flex justify-center items-center transition-colors duration-300">
-          <FcSearch className="text-4xl bg-white rounded-full p-1" />
+          {isMobile ? (
+            <span className="text-xl text-white tracking-widest font-sidebar">Search Properties</span>
+          ) : (
+            <FcSearch className="text-4xl bg-white rounded-full p-1" />
+          )}
         </button>
       </form>
     </div>
