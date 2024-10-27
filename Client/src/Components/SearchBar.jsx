@@ -22,6 +22,11 @@ function SearchBar() {
     setQuerry((prev) => ({ ...prev, type: val }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+  };
+
   return (
     <div className="flex flex-col items-start">
       <div className="type mx-2 md:mx-0 lg:mx-0">
@@ -39,7 +44,10 @@ function SearchBar() {
           </button>
         ))}
       </div>
-      <form className="flex flex-col gap-1 w-screen p-2 md:flex-row md:w-auto md:justify-between h-16 lg:gap-2 lg:p-0">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-1 w-screen p-2 md:flex-row md:w-auto md:justify-between h-16 lg:gap-2 lg:p-0"
+      >
         <input
           className="w-full rounded-lg py-2 md:w-52 px-5 md:py-0 border-2 border-indigo-100 focus:border-indigo-300 focus:outline-none placeholder:text-gray-400"
           type="text"
@@ -62,7 +70,11 @@ function SearchBar() {
           max={1000000}
           placeholder="Max Price"
         />
-        <button className="p-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 flex justify-center items-center transition-colors duration-300">
+
+        <button
+          type="submit"
+          className="p-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 flex justify-center items-center transition-colors duration-300"
+        >
           {isMobile ? (
             <span className="text-xl text-white tracking-widest font-sidebar">
               Search Properties
