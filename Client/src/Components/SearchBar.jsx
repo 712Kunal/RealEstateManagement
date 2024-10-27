@@ -64,7 +64,9 @@ function SearchBar() {
         />
         <button className="p-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 flex justify-center items-center transition-colors duration-300">
           {isMobile ? (
-            <span className="text-xl text-white tracking-widest font-sidebar">Search Properties</span>
+            <span className="text-xl text-white tracking-widest font-sidebar">
+              Search Properties
+            </span>
           ) : (
             <FcSearch className="text-4xl bg-white rounded-full p-1" />
           )}
