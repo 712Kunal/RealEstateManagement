@@ -117,15 +117,6 @@ function Signup() {
             title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)"
           />
 
-          {/* <TextField
-            id="outlined-basic"
-            label="Outlined"
-            variant="outlined"
-            name="username"
-            type="text"
-            className="!bg-pink-200 rounded-xl"
-          /> */}
-
           <Button
             className="!w-full !text-2xl !rounded-lg !tracking-wider !p-3 !text-white !bg-gradient-to-r !from-violet-600 !to-indigo-600 hover:!from-violet-700 hover:!to-indigo-700 !transition !duration-300 !shadow-lg hover:!shadow-violet-500/25"
             variant="contained"
