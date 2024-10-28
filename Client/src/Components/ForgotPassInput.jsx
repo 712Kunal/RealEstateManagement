@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import TwoFactorAuth from "./TwoFactorAuth.jsx";
 import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import Button from "@mui/material/Button";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
@@ -6,10 +7,53 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 function ForgotPassInput({ open, onClose }) {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
+  const [showMailVerify, setShowMailVerify] = useState(false);
+  const [is2faOpen, setIs2faOpen] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+    const email = formData.get("email");
+
+    if (email !== "") {
+      setError("");
+      setEmail(email);
+      setShowMailVerify(true);
+      setIs2faOpen(true);
+    } else {
+      setError("Please enter a valid email address");
+    }
+  };
+
+  const handle2faVerify = async (otpCode) => {
+    if (!email) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    try {
+      const findUser = await apiRequest.post("/auth/ForgotPassUser", {
+        email,
+      });
+
+      // FIND THE USER ID TO VERIFY THE OTP
+      const userid = findUser.data.userId;
+
+      if (findUser.data.message === "OTP sent successfully!!") {
+        const verifyOTPResponse = await apiRequest.post(
+          "/auth/getOTPVerification",
+          {
+            userId: userid,
+            otp: otpCode,
+          }
+        );
+      }
+      setShowMailVerify(false);
+    } catch (error) {
+      throw new Error(error.response.data.error);
+    }
+
+    setIs2faOpen(false);
   };
 
   return (
@@ -52,7 +96,7 @@ function ForgotPassInput({ open, onClose }) {
               {error && (
                 <p className="text-red-400 text-lg text-center mt-4">{error}</p>
               )}
-              
+
               <Button
                 type="submit"
                 variant="contained"
@@ -64,6 +108,17 @@ function ForgotPassInput({ open, onClose }) {
           </form>
         </div>
       </Dialog>
+
+      {showMailVerify && (
+        <div>
+          <TwoFactorAuth
+            open={is2faOpen}
+            onVerify={handle2faVerify}
+            email={email}
+            onClose={() => setIs2faOpen(false)}
+          />
+        </div>
+      )}
     </>
   );
 }

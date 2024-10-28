@@ -2,8 +2,10 @@ import { React, useState, useEffect, useRef } from "react";
 import Button from "@mui/material/Button";
 import { Dialog, DialogTitle, DialogContent, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
 
-function TwoFactorAuth({ open, onVerify, onClose }) {
+
+function TwoFactorAuth({ open, onVerify, email, onClose }) {
   const [code, setCode] = useState(["", "", "", ""]);
   const [error, setError] = useState("");
   const [showCloseConfirm, setShowCloseConfirm] = useState(false);
@@ -101,9 +103,16 @@ function TwoFactorAuth({ open, onVerify, onClose }) {
               className="text-red-400 mr-1 mt-1 self-end !text-3xl !cursor-pointer"
               onClick={handleClose}
             />
-            <DialogTitle className="!font-old !text-4xl !font-normal">
-              Two-Factor Authentication
-            </DialogTitle>
+            {email ? (
+              <DialogTitle className="!flex !items-center !gap-1 !font-old !text-4xl !font-normal">
+                <LockOpenIcon className="!text-4xl !text-center" />
+                Forgot Password
+              </DialogTitle>
+            ) : (
+              <DialogTitle className="!font-old !text-4xl !font-normal">
+                Two-Factor Authentication
+              </DialogTitle>
+            )}
             <DialogContent>
               <p className="!font-exo !tracking-wide !text-xl !font-extralight !mt-10">
                 We've sent a 4-digit code to your email. Please enter it below

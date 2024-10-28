@@ -9,6 +9,7 @@ import {
   loginSchema,
   signupSchema,
   verifyEnteredOTP,
+  ForgotPassUser,
 } from "../controllers/auth.controller.js";
 
 const router = express.Router();
@@ -22,5 +23,7 @@ router.post("/logout", userMiddleware, logout);
 router.post("/google", google);
 
 router.post("/getOTPVerification", verifyEnteredOTP);
+
+router.post("/ForgotPassUser", ForgotPassUser);
 
 export default router;

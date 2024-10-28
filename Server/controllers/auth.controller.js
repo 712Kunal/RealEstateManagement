@@ -170,7 +170,7 @@ const google = (req, res) => {
 const verifyEnteredOTP = async (req, res) => {
   try {
     const { otp, userId } = req.body;
-
+    
     if (!otp || !userId) {
       res.status(400).json({ message: "otp and user is required" });
     }
@@ -201,6 +201,34 @@ const verifyEnteredOTP = async (req, res) => {
   }
 };
 
+const ForgotPassUser = async (req, res, next) => {
+  const { email } = req.body;
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email: email },
+    });
+
+    if (!user) {
+      return res
+        .status(401)
+        .json({ message: "Invalid Credentials !!, User doesn't exist" });
+    }
+
+    const otp = await sendOTPVerification(user);
+    const sendingMail = await sendMail(req, res, otp);
+    if (sendingMail.success) {
+      res.status(201).json({
+        message: "OTP sent successfully!!",
+        userId: user.id,
+        username: user.username,
+        email: user.email,
+        avatar: user.avatar,
+        createdAt: user.createdAt,
+      });
+    }
+  } catch (error) {}
+};
+
 export {
   signup,
   login,
@@ -210,4 +238,6 @@ export {
   loginSchema,
   validateInput,
   verifyEnteredOTP,
+  ForgotPassUser,
+  verifyForgotPassOTP,
 };
