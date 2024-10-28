@@ -86,14 +86,26 @@ function Login() {
             )}
           </div>
 
-          <div className="flex items-center justify-center gap-2">
-            <span className="text-gray-400">Don't have an account?</span>
-            <span
-              className="text-violet-400 cursor-pointer hover:text-violet-300 hover:underline font-Fredoka transition duration-300"
-              onClick={() => navigate("/signup")}
-            >
-              Sign up
-            </span>
+          <div className="flex flex-col items-center justify-center gap-2 w-full">
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-gray-400">Don't have an account ?</span>
+              <span
+                className="text-violet-400 cursor-pointer hover:text-violet-300 hover:underline font-Fredoka transition duration-300"
+                onClick={() => navigate("/signup")}
+              >
+                Sign up
+              </span>
+            </div>
+            <div>
+              <div className="flex items-center justify-center gap-2">
+                <span
+                  className="text-violet-400 cursor-pointer hover:text-violet-300 hover:underline font-Fredoka transition duration-300"
+                  onClick={() => navigate("/forgot-password")}
+                >
+                  Forgot Password ?
+                </span>
+              </div>
+            </div>
           </div>
         </form>
       </div>
