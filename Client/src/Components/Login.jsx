@@ -5,11 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { setUser } from "../Features/Auth/AuthSlice.js";
 import Button from "@mui/material/Button";
 import apiRequest from "../lib/apiRequest.js";
+import Forgotpassword from "./Forgotpassword.jsx";
 
 function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const dispatch = useDispatch();
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +41,10 @@ function Login() {
     } catch (error) {
       setError(error.response.data.message);
     }
+  };
+
+  const handleForgotPassword = () => {
+    setShowForgotPassword(true);
   };
 
   return (
@@ -100,7 +106,7 @@ function Login() {
               <div className="flex items-center justify-center gap-2">
                 <span
                   className="text-violet-400 cursor-pointer hover:text-violet-300 hover:underline font-Fredoka transition duration-300"
-                  onClick={() => navigate("/forgot-password")}
+                  onClick={handleForgotPassword}
                 >
                   Forgot Password ?
                 </span>
@@ -109,6 +115,15 @@ function Login() {
           </div>
         </form>
       </div>
+
+      {showForgotPassword && (
+        <div>
+          <Forgotpassword
+            open={showForgotPassword}
+            onClose={() => setShowForgotPassword(false)}
+          />
+        </div>
+      )}
     </div>
   );
 }
