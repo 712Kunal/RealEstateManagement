@@ -1,6 +1,7 @@
 import React from "react";
 import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import Button from "@mui/material/Button";
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 
 function Forgotpassword({ open, onClose }) {
   console.log("Forgot password clicked");
@@ -16,7 +17,8 @@ function Forgotpassword({ open, onClose }) {
         }}
       >
         <div className="bg-[url('src/assets/SVG/popup.svg')] bg-cover bg-no-repeat bg-center">
-          <DialogTitle className="!font-old !text-4xl !font-normal">
+          <DialogTitle className="!flex !items-center !gap-1 !font-old !text-4xl !font-normal">
+          <LockOpenIcon  className="!text-4xl !text-center"/> 
             Reset Account Password
           </DialogTitle>
           <DialogContent>
