@@ -170,7 +170,8 @@ const google = (req, res) => {
 const verifyEnteredOTP = async (req, res) => {
   try {
     const { otp, userId } = req.body;
-    
+    console.log(otp, userId);
+
     if (!otp || !userId) {
       res.status(400).json({ message: "otp and user is required" });
     }
@@ -239,5 +240,4 @@ export {
   validateInput,
   verifyEnteredOTP,
   ForgotPassUser,
-  verifyForgotPassOTP,
 };

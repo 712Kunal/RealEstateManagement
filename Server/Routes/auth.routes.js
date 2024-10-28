@@ -24,6 +24,6 @@ router.post("/google", google);
 
 router.post("/getOTPVerification", verifyEnteredOTP);
 
-router.post("/ForgotPassUser", ForgotPassUser);
+router.post("/ForgotPass", ForgotPassUser);
 
 export default router;

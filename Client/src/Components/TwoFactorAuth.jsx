@@ -4,7 +4,6 @@ import { Dialog, DialogTitle, DialogContent, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 
-
 function TwoFactorAuth({ open, onVerify, email, onClose }) {
   const [code, setCode] = useState(["", "", "", ""]);
   const [error, setError] = useState("");

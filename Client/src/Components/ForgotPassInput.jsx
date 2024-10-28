@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import TwoFactorAuth from "./TwoFactorAuth.jsx";
+import apiRequest from "../lib/apiRequest.js";
 import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import Button from "@mui/material/Button";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
@@ -9,8 +10,10 @@ function ForgotPassInput({ open, onClose }) {
   const [email, setEmail] = useState("");
   const [showMailVerify, setShowMailVerify] = useState(false);
   const [is2faOpen, setIs2faOpen] = useState(false);
+  const [userId, setUserId] = useState(null);
+  const [otpSent, setOtpSent] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const email = formData.get("email");
@@ -18,41 +21,51 @@ function ForgotPassInput({ open, onClose }) {
     if (email !== "") {
       setError("");
       setEmail(email);
-      setShowMailVerify(true);
-      setIs2faOpen(true);
+
+      try {
+        const findUser = await apiRequest.post("/auth/ForgotPass", {
+          email,
+        });
+
+        // FIND THE USER ID TO VERIFY THE OTP
+        setUserId(findUser.data.userId);
+        setOtpSent(findUser.data.message === "OTP sent successfully!!");
+
+        setShowMailVerify(true);
+        setIs2faOpen(true);
+      } catch (error) {
+        setError(error.response.data.error);
+      }
     } else {
       setError("Please enter a valid email address");
     }
   };
 
-  const handle2faVerify = async (otpCode) => {
-    if (!email) {
-      setError("Please enter a valid email address");
-      return;
-    }
-
+  const handlePassOTP = async (otpCode) => {
     try {
-      const findUser = await apiRequest.post("/auth/ForgotPassUser", {
-        email,
-      });
-
-      // FIND THE USER ID TO VERIFY THE OTP
-      const userid = findUser.data.userId;
-
-      if (findUser.data.message === "OTP sent successfully!!") {
-        const verifyOTPResponse = await apiRequest.post(
-          "/auth/getOTPVerification",
-          {
-            userId: userid,
-            otp: otpCode,
-          }
-        );
+      if (!userId) {
+        throw new Error("User ID not found");
       }
+
+      if (!otpSent) {
+        throw new Error("OTP not sent successfully");
+      }
+
+      const verifyOTPResponse = await apiRequest.post(
+        "/auth/getOTPVerification",
+        {
+          userId: userId,
+          otp: otpCode,
+        }
+      );
+
       setShowMailVerify(false);
+      setIs2faOpen(false);
+      setUserId(null);
+      setOtpSent(false);
     } catch (error) {
       throw new Error(error.response.data.error);
     }
-
     setIs2faOpen(false);
   };
 
@@ -113,7 +126,7 @@ function ForgotPassInput({ open, onClose }) {
         <div>
           <TwoFactorAuth
             open={is2faOpen}
-            onVerify={handle2faVerify}
+            onVerify={handlePassOTP}
             email={email}
             onClose={() => setIs2faOpen(false)}
           />

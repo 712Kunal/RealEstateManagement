@@ -6,7 +6,7 @@ const sendOTPVerification = async (user) => {
   try {
     const otp = `${Math.floor(1000 + Math.random() * 9000)}`;
     const expiredAt = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
-
+    
     const createOTP = await prisma.userOTPVerification.create({
       data: {
         otp,
