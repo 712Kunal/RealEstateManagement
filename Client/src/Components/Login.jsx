@@ -6,6 +6,7 @@ import { setUser } from "../Features/Auth/AuthSlice.js";
 import Button from "@mui/material/Button";
 import apiRequest from "../lib/apiRequest.js";
 import Forgotpassword from "./Forgotpassword.jsx";
+import ForgotPassInput from "./ForgotPassInput.jsx";
 
 function Login() {
   const navigate = useNavigate();
@@ -118,7 +119,11 @@ function Login() {
 
       {showForgotPassword && (
         <div>
-          <Forgotpassword
+          {/* <Forgotpassword
+            open={showForgotPassword}
+            onClose={() => setShowForgotPassword(false)}
+          /> */}
+          <ForgotPassInput
             open={showForgotPassword}
             onClose={() => setShowForgotPassword(false)}
           />
