@@ -15,6 +15,7 @@ function ForgotPassInput({ open, onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     const formData = new FormData(e.target);
     const email = formData.get("email");
 
@@ -59,6 +60,7 @@ function ForgotPassInput({ open, onClose }) {
         }
       );
 
+      setError("");
       setShowMailVerify(false);
       setIs2faOpen(false);
       setUserId(null);

@@ -32,7 +32,7 @@ function Navbar() {
                 REAL_EZY
               </span>
             </a>
-
+          
             {/* NAVBAR ITEMS */}
             <div className="hidden md:block">
               <ul className="flex items-center justify-around gap-12 text-white text-lg font-sidebar font-side">

@@ -35,14 +35,14 @@ const sendMail = async (user, req, res, otp) => {
   const receiver = {
     from: ENV_VARIABLES.SENDERS_MAIL,
     to: req.body.email,
-    subject: "Verify Your Account - Real Estate Management",
+    subject: "Verify Your Account - REAL_EZY",
     text: `Your verification code is: ${otp}. This code will expire in 15 minutes.`,
     html: `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify Your Account - Real Estate Management</title>
+    <title>Verify Your Account - REAL_EZY</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
         body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
@@ -62,9 +62,8 @@ const sendMail = async (user, req, res, otp) => {
                 <table border="0" cellpadding="0" cellspacing="0" width="480" >
                     <tr>
                     <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
-                        <a href="/" className="flex items-center gap-2 text-white">
-                            <img src="../../Client/src/assets/logo.png" alt="logo" className="w-10" />
-                            <span className="text-2xl md:hidden lg:block font-courgette">
+                        <a href="/" style="display: block; text-decoration: none; text-align: center;">
+                            <span style="display: inline-block; font-size: 2rem; font-family: 'Courgette', cursive; color: #ffffff; vertical-align: middle;">
                                 REAL_EZY
                             </span>
                         </a>
@@ -94,7 +93,7 @@ const sendMail = async (user, req, res, otp) => {
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td colspan="2" style="padding-left:30px;padding-right:15px;padding-bottom:10px; font-family: 'Roboto', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
-                                        <p>Thank you for choosing Real Estate Management. To ensure the security of your account, please verify your email address using the code below:</p>
+                                        <p>Thank you for choosing Real Ezy. To ensure the security of your account, please verify your email address using the code below:</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -115,7 +114,7 @@ const sendMail = async (user, req, res, otp) => {
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="padding-left:30px;padding-right:15px;padding-bottom:30px; font-family: 'Roboto', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
-                                        <p>Best regards,<br>The Real Estate Management Team</p>
+                                        <p>Best regards,<br>The Real Ezy Team</p>
                                     </td>
                                 </tr>
                             </table>
@@ -134,7 +133,7 @@ const sendMail = async (user, req, res, otp) => {
                     </tr>
                     <tr>
                         <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Roboto', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
-                            <p style="margin: 0;">Real Estate Management, 1234 Main St, Anytown, AN 12345</p>
+                            <p style="margin: 0;">Real Ezy, 1234 Main St, Anytown, AN 12345</p>
                         </td>
                     </tr>
                 </table>
