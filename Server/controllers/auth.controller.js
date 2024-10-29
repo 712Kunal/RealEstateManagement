@@ -226,7 +226,10 @@ const ForgotPassUser = async (req, res, next) => {
         createdAt: user.createdAt,
       });
     }
-  } catch (error) {}
+  } catch (error) {
+    console.error(`Verifying OTP error => ${error}`);
+    res.status(500).json({ error: "Failed to verify the OTP!!" });
+  }
 };
 
 export {

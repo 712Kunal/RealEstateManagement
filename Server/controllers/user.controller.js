@@ -132,7 +132,10 @@ const UpdateForgettedPassword = async (req, res) => {
         },
       });
     }
-  } catch (error) {}
+  } catch (error) {
+    console.error(`Forgot password error => ${error}`);
+    res.status(500).json({ error: "Failed to update user password!!" });
+  }
 };
 
 const deleteUserById = async (req, res) => {

@@ -1,12 +1,16 @@
 import { React, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import apiRequest from "../lib/apiRequest.js";
 import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import Button from "@mui/material/Button";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 
 function Forgotpassword({ open, onClose, email }) {
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const newPassword = formData.get("new password");
@@ -15,6 +19,22 @@ function Forgotpassword({ open, onClose, email }) {
     if (newPassword !== confirmPassword) {
       setError("Passwords do not match");
       return;
+    }
+
+    try {
+      const response = await apiRequest.put("/user/updateForgettedPassword", {
+        email,
+        newPassword,
+      });
+
+      setSuccess("Password reset successfully!");
+      setTimeout(() => {
+        onClose();
+        // NAVIGATE THE USER TO THE LOGIN PAGE
+        navigate("/login");
+      }, 2000);
+    } catch (error) {
+      throw new Error(error.response.data.error);
     }
   };
   return (
@@ -48,7 +68,6 @@ function Forgotpassword({ open, onClose, email }) {
                   title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)"
                 />
               </div>
-
               <div className="flex flex-col w-full mt-5">
                 <p className="font-exo text-xl font-extralight mb-1">
                   Confirm Password :
@@ -62,9 +81,6 @@ function Forgotpassword({ open, onClose, email }) {
                   title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)"
                 />
               </div>
-              {error && (
-                <p className="text-red-400 text-lg text-center mt-4">{error}</p>
-              )}
               <Button
                 type="submit"
                 variant="contained"
@@ -72,6 +88,14 @@ function Forgotpassword({ open, onClose, email }) {
               >
                 RESET MY PASSWORD
               </Button>
+              {error && (
+                <p className="text-red-400 text-lg text-center mt-4">{error}</p>
+              )}
+              {success && (
+                <p className="text-green-400 text-lg text-center mt-4">
+                  {success}
+                </p>
+              )}
             </DialogContent>
           </form>
         </div>
