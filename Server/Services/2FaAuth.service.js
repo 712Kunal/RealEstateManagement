@@ -6,7 +6,7 @@ const sendOTPVerification = async (user) => {
   try {
     const otp = `${Math.floor(1000 + Math.random() * 9000)}`;
     const expiredAt = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
-    
+
     const createOTP = await prisma.userOTPVerification.create({
       data: {
         otp,
@@ -62,9 +62,12 @@ const sendMail = async (req, res, otp) => {
                 <table border="0" cellpadding="0" cellspacing="0" width="480" >
                     <tr>
                         <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
-                            <a href="https://www.yourcompany.com" target="_blank">
-                                <img alt="Logo" src="/api/placeholder/200/80" width="200" height="80" style="display: block; font-family: 'Roboto', Helvetica, Arial, sans-serif; color: #ffffff; font-size: 18px;" border="0">
-                            </a>
+                            <a href="/" className="flex items-center gap-2 text-white">
+              <img src="src/assets/logo.png" alt="logo" className="w-10" />
+              <span className="text-2xl md:hidden lg:block font-courgette">
+                REAL_EZY
+              </span>
+            </a>
                         </td>
                     </tr>
                 </table>
