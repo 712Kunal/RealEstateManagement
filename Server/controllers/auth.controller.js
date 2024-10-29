@@ -208,6 +208,7 @@ const ForgotPassUser = async (req, res, next) => {
     const user = await prisma.user.findUnique({
       where: { email: email },
     });
+    console.log(user);
 
     if (!user) {
       return res
@@ -216,7 +217,7 @@ const ForgotPassUser = async (req, res, next) => {
     }
 
     const otp = await sendOTPVerification(user);
-    const sendingMail = await sendMail(req, res, otp);
+    const sendingMail = await sendMail(user, req, res, otp);
     if (sendingMail.success) {
       res.status(201).json({
         message: "OTP sent successfully!!",

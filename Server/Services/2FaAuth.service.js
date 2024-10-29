@@ -21,7 +21,7 @@ const sendOTPVerification = async (user) => {
   }
 };
 
-const sendMail = async (req, res, otp) => {
+const sendMail = async (user, req, res, otp) => {
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     secure: true,
@@ -63,7 +63,7 @@ const sendMail = async (req, res, otp) => {
                     <tr>
                     <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
                         <a href="/" className="flex items-center gap-2 text-white">
-                            <img src="src/assets/logo.png" alt="logo" className="w-10" />
+                            <img src="../../Client/src/assets/logo.png" alt="logo" className="w-10" />
                             <span className="text-2xl md:hidden lg:block font-courgette">
                                 REAL_EZY
                             </span>
@@ -78,7 +78,9 @@ const sendMail = async (req, res, otp) => {
                 <table border="0" cellpadding="0" cellspacing="0" width="480" >
                     <tr>
                         <td bgcolor="#ffffff" align="left" valign="top" style="padding: 30px 30px 20px 30px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Roboto', Helvetica, Arial, sans-serif; font-weight: 400; line-height: 48px;">
-                            <h1 style="font-size: 32px; font-weight: 400; margin: 0;">Welcome, ${req.body.username} !</h1>
+                            <h1 style="font-size: 32px; font-weight: 400; margin: 0;">Welcome,  ${
+                              user ? user.username : req.body.username
+                            } !</h1>
                         </td>
                     </tr>
                 </table>
