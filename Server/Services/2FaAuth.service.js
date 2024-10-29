@@ -61,14 +61,14 @@ const sendMail = async (req, res, otp) => {
             <td bgcolor="#2C3E50" align="center">
                 <table border="0" cellpadding="0" cellspacing="0" width="480" >
                     <tr>
-                        <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
-                            <a href="/" className="flex items-center gap-2 text-white">
-              <img src="src/assets/logo.png" alt="logo" className="w-10" />
-              <span className="text-2xl md:hidden lg:block font-courgette">
-                REAL_EZY
-              </span>
-            </a>
-                        </td>
+                    <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
+                        <a href="/" className="flex items-center gap-2 text-white">
+                            <img src="src/assets/logo.png" alt="logo" className="w-10" />
+                            <span className="text-2xl md:hidden lg:block font-courgette">
+                                REAL_EZY
+                            </span>
+                        </a>
+                    </td>
                     </tr>
                 </table>
             </td>
