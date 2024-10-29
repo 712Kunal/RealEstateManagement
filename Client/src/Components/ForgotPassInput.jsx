@@ -4,6 +4,7 @@ import apiRequest from "../lib/apiRequest.js";
 import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import Button from "@mui/material/Button";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
+import Forgotpassword from "./Forgotpassword.jsx";
 
 function ForgotPassInput({ open, onClose }) {
   const [error, setError] = useState("");
@@ -12,6 +13,7 @@ function ForgotPassInput({ open, onClose }) {
   const [is2faOpen, setIs2faOpen] = useState(false);
   const [userId, setUserId] = useState(null);
   const [otpSent, setOtpSent] = useState(false);
+  const [showForgotPass, setShowForgotPass] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,6 +67,7 @@ function ForgotPassInput({ open, onClose }) {
       setIs2faOpen(false);
       setUserId(null);
       setOtpSent(false);
+      setShowForgotPass(true);
     } catch (error) {
       throw new Error(error.response.data.error);
     }
@@ -108,10 +111,6 @@ function ForgotPassInput({ open, onClose }) {
                 />
               </div>
 
-              {error && (
-                <p className="text-red-400 text-lg text-center mt-4">{error}</p>
-              )}
-
               <Button
                 type="submit"
                 variant="contained"
@@ -119,6 +118,10 @@ function ForgotPassInput({ open, onClose }) {
               >
                 NEXT
               </Button>
+
+              {error ? (
+                <p className="text-red-400 text-center">{error}</p>
+              ) : null}
             </DialogContent>
           </form>
         </div>
@@ -134,6 +137,15 @@ function ForgotPassInput({ open, onClose }) {
           />
         </div>
       )}
+
+      {showForgotPass ? (
+        <div>
+          <Forgotpassword
+            open={showForgotPass}
+            onClose={() => setShowForgotPass(false)}
+          />
+        </div>
+      ) : null}
     </>
   );
 }
