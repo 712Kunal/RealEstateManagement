@@ -3,7 +3,7 @@ import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import Button from "@mui/material/Button";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 
-function Forgotpassword({ open, onClose }) {
+function Forgotpassword({ open, onClose, email }) {
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
@@ -62,7 +62,9 @@ function Forgotpassword({ open, onClose }) {
                   title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)"
                 />
               </div>
-              {error && <p className="text-red-400 text-lg text-center mt-4">{error}</p>}
+              {error && (
+                <p className="text-red-400 text-lg text-center mt-4">{error}</p>
+              )}
               <Button
                 type="submit"
                 variant="contained"

@@ -88,6 +88,53 @@ const updateUserById = async (req, res) => {
   }
 };
 
+const UpdateForgettedPassword = async (req, res) => {
+  const { email, newPassword } = req.body;
+  if (!email || !newPassword) {
+    return res.status(400).json({ error: "Missing required fields!" });
+  }
+
+  try {
+    // FIND USER BY EMAIL
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found!" });
+    }
+
+    //  HASH THE PASSWORD
+    let passwordToUpdate = null;
+    if (newPassword) {
+      passwordToUpdate = await bcrypt.hash(newPassword, 10);
+    }
+
+    // UPDATE THE PASSWORD
+    const updatedUser = await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        ...(passwordToUpdate && { password: passwordToUpdate }),
+      },
+    });
+
+    if (updatedUser) {
+      res.status(200).json({
+        message: "User password updated successfully!!",
+        updatedUser: {
+          id: updatedUser.id,
+          email: updatedUser.email,
+          username: updatedUser.username,
+        },
+      });
+    }
+  } catch (error) {}
+};
+
 const deleteUserById = async (req, res) => {
   try {
     const user_id = req.params.id;
@@ -171,4 +218,5 @@ export {
   updateUserById,
   deleteUserById,
   AllprofilePosts,
+  UpdateForgettedPassword,
 };

@@ -143,6 +143,7 @@ function ForgotPassInput({ open, onClose }) {
           <Forgotpassword
             open={showForgotPass}
             onClose={() => setShowForgotPass(false)}
+            email={email}
           />
         </div>
       ) : null}
