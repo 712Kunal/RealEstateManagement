@@ -88,7 +88,7 @@ const updateUserById = async (req, res) => {
   }
 };
 
-const UpdateForgettedPassword = async (req, res) => {
+const UpdateForgettedPassword = async (req, res) => {  
   const { email, newPassword } = req.body;
   if (!email || !newPassword) {
     return res.status(400).json({ error: "Missing required fields!" });

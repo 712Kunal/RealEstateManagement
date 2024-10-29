@@ -12,8 +12,8 @@ import {
 
 router.get("/", getAllUsers);
 router.get("/profilePosts", userMiddleware, AllprofilePosts);
+router.put("/updateForgettedPassword", UpdateForgettedPassword);
 router.get("/:id", userMiddleware, getUserById);
 router.put("/:id", userMiddleware, updateUserById);
 router.delete("/:id", userMiddleware, deleteUserById);
-router.put("/updateForgettedPassword", UpdateForgettedPassword);
 export default router;
