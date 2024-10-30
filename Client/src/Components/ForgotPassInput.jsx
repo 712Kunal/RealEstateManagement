@@ -35,7 +35,15 @@ function ForgotPassInput({ open, onClose }) {
 
         setShowMailVerify(true);
       } catch (error) {
-        setError(error.response.data.error);
+        if (error.response && error.response.data) {
+          setError(
+            error.response.data.error ||
+              error.response.data.message ||
+              "An error occurred"
+          );
+        } else {
+          setError("Unable to process request. Please try again.");
+        }
       }
     } else {
       setError("Please enter a valid email address");
@@ -123,7 +131,7 @@ function ForgotPassInput({ open, onClose }) {
               </Button>
 
               {error && (
-                <p className="text-red-400 text-center bg-red-400/10 py-2 rounded-lg border border-red-400/20">
+                <p className="text-red-400 text-center bg-red-400/10 py-2 rounded-lg border border-red-400/20 mt-4">
                   {error}
                 </p>
               )}
