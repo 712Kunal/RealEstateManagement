@@ -71,7 +71,7 @@ const signup = async (req, res) => {
     }
   } catch (error) {
     console.error(`Signup error => ${error}`);
-    res.status(500).json({ error: "Failed to create user!!" });
+    res.status(500).json({ error: "Failed to create user" });
   }
 };
 
@@ -88,7 +88,7 @@ const login = async (req, res) => {
     if (!user) {
       return res
         .status(401)
-        .json({ message: "Invalid Credentials !!, User doesn't exist" });
+        .json({ message: "Invalid Credentials, User doesn't exist" });
     }
 
     // CHECK IF THE PASSWORD IS CORRECT
@@ -96,7 +96,7 @@ const login = async (req, res) => {
     if (!isPasswordValid) {
       return res
         .status(401)
-        .json({ message: "Invalid Credentials !!, Invalid password" });
+        .json({ message: "Invalid Credentials, Invalid password" });
     }
 
     // GERNERATE COOKIE TOKEN AND GENERATE IT TO THE USER
@@ -191,13 +191,13 @@ const verifyEnteredOTP = async (req, res) => {
           id: verifyOTP.id,
         },
       });
-      res.status(200).json({ message: "User verified OTP correctly!!" });
+      res.status(200).json({ message: "User verified OTP correctly" });
     } else {
       res.status(403).json({ message: "User entered wroung OTP" });
     }
   } catch (error) {
     console.error(`Verifying OTP error => ${error}`);
-    res.status(500).json({ error: "Failed to verify the OTP!!" });
+    res.status(500).json({ error: "Failed to verify the OTP" });
   }
 };
 
@@ -211,14 +211,14 @@ const ForgotPassUser = async (req, res, next) => {
     if (!user) {
       return res
         .status(401)
-        .json({ message: "Invalid Credentials !!, User doesn't exist" });
+        .json({ message: "Invalid Credentials, User doesn't exist" });
     }
 
     const otp = await sendOTPVerification(user);
     const sendingMail = await sendMail(user, req, res, otp);
     if (sendingMail.success) {
       res.status(201).json({
-        message: "OTP sent successfully!!",
+        message: "OTP sent successfully",
         userId: user.id,
         username: user.username,
         email: user.email,
@@ -228,7 +228,7 @@ const ForgotPassUser = async (req, res, next) => {
     }
   } catch (error) {
     console.error(`Verifying OTP error => ${error}`);
-    res.status(500).json({ error: "Failed to verify the OTP!!" });
+    res.status(500).json({ error: "Failed to verify the OTP" });
   }
 };
 

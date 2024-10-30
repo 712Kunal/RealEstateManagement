@@ -7,13 +7,13 @@ const getAllUsers = async (req, res) => {
 
     if (All_Users) {
       res.status(200).json({
-        message: "All users fetched successfully!!",
+        message: "All users fetched successfully",
         All_Users: All_Users,
       });
     }
   } catch (error) {
     console.error(`getAllUsers error => ${error}`);
-    res.status(500).json({ error: "Failed to get all users!!" });
+    res.status(500).json({ error: "Failed to get all users" });
   }
 };
 
@@ -22,7 +22,7 @@ const getUserById = async (req, res) => {
     const user_id = req.params.id;
 
     if (!user_id) {
-      return res.status(400).json({ error: "Missing required fields!!" });
+      return res.status(400).json({ error: "Missing required fields" });
     }
     const User = await prisma.user.findUnique({
       where: { id: user_id },
@@ -30,13 +30,13 @@ const getUserById = async (req, res) => {
 
     if (User) {
       res.status(200).json({
-        message: "User fetched successfully!!",
+        message: "User fetched successfully",
         User: User,
       });
     }
   } catch (error) {
     console.error(`getUser error => ${error}`);
-    res.status(500).json({ error: "Failed to get user!!" });
+    res.status(500).json({ error: "Failed to get user" });
   }
 };
 
@@ -56,7 +56,7 @@ const updateUserById = async (req, res) => {
     }
 
     if (!user_id || !otherInputs) {
-      return res.status(400).json({ error: "Missing required fields!!" });
+      return res.status(400).json({ error: "Missing required fields" });
     }
 
     let passwordToUpdate = null;
@@ -78,20 +78,20 @@ const updateUserById = async (req, res) => {
 
     if (updatedUser) {
       res.status(200).json({
-        message: "User updated successfully!!",
+        message: "User updated successfully",
         updatedUser: updatedUser,
       });
     }
   } catch (error) {
     console.error(`UpdateUser error => ${error}`);
-    res.status(500).json({ error: "Failed to update user!!" });
+    res.status(500).json({ error: "Failed to update user" });
   }
 };
 
 const UpdateForgettedPassword = async (req, res) => {  
   const { email, newPassword } = req.body;
   if (!email || !newPassword) {
-    return res.status(400).json({ error: "Missing required fields!" });
+    return res.status(400).json({ error: "Missing required fields" });
   }
 
   try {
@@ -103,7 +103,7 @@ const UpdateForgettedPassword = async (req, res) => {
     });
 
     if (!user) {
-      return res.status(404).json({ error: "User not found!" });
+      return res.status(404).json({ error: "User not found" });
     }
 
     //  HASH THE PASSWORD
@@ -124,7 +124,7 @@ const UpdateForgettedPassword = async (req, res) => {
 
     if (updatedUser) {
       res.status(200).json({
-        message: "User password updated successfully!!",
+        message: "User password updated successfully",
         updatedUser: {
           id: updatedUser.id,
           email: updatedUser.email,
@@ -134,7 +134,7 @@ const UpdateForgettedPassword = async (req, res) => {
     }
   } catch (error) {
     console.error(`Forgot password error => ${error}`);
-    res.status(500).json({ error: "Failed to update user password!!" });
+    res.status(500).json({ error: "Failed to update user password" });
   }
 };
 
@@ -152,7 +152,7 @@ const deleteUserById = async (req, res) => {
     }
 
     if (!user_id) {
-      return res.status(400).json({ error: "Missing required fields!!" });
+      return res.status(400).json({ error: "Missing required fields" });
     }
 
     //FIRST DELETET THE RELATED ROCORDS (OTP VERIFICATION)
@@ -171,13 +171,13 @@ const deleteUserById = async (req, res) => {
 
     if (deletedUser) {
       res.status(200).json({
-        message: "User deleted successfully!!",
+        message: "User deleted successfully",
         deletedUser: deletedUser,
       });
     }
   } catch (error) {
     console.error(`DeleteUser error => ${error}`);
-    res.status(500).json({ error: "Failed to delete user!!" });
+    res.status(500).json({ error: "Failed to delete user" });
   }
 };
 
@@ -205,14 +205,14 @@ const AllprofilePosts = async (req, res) => {
     if (userProfilePosts || userSavedPosts) {
       res.status(200).json({
         message:
-          "Profile posts and saved posts on profile fetched successfully!",
+          "Profile posts and saved posts on profile fetched successfully",
         user_Profile_Posts: userProfilePosts,
         Saved_Profile_Posts: userSavedPosts,
       });
     }
   } catch (error) {
     console.error(`All profile posts error => ${error}`);
-    res.status(500).json({ error: "Failed to fetch all the profile posts!!" });
+    res.status(500).json({ error: "Failed to fetch all the profile posts" });
   }
 };
 export {

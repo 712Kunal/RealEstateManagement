@@ -6,13 +6,13 @@ const getAllPosts = async (req, res) => {
 
     if (allPosts) {
       res.status(200).json({
-        message: "All posts fetched successfully!!",
+        message: "All posts fetched successfully",
         AllPosts: allPosts,
       });
     }
   } catch (error) {
     console.error(`getAllPosts error => ${error}`);
-    res.status(500).json({ error: "Failed to get all posts!!" });
+    res.status(500).json({ error: "Failed to get all posts" });
   }
 };
 
@@ -48,14 +48,14 @@ const getPostById = async (req, res) => {
 
     if (singlePost) {
       res.status(200).json({
-        message: "Single post fetched successfully!!",
+        message: "Single post fetched successfully",
         SinglePost: singlePost,
         isSaved: savedPost ? true : false,
       });
     }
   } catch (error) {
     console.error(`getPostById error => ${error}`);
-    res.status(500).json({ error: "Failed to get single post!!" });
+    res.status(500).json({ error: "Failed to get single post" });
   }
 };
 
@@ -86,7 +86,7 @@ const addPostById = async (req, res) => {
 
     if (newPost) {
       return res.status(200).json({
-        message: "User added the post successfully!!",
+        message: "User added the post successfully",
         username: req.user.username,
         email: req.user.email,
         Created_Post: newPost,
@@ -94,7 +94,7 @@ const addPostById = async (req, res) => {
     }
   } catch (error) {
     console.error(`addPostById error => ${error}`);
-    res.status(500).json({ error: "Failed to add single post!!" });
+    res.status(500).json({ error: "Failed to add single post" });
   }
 };
 
@@ -102,7 +102,7 @@ const updatePostById = async (req, res) => {
   try {
   } catch (error) {
     console.error(`updatePostById error => ${error}`);
-    res.status(500).json({ error: "Failed to update single post!!" });
+    res.status(500).json({ error: "Failed to update single post" });
   }
 };
 
@@ -131,7 +131,7 @@ const deletePostById = async (req, res) => {
 
     if (deletePost) {
       res.status(200).json({
-        message: "User deleted the post successfully!!",
+        message: "User deleted the post successfully",
         username: req.user.username,
         email: req.user.email,
         Deleted_Post: deletePost,
@@ -139,7 +139,7 @@ const deletePostById = async (req, res) => {
     }
   } catch (error) {
     console.error(`deletePostById error => ${error}`);
-    res.status(500).json({ error: "Failed to delete single post!!" });
+    res.status(500).json({ error: "Failed to delete single post" });
   }
 };
 
@@ -168,7 +168,7 @@ const savePost = async (req, res) => {
       if (unsavePost) {
         res
           .status(200)
-          .json({ message: "User unsaved the post successfully!!" });
+          .json({ message: "User unsaved the post successfully" });
       }
     } else {
       const savePost = await prisma.savedPost.create({
@@ -180,12 +180,12 @@ const savePost = async (req, res) => {
         },
       });
       if (savePost) {
-        res.status(200).json({ message: "User saved the post successfully!!" });
+        res.status(200).json({ message: "User saved the post successfully" });
       }
     }
   } catch (error) {
     console.error(`SavePost error => ${error}`);
-    res.status(500).json({ error: "Failed to save the post!!" });
+    res.status(500).json({ error: "Failed to save the post" });
   }
 };
 
