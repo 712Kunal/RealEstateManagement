@@ -125,7 +125,11 @@ function Signup() {
             Create Account
           </Button>
 
-          {error && <p className="text-red-400 text-center">{error}</p>}
+          {error && (
+            <p className="text-red-400 text-center bg-red-400/10 py-2 rounded-lg border border-red-400/20">
+              {error}
+            </p>
+          )}
 
           <div className="w-full flex items-center my-2">
             <div className="flex-grow h-px bg-gray-700/50"></div>
