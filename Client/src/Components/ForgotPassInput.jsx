@@ -10,7 +10,6 @@ function ForgotPassInput({ open, onClose }) {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [showMailVerify, setShowMailVerify] = useState(false);
-  const [is2faOpen, setIs2faOpen] = useState(false);
   const [userId, setUserId] = useState(null);
   const [otpSent, setOtpSent] = useState(false);
   const [showForgotPass, setShowForgotPass] = useState(false);
@@ -35,13 +34,18 @@ function ForgotPassInput({ open, onClose }) {
         setOtpSent(findUser.data.message === "OTP sent successfully!!");
 
         setShowMailVerify(true);
-        setIs2faOpen(true);
       } catch (error) {
         setError(error.response.data.error);
       }
     } else {
       setError("Please enter a valid email address");
     }
+  };
+
+  // AFTER THE SUCCESSFULL FORGOT PASSWORD PROCESS THIS METHOD RUNS
+  const handleResetSuccess = () => {
+    setShowForgotPass(false);
+    onClose();
   };
 
   const handlePassOTP = async (otpCode) => {
@@ -64,14 +68,13 @@ function ForgotPassInput({ open, onClose }) {
 
       setError("");
       setShowMailVerify(false);
-      setIs2faOpen(false);
       setUserId(null);
       setOtpSent(false);
       setShowForgotPass(true);
     } catch (error) {
       throw new Error(error.response.data.error);
     }
-    setIs2faOpen(false);
+    setShowMailVerify(false);
   };
 
   return (
@@ -130,10 +133,10 @@ function ForgotPassInput({ open, onClose }) {
       {showMailVerify && (
         <div>
           <TwoFactorAuth
-            open={is2faOpen}
+            open={showMailVerify}
             onVerify={handlePassOTP}
             email={email}
-            onClose={() => setIs2faOpen(false)}
+            onClose={() => setShowMailVerify(false)}
           />
         </div>
       )}
@@ -144,6 +147,7 @@ function ForgotPassInput({ open, onClose }) {
             open={showForgotPass}
             onClose={() => setShowForgotPass(false)}
             email={email}
+            onResetSuccess={handleResetSuccess}
           />
         </div>
       ) : null}

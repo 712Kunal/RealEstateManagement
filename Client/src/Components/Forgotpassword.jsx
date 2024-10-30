@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { Alert } from "@mui/material";
 
-function Forgotpassword({ open, onClose, email }) {
+function Forgotpassword({ open, onClose, email, onResetSuccess }) {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,13 +38,14 @@ function Forgotpassword({ open, onClose, email }) {
         setSuccess("Password reset successfully!");
         setTimeout(() => {
           onClose();
+          onResetSuccess(); // CALL THIS PROP WHEN FORGOT PASSWORD PROCESS SUCCESSFULL
           navigate("/login");
         }, 2000);
       }
     } catch (err) {
       setError(
-        err.response?.data?.error || 
-        "An error occurred while resetting the password. Please try again."
+        err.response?.data?.error ||
+          "An error occurred while resetting the password. Please try again."
       );
     } finally {
       setIsSubmitting(false);
@@ -57,7 +58,8 @@ function Forgotpassword({ open, onClose, email }) {
       onClose={onClose}
       disableEscapeKeyDown
       PaperProps={{
-        className: "!bg-[#18181b] !text-white !shadow-md !shadow-cyan-500 !w-full"
+        className:
+          "!bg-[#18181b] !text-white !shadow-md !shadow-cyan-500 !w-full",
       }}
     >
       <div className="bg-[url('src/assets/SVG/popup.svg')] bg-cover bg-no-repeat bg-center">

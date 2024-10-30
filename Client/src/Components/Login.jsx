@@ -119,10 +119,6 @@ function Login() {
 
       {showForgotPassword && (
         <div>
-          {/* <Forgotpassword
-            open={showForgotPassword}
-            onClose={() => setShowForgotPassword(false)}
-          /> */}
           <ForgotPassInput
             open={showForgotPassword}
             onClose={() => setShowForgotPassword(false)}
