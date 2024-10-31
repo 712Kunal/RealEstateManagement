@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import Button from "@mui/material/Button";
 import TwoFactorAuth from "./TwoFactorAuth";
 import TwofaVerifyPopup from "./TwofaVerifyPopup";
+import LoadingOverlay from "../Pages/Auth/LoadingOverlay.jsx";
 
 import {
   setUser,
@@ -84,6 +85,9 @@ function Signup() {
       setError("");
     } catch (error) {
       throw new Error(error.response.data.error);
+    } finally {
+      setLoading(false);
+      setIs2faOpen(false);
     }
 
     setIs2faOpen(false);
@@ -91,6 +95,8 @@ function Signup() {
 
   return (
     <div className="w-full h-screen overflow-hidden flex justify-center items-center">
+      {loading ? <LoadingOverlay message={message} /> : null}
+
       <div className="backdrop-blur-lg bg-gray-900/40 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-700/50">
         <form
           onSubmit={handleSubmit}

@@ -5,18 +5,23 @@ import { useNavigate } from "react-router-dom";
 import { setUser } from "../Features/Auth/AuthSlice.js";
 import Button from "@mui/material/Button";
 import apiRequest from "../lib/apiRequest.js";
-import Forgotpassword from "./Forgotpassword.jsx";
 import ForgotPassInput from "./ForgotPassInput.jsx";
+import LoadingOverlay from "../Pages/Auth/LoadingOverlay.jsx";
 
 function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const [showForgotPassword, setShowForgotPassword] = useState(false);
+  // LOADING OVERLAY
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
+    setMessage("Logging in...");
 
     const formData = new FormData(e.target);
     const username = formData.get("username");
@@ -38,18 +43,24 @@ function Login() {
         })
       );
       setError("");
+      setLoading(false);
       navigate("/");
     } catch (error) {
       setError(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleForgotPassword = () => {
+    setLoading(false);
     setShowForgotPassword(true);
   };
 
   return (
     <div className="w-full h-screen overflow-hidden flex justify-center items-center">
+      {loading ? <LoadingOverlay message={message} /> : null}
+
       <div className="backdrop-blur-lg bg-gray-900/40 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-700/50">
         <form
           onSubmit={handleSubmit}

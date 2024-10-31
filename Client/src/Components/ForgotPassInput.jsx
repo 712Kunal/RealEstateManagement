@@ -5,6 +5,7 @@ import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import Button from "@mui/material/Button";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import Forgotpassword from "./Forgotpassword.jsx";
+import LoadingOverlay from "../Pages/Auth/LoadingOverlay.jsx";
 
 function ForgotPassInput({ open, onClose }) {
   const [error, setError] = useState("");
@@ -13,6 +14,9 @@ function ForgotPassInput({ open, onClose }) {
   const [userId, setUserId] = useState(null);
   const [otpSent, setOtpSent] = useState(false);
   const [showForgotPass, setShowForgotPass] = useState(false);
+  // LOADING OVERLAY
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,8 +26,10 @@ function ForgotPassInput({ open, onClose }) {
 
     if (email !== "") {
       setError("");
-      setEmail(email);
 
+      setLoading(true);
+      setMessage("Verifying email address...");
+      setEmail(email);
       try {
         const findUser = await apiRequest.post("/auth/ForgotPass", {
           email,
@@ -32,8 +38,9 @@ function ForgotPassInput({ open, onClose }) {
         // FIND THE USER ID TO VERIFY THE OTP
         setUserId(findUser.data.userId);
         setOtpSent(findUser.data.message === "OTP sent successfully");
-
         setShowMailVerify(true);
+
+        setError("");
       } catch (error) {
         if (error.response && error.response.data) {
           setError(
@@ -44,19 +51,17 @@ function ForgotPassInput({ open, onClose }) {
         } else {
           setError("Unable to process request. Please try again.");
         }
+      } finally {
+        setLoading(false);
       }
     } else {
       setError("Please enter a valid email address");
     }
   };
 
-  // AFTER THE SUCCESSFULL FORGOT PASSWORD PROCESS THIS METHOD RUNS
-  const handleResetSuccess = () => {
-    setShowForgotPass(false);
-    onClose();
-  };
-
   const handlePassOTP = async (otpCode) => {
+    setLoading(true);
+    setMessage("Verifying OTP...");
     try {
       if (!userId) {
         throw new Error("User ID not found");
@@ -80,15 +85,24 @@ function ForgotPassInput({ open, onClose }) {
       setOtpSent(false);
       setShowForgotPass(true);
     } catch (error) {
-      // setError(error.response.data.error);
-      // throw new Error(error.response.data.error);
-      console.log(error);
+      setError(error.response.data.error);
+      throw new Error(error.response.data.error);
+    } finally {
+      setLoading(false);
+      setShowMailVerify(false);
     }
-    setShowMailVerify(false);
+  };
+
+  // AFTER THE SUCCESSFULL FORGOT PASSWORD PROCESS THIS METHOD RUNS
+  const handleResetSuccess = () => {
+    setShowForgotPass(false);
+    onClose();
   };
 
   return (
     <>
+      {loading ? <LoadingOverlay message={message} /> : null}
+
       <Dialog
         open={open}
         onClose={onClose}
@@ -119,6 +133,7 @@ function ForgotPassInput({ open, onClose }) {
                   type="email"
                   placeholder="EMAIL"
                   name="email"
+                  required
                   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                   title="Please enter a valid email address"
                 />
