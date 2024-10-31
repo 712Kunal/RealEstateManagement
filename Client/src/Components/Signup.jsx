@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import apiRequest from "../lib/apiRequest.js";
 import { FcGoogle } from "react-icons/fc";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import TwoFactorAuth from "./TwoFactorAuth";
 import TwofaVerifyPopup from "./TwofaVerifyPopup";
@@ -17,6 +16,9 @@ import {
 function Signup() {
   const [is2faOpen, setIs2faOpen] = useState(false);
   const [twoFaVerified, setTwoFaVerified] = useState(false);
+  // LOADING OVERLAY
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const dispatch = useDispatch();
@@ -29,6 +31,8 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
+    setMessage("Creating your account...");
 
     const formData = new FormData(e.target);
     const username = formData.get("username");
@@ -52,6 +56,7 @@ function Signup() {
         })
       );
       setError("");
+      setLoading(false);
       setIs2faOpen(true);
     } catch (error) {
       setError(error.response.data.error);
@@ -64,6 +69,8 @@ function Signup() {
       return;
     }
 
+    setLoading(true);
+    setMessage("Verifying your identity...");
     try {
       const verifyOTPResponse = await apiRequest.post(
         "/auth/getOTPVerification",
