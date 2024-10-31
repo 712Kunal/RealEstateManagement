@@ -72,7 +72,7 @@ function Login() {
             </h1>
             <p className="text-gray-400 text-lg">Please sign in to continue</p>
           </div>
-
+    
           <div className="w-full space-y-4">
             <input
               className="w-full text-gray-100 rounded-lg px-4 py-3 bg-gray-800/50 border border-gray-700/50 outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition duration-300 placeholder:text-gray-400 placeholder:tracking-widest text-xl font-medium"
