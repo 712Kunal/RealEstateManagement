@@ -31,7 +31,7 @@ function ForgotPassInput({ open, onClose }) {
 
         // FIND THE USER ID TO VERIFY THE OTP
         setUserId(findUser.data.userId);
-        setOtpSent(findUser.data.message === "OTP sent successfully!!");
+        setOtpSent(findUser.data.message === "OTP sent successfully");
 
         setShowMailVerify(true);
       } catch (error) {
@@ -80,7 +80,9 @@ function ForgotPassInput({ open, onClose }) {
       setOtpSent(false);
       setShowForgotPass(true);
     } catch (error) {
-      setError(error.response.data.message);
+      // setError(error.response.data.error);
+      // throw new Error(error.response.data.error);
+      console.log(error);
     }
     setShowMailVerify(false);
   };
