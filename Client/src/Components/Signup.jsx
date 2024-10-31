@@ -71,7 +71,7 @@ function Signup() {
     }
 
     setLoading(true);
-    setMessage("Verifying your identity...");
+    setMessage("Verifying your identity . . .");
     try {
       const verifyOTPResponse = await apiRequest.post(
         "/auth/getOTPVerification",

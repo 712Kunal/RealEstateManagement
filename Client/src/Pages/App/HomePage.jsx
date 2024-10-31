@@ -1,11 +1,9 @@
 import React from "react";
-import Navbar from "../../Components/Navbar.jsx";
 import SearchBar from "../../Components/SearchBar.jsx";
 
 function HomePage() {
   return (
     <div className="min-h-screen">
-      <Navbar />
       <section className="relative w-full overflow-x-hidden overflow-y-auto h-screen bg-cover bg-center bg-no-repeat bg-[url('/src/assets/hero.jpg')]">
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/60"></div>

@@ -17,7 +17,7 @@ function Navbar() {
       <div
         className="w-full overflow-x-hidden fixed top-0 left-0 right-0 z-40 drop-shadow-lg"
         style={{
-          backgroundImage: "url(src/assets/SVG/navbarWave.svg)",
+          backgroundImage: "url(/src/assets/SVG/navbarWave.svg)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -27,7 +27,7 @@ function Navbar() {
           {/* LOGO */}
           <div className="nav-left flex items-center gap-12 basis-2/3">
             <a href="/" className="flex items-center gap-2 text-white">
-              <img src="src/assets/logo.png" alt="logo" className="w-10" />
+              <img src="/src/assets/logo.png" alt="logo" className="w-10" />
               <span className="text-2xl md:hidden lg:block font-courgette">
                 REAL_EZY
               </span>

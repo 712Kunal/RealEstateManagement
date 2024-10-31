@@ -15,8 +15,8 @@ function TwofaVerifyPopup({ open, onClose }) {
       const timer = setTimeout(() => {
         // CLOSE THE POPUP
         onClose();
-        // NAVIGATE TO LANDING PAGE AFTER CLOSING THE POPUP
-        navigate("/");
+        // NAVIGATE THE USER TO THE HOMEPAGE
+        navigate("/app/homepage");
       }, delay);
       return () => clearTimeout(timer);
     }
