@@ -21,7 +21,7 @@ function Login() {
     e.preventDefault();
     setError("");
     setLoading(true);
-    setMessage("Logging in...");
+    setMessage("Logging in . . .");
 
     const formData = new FormData(e.target);
     const username = formData.get("username");

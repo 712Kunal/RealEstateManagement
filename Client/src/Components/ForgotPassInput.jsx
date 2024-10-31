@@ -28,7 +28,7 @@ function ForgotPassInput({ open, onClose }) {
       setError("");
 
       setLoading(true);
-      setMessage("Verifying email address...");
+      setMessage("Verifying email address . . .");
       setEmail(email);
       try {
         const findUser = await apiRequest.post("/auth/ForgotPass", {

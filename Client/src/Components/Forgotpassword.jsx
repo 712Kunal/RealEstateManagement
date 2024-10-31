@@ -23,7 +23,7 @@ function Forgotpassword({ open, onClose, email, onResetSuccess }) {
     setSuccess("");
     setIsSubmitting(true);
     setLoading(true);
-    setMessage("Updating password...");
+    setMessage("Updating password . . .");
 
     const formData = new FormData(e.target);
     const newPassword = formData.get("new password");
