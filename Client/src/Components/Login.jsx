@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setUser } from "../Features/Auth/AuthSlice.js";
+import { setUser, selectUser } from "../Features/Auth/AuthSlice.js";
 import Button from "@mui/material/Button";
 import apiRequest from "../lib/apiRequest.js";
 import ForgotPassInput from "./ForgotPassInput.jsx";
@@ -11,11 +11,20 @@ import LoadingOverlay from "../Pages/Auth/LoadingOverlay.jsx";
 function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+
+  // STORING THE USER TO THE REDUX STORE
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
+
   const [showForgotPassword, setShowForgotPassword] = useState(false);
+
   // LOADING OVERLAY
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    console.log("Current user data in Redux store:", user);
+  }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,7 +53,7 @@ function Login() {
       );
       setError("");
       setLoading(false);
-      
+
       // NAVIGATE THE USER TO THE HOMEPAGE
       navigate("/app/homepage");
     } catch (error) {

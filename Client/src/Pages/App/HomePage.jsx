@@ -1,7 +1,17 @@
 import React from "react";
 import SearchBar from "../../Components/SearchBar.jsx";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { setUser, selectUser } from "../../Features/Auth/AuthSlice.js";
 
 function HomePage() {
+  // STORING THE USER TO THE REDUX STORE
+  const user = useSelector(selectUser);
+
+  useEffect(() => {
+    console.log("Current user data in Redux store:", user);
+  }, [user]);
+
   return (
     <div className="min-h-screen">
       <section className="relative w-full overflow-x-hidden overflow-y-auto h-screen bg-cover bg-center bg-no-repeat bg-[url('/src/assets/hero.jpg')]">
