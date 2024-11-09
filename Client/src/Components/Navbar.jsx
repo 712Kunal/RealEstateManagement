@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar.jsx";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useNavigate } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ isUserAuthenticated }) {
   const mobileWidth = useMediaQuery("(max-width:768px)");
   const [isMobile, setIsMobile] = useState(mobileWidth);
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ function Navbar() {
                 REAL_EZY
               </span>
             </a>
-          
+
             {/* NAVBAR ITEMS */}
             <div className="hidden md:block">
               <ul className="flex items-center justify-around gap-12 text-white text-lg font-sidebar font-side">
@@ -57,18 +57,27 @@ function Navbar() {
           </div>
 
           <div className="nav-right hidden md:flex items-center justify-end h-full gap-5 basis-2/5">
-            <button
-              onClick={() => navigate("/login")}
-              className="bg-gradient-to-r from-teal-400 to-emerald-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-            >
-              Login
-            </button>
-            <button
-              onClick={() => navigate("/signup")}
-              className="bg-gradient-to-r from-violet-400 to-purple-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-purple-500 hover:to-violet-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-            >
-              Sign up
-            </button>
+            {isUserAuthenticated ? (
+              <div className="flex items-center gap-2">
+                <span className="text-white font-Fredoka">Welcome</span>
+                <span className="text-emerald-300">{isUserAuthenticated}</span>
+              </div>
+            ) : (
+              <>
+                <button
+                  onClick={() => navigate("/login")}
+                  className="bg-gradient-to-r from-teal-400 to-emerald-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => navigate("/signup")}
+                  className="bg-gradient-to-r from-violet-400 to-purple-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-purple-500 hover:to-violet-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                >
+                  Sign up
+                </button>
+              </>
+            )}
           </div>
         </nav>
       </div>

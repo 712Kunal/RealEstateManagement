@@ -5,7 +5,7 @@ import Navbar from "../Navbar.jsx";
 function AppWrapper() {
   return (
     <div>
-      <Navbar />
+      <Navbar isUserAuthenticated={true} />
       <Outlet />
     </div>
   );

@@ -12,7 +12,7 @@ function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  // STORING THE USER TO THE REDUX STORE
+  // REDUX STORAGE
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
@@ -42,6 +42,7 @@ function Login() {
         password,
       });
 
+      // STORING THE USER TO THE REDUX STORE AND LOCAL STORAGE WHICH IS HANDLED BY THE REDUX TOOLKIT
       dispatch(
         setUser({
           id: response.data.userId,
