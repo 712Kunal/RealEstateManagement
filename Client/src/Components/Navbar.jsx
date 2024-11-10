@@ -74,41 +74,54 @@ function Navbar() {
             </div>
           </div>
 
-          <div className="nav-right hidden md:flex items-center justify-end h-full gap-5 basis-2/5">
+          <div className="nav-right hidden md:flex items-center justify-end h-full gap-6 basis-2/5">
             {userInformation ? (
-              <div className="flex items-center gap-2">
-                <img
-                  src={
-                    userInformation.user.avatar || "/src/assets/noavatar.png"
-                  }
-                  alt="avatar"
-                  className="w-10 rounded-full border-[1px] border-white"
-                />
-                <span className="text-white font-Fredoka">
-                  {userInformation.user.username}
-                </span>
+              <div className="flex items-center gap-4 bg-white/10 rounded-2xl p-1 shadow-lg border border-white/20">
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <img
+                      src={
+                        userInformation.user.avatar ||
+                        "/src/assets/noavatar.png"
+                      }
+                      alt="avatar"
+                      className="w-10 h-10 rounded-full object-cover border-2 border-emerald-400 shadow-md hover:border-emerald-300 transition-colors duration-300"
+                    />
+                    <div className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white"></div>
+                  </div>
+                  <span className="text-white font-semibold text-sm">
+                    {userInformation.user.username}
+                  </span>
+                </div>
+                <div className="h-8 w-px bg-white/20"></div>
                 <button
                   onClick={() => navigate("/app/profile")}
-                  className="bg-gradient-to-r from-teal-400 to-emerald-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                  className="relative group px-5 py-2 rounded-xl font-semibold text-sm overflow-hidden"
                 >
-                  Profile
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-600 transition-transform duration-300 group-hover:scale-105"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <span className="relative text-white">Profile</span>
                 </button>
               </div>
             ) : (
-              <>
+              <div className="flex items-center gap-4">
                 <button
                   onClick={() => navigate("/login")}
-                  className="bg-gradient-to-r from-teal-400 to-emerald-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                  className="relative overflow-hidden px-6 py-2.5 rounded-xl font-semibold text-sm group"
                 >
-                  Login
+                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-cyan-400 transition-transform duration-300 group-hover:scale-105"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <span className="relative text-white">Login</span>
                 </button>
                 <button
                   onClick={() => navigate("/signup")}
-                  className="bg-gradient-to-r from-violet-400 to-purple-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-purple-500 hover:to-violet-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                  className="relative overflow-hidden px-6 py-2.5 rounded-xl font-semibold text-sm group"
                 >
-                  Sign up
+                  <div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-purple-600 transition-transform duration-300 group-hover:scale-105"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-violet-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <span className="relative text-white">Sign up</span>
                 </button>
-              </>
+              </div>
             )}
           </div>
         </nav>
