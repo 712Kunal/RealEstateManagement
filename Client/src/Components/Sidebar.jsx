@@ -7,10 +7,29 @@ import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import InputIcon from "@mui/icons-material/Input";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Sidebar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("home");
+  const [userInformation, setUserInformation] = useState(null);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("userData");
+
+    if (storedData) {
+      try {
+        const parsedData = JSON.parse(storedData);
+        setUserInformation(parsedData);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+        setUserInformation(null);
+      }
+    } else {
+      console.log(`Noe data found in the local storage`);
+      setUserInformation(null);
+    }
+  }, []);
 
   // Close sidebar when clicking outside
   useEffect(() => {
@@ -21,14 +40,26 @@ function Sidebar() {
     };
   }, [menuOpen]);
 
-  const menuItems = [
-    { id: "home", icon: HomeIcon, text: "HOME", path: "" },
-    { id: "about", icon: InfoIcon, text: "ABOUT", path: "" },
-    { id: "contact", icon: ContactPhoneIcon, text: "CONTACT", path: "" },
-    { id: "agent", icon: SupportAgentIcon, text: "AGENT", path: "" },
-    { id: "signup", icon: AddBoxIcon, text: "SIGN UP", path: "" },
-    { id: "login", icon: InputIcon, text: "LOGIN", path: "/login" },
-  ];
+  const getMenuItems = () => {
+    const baseItems = [
+      { id: "home", icon: HomeIcon, text: "HOME", path: "" },
+      { id: "about", icon: InfoIcon, text: "ABOUT", path: "" },
+      { id: "contact", icon: ContactPhoneIcon, text: "CONTACT", path: "" },
+      { id: "agent", icon: SupportAgentIcon, text: "AGENT", path: "" },
+    ];
+
+    if (!userInformation) {
+      return [
+        ...baseItems,
+        { id: "signup", icon: AddBoxIcon, text: "SIGN UP", path: "" },
+        { id: "login", icon: InputIcon, text: "LOGIN", path: "/login" },
+      ];
+    }
+
+    return baseItems;
+  };
+
+  const menuItems = getMenuItems();
 
   return (
     <div className="relative">
@@ -61,12 +92,33 @@ function Sidebar() {
         {/* Logo Area */}
         <div className="mt-16 mb-8 px-6">
           <div className="h-12 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-lg flex items-center justify-center gap-2">
-            <img src="src/assets/logo.png" alt="logo" className="w-8" />
+            <img src="/src/assets/logo.png" alt="logo" className="w-8" />
             <span className="text-xl text-white md:hidden lg:block font-courgette">
               REAL_EZY
             </span>
           </div>
         </div>
+
+        {/* User Profile Section - Conditionally Rendered */}
+        {userInformation && (
+          <div className="px-2 mb-6">
+            <div className="bg-gray-800/50 rounded-lg p-4 flex items-center gap-3">
+              <img
+                src={userInformation.user.avatar || "/src/assets/noavatar.png"}
+                alt="User Avatar"
+                className="w-10 h-10 rounded-full border-[1px]"
+              />
+              <div className="flex-1">
+                <p className="text-white font-medium">
+                  {userInformation.user.username || "User"}
+                </p>
+                <p className="text-sm text-gray-400">
+                  {userInformation.user.email || ""}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Navigation Menu */}
         <nav className="px-4 space-y-2">
