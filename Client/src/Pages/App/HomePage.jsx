@@ -6,7 +6,7 @@ import { setUser, selectUser } from "../../Features/Auth/AuthSlice.js";
 
 function HomePage() {
   // STORING THE USER TO THE REDUX STORE
-  const user = useSelector(selectUser);
+  const user = useSelector(selectUser); 
 
   useEffect(() => {
     console.log("Current user data in Redux store:", user);

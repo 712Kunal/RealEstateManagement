@@ -3,10 +3,28 @@ import Sidebar from "./Sidebar.jsx";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useNavigate } from "react-router-dom";
 
-function Navbar({ isUserAuthenticated }) {
+function Navbar() {
   const mobileWidth = useMediaQuery("(max-width:768px)");
   const [isMobile, setIsMobile] = useState(mobileWidth);
   const navigate = useNavigate();
+  const [userInformation, setUserInformation] = useState(null);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("userData");
+
+    if (storedData) {
+      try {
+        const parsedData = JSON.parse(storedData);
+        setUserInformation(parsedData);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+        setUserInformation(null);
+      }
+    } else {
+      console.log(`Noe data found in the local storage`);
+      setUserInformation(null);
+    }
+  }, []);
 
   useEffect(() => {
     setIsMobile(mobileWidth);
@@ -57,10 +75,24 @@ function Navbar({ isUserAuthenticated }) {
           </div>
 
           <div className="nav-right hidden md:flex items-center justify-end h-full gap-5 basis-2/5">
-            {isUserAuthenticated ? (
+            {userInformation ? (
               <div className="flex items-center gap-2">
-                <span className="text-white font-Fredoka">Welcome</span>
-                <span className="text-emerald-300">{isUserAuthenticated}</span>
+                <img
+                  src={
+                    userInformation.user.avatar || "/src/assets/noavatar.png"
+                  }
+                  alt="avatar"
+                  className="w-10 rounded-full border-[1px] border-white"
+                />
+                <span className="text-white font-Fredoka">
+                  {userInformation.user.username}
+                </span>
+                <button
+                  onClick={() => navigate("/app/profile")}
+                  className="bg-gradient-to-r from-teal-400 to-emerald-600 text-white px-5 py-2 rounded-xl font-semibold hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                >
+                  Profile
+                </button>
               </div>
             ) : (
               <>
