@@ -3,15 +3,15 @@ import { FcSearch } from "react-icons/fc";
 
 function Filter() {
   return (
-    <div className="filter flex flex-col gap-6 border-2 rounded-lg p-6 shadow-lg">
+    <div className="filter flex flex-col gap-6 rounded-lg shadow-lg">
       <h1 className="text-2xl font-semibold text-indigo-400">
         Search results for{" "}
         <a href="#" className="hover:text-indigo-500 transition-colors">
           London
         </a>
       </h1>
-      <div className="top flex border-2 flex-wrap gap-6">
-        <div className="item w-full flex flex-col gap-2 sm:w-auto">
+      <div className="top w-full flex flex-wrap gap-6">
+        <div className="item w-full flex flex-col gap-2">
           <label htmlFor="city" className="text-xl text-white/85">
             Location
           </label>
@@ -25,8 +25,7 @@ function Filter() {
       </div>
 
       <div className="bottom flex flex-wrap gap-6">
-
-      <div className="item flex flex-col gap-2 w-full sm:w-auto">
+        <div className="item flex flex-col gap-2 w-full sm:w-auto">
           <label htmlFor="type" className="text-xl text-white/85">
             Type
           </label>

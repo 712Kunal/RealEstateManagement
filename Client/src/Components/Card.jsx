@@ -17,7 +17,7 @@ function Card() {
       </div>
       <div className="TextContainer w-full flex flex-col justify-between">
         <div>
-          <h2 className="title text-white/90 text-xl font-sidebar font-semibold hover:transition-all duration-300 hover:text-indigo-500 hover:cursor-pointer">
+          <h2 className="title text-white/90 text-xl font-sidebar font-semibold hover:transition-all duration-300 hover:text-indigo-400 hover:cursor-pointer">
             A great appartment next to beach
           </h2>
           <p className="Address flex items-center gap-2 text-white/75">
