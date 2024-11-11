@@ -21,7 +21,7 @@ function Filter() {
         </div>
       </div>
 
-      <div className="bottom flex justify-between items-center gap-5 border-2 border-white">
+      <div className="bottom flex justify-between items-center">
         <div className="item">
           <label htmlFor="type" className="text-white/85">
             Type
