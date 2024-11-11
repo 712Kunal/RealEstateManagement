@@ -1,5 +1,6 @@
 import React from "react";
 import Filter from "../../Components/Filter";
+import Card from "../../Components/Card";
 
 function ListPage() {
   return (
@@ -7,7 +8,7 @@ function ListPage() {
       <div className="ListContainer basis-2/3">
         <div className="wrapper flex flex-col gap-12">
           <Filter />
-          
+          <Card />
         </div>
       </div>
       <div className="MapContainer basis-2/6"></div>

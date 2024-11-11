@@ -4,7 +4,7 @@ import { FcSearch } from "react-icons/fc";
 function Filter() {
   return (
     <div className="filter flex flex-col gap-4">
-      <h1 className="text-2xl font-semibold text-white">
+      <h1 className="text-2xl font-semibold text-indigo-400">
         Search results for <a href="">London</a>
       </h1>
       <div className="top">
