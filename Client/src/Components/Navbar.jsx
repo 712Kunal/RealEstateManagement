@@ -33,7 +33,7 @@ function Navbar() {
   return (
     <>
       <div
-        className="w-full overflow-x-hidden fixed top-0 left-0 right-0 z-40 drop-shadow-lg"
+        className="w-full overflow-x-hidden fixed top-0 left-0 right-0 z-40 drop-shadow-lg h-auto"
         style={{
           backgroundImage: "url(/src/assets/SVG/navbarWave.svg)",
           backgroundRepeat: "no-repeat",

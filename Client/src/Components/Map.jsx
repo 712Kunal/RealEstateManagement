@@ -12,7 +12,7 @@ function Map() {
       center={position}
       zoom={7}
       scrollWheelZoom={false}
-      className="map-container w-full min-h-screen rounded-md overflow-hidden"
+      className="map-container w-full h-full rounded-md overflow-hidden outline-none"
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

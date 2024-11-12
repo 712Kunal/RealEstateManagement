@@ -5,14 +5,14 @@ import Map from "../../Components/Map";
 
 function ListPage() {
   return (
-    <div className="ListPage min-h-screen flex relative inset-x-0 top-14 m-3">
-      <div className="ListContainer basis-7/12">
+    <div className="ListPage flex mt-16 mx-3 border-2">
+      <div className="ListContainer basis-8/12">
         <div className="wrapper flex flex-col gap-12 overflow-y-scroll pr-5">
           <Filter />
           <Card />
         </div>
       </div>
-      <div className="MapContainer basis-5/12 h-full">
+      <div className="MapContainer basis-1/3 fixed top-16 right-3 h-[calc(100vh-4rem)] w-[calc(33.33%-12px)]">
         <Map />
       </div>
     </div>
