@@ -5,10 +5,15 @@ import Map from "../../Components/Map";
 
 function ListPage() {
   return (
-    <div className="ListPage flex mt-16 mx-3 border-2">
+    <div className="ListPage flex mt-16 mx-3">
       <div className="ListContainer basis-8/12">
-        <div className="wrapper flex flex-col gap-12 overflow-y-scroll pr-5">
+        <div className="wrapper flex flex-col gap-5 pr-5">
           <Filter />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
           <Card />
         </div>
       </div>
