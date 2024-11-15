@@ -12,7 +12,7 @@ import {
 const router = express.Router();
 
 // FETCHING ALL THE POSTS
-router.get("/", getAllPosts);
+router.get("/posts", getAllPosts);
 
 // FETCHING THE SINGLE USER POSTS
 router.get("/fetchingPost/:id", usermiddleware, getPostById);

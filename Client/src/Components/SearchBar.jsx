@@ -18,6 +18,7 @@ function SearchBar() {
     maxPrice: 0,
   });
 
+  // FUNCTION FOR SWITCHING THE TYPES (BUY OR RENT)
   const switchType = (val) => {
     setQuerry((prev) => ({ ...prev, type: val }));
   };
@@ -25,6 +26,16 @@ function SearchBar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+    const location = formData.get("location");
+    const minPrice = formData.get("minPrice");
+    const maxPrice = formData.get("maxPrice");
+
+    setQuerry((prev) => ({ ...prev, location, minPrice, maxPrice }));
+
+    // NAVIGATE TO THE LIST PAGE
+    navigate(
+      `/list?type=${querry.type}&location=${querry.location}&minPrice=${querry.minPrice}&maxPrice=${querry.maxPrice}`
+    );
   };
 
   return (

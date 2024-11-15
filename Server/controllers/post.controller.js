@@ -2,6 +2,8 @@ import prisma from "../lib/prisma.js";
 
 const getAllPosts = async (req, res) => {
   try {
+    const query = req.query;
+    console.log("query:", query);
     const allPosts = await prisma.post.findMany();
 
     if (allPosts) {
@@ -166,9 +168,7 @@ const savePost = async (req, res) => {
         },
       });
       if (unsavePost) {
-        res
-          .status(200)
-          .json({ message: "User unsaved the post successfully" });
+        res.status(200).json({ message: "User unsaved the post successfully" });
       }
     } else {
       const savePost = await prisma.savedPost.create({

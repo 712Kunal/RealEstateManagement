@@ -1,12 +1,19 @@
 import apiRequest from "./apiRequest.js";
 
-const listPageLoader = async ({ request, params }) => {
+async function listPageLoader({ request, params }) {
   try {
-      console.log("kdkjkdls");
-    console.log("Request url:", request.url);
+    console.log("listPageLoader called");
+    console.log("request:", request);
+    console.log("params:", params);
+    const query = request.url.split("?")[1];
+
+    // FETCH ALL THE POSTS USING LOADER FUNCTION BEFORE THE PAGE LOADS
+    const res = await apiRequest.get(`/posts?${query}`);
+    return res.data;
   } catch (error) {
-    console.error("error while fetching the data", error);
+    console.error("Error while fetching the data:", error);
+    throw error;
   }
-};
+}
 
 export { listPageLoader };
