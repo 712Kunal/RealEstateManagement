@@ -1,8 +1,8 @@
-import React from "react";
+import { React } from "react";
 import { FaBed } from "react-icons/fa6";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaBath } from "react-icons/fa6";
-import { FaRegBookmark, FaBookmark } from "react-icons/fa6";
+import { FaRegBookmark } from "react-icons/fa6";
 import { IoChatbubbleEllipses } from "react-icons/io5";
 
 function Card() {

@@ -7,7 +7,6 @@ import NotFoundPage from "./Pages/Auth/NotFoundPage.jsx";
 import LandingPage from "./Pages/Auth/LandingPage.jsx";
 import AppWrapper from "./Components/Wrappers/AppWrapper.jsx";
 import ListPage from "./Pages/App/ListPage.jsx";
-import { listPageLoader } from "./lib/Loader.js";
 
 function App() {
   return (
@@ -20,7 +19,7 @@ function App() {
 
           <Route path="/app" element={<AppWrapper />}>
             <Route path="homepage" element={<HomePage />} />
-            <Route path="list" loader={listPageLoader} element={<ListPage />} />
+            <Route path="list" element={<ListPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

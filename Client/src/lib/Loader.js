@@ -1,6 +1,6 @@
 import apiRequest from "./apiRequest.js";
 
-async function listPageLoader({ request, params }) {
+const listPageLoader = async ({ request, params }) => {
   try {
     console.log("listPageLoader called");
     console.log("request:", request);
@@ -14,6 +14,6 @@ async function listPageLoader({ request, params }) {
     console.error("Error while fetching the data:", error);
     throw error;
   }
-}
+};
 
 export { listPageLoader };
