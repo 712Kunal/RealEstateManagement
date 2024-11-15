@@ -33,11 +33,9 @@ function SearchBar() {
     const maxPrice = formData.get("maxPrice");
 
     setQuerry((prev) => ({ ...prev, location, minPrice, maxPrice }));
-    console.log(querry);
-    
     // NAVIGATE TO THE LIST PAGE
     navigate(
-      `/app/list?type=${querry.type}&location=${querry.location}&minPrice=${querry.minPrice}&maxPrice=${querry.maxPrice}`
+      `/app/list?type=${querry.type}&location=${location}&minPrice=${minPrice}&maxPrice=${maxPrice}`
     );
   };
 
