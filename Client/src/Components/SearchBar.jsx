@@ -1,10 +1,12 @@
 import { React, useState, useEffect } from "react";
 import { FcSearch } from "react-icons/fc";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
   const mobileWidth = useMediaQuery("(max-width:768px)");
   const [isMobile, setIsMobile] = useState(mobileWidth);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsMobile(mobileWidth);
@@ -31,10 +33,11 @@ function SearchBar() {
     const maxPrice = formData.get("maxPrice");
 
     setQuerry((prev) => ({ ...prev, location, minPrice, maxPrice }));
-
+    console.log(querry);
+    
     // NAVIGATE TO THE LIST PAGE
     navigate(
-      `/list?type=${querry.type}&location=${querry.location}&minPrice=${querry.minPrice}&maxPrice=${querry.maxPrice}`
+      `/app/list?type=${querry.type}&location=${querry.location}&minPrice=${querry.minPrice}&maxPrice=${querry.maxPrice}`
     );
   };
 
