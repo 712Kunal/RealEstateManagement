@@ -5,7 +5,6 @@ import { FaBath } from "react-icons/fa6";
 import { FaRegBookmark } from "react-icons/fa6";
 import { IoChatbubbleEllipses } from "react-icons/io5";
 import apiRequest from "../lib/apiRequest";
-import { q } from "framer-motion/client";
 
 function Card() {
   const [error, setError] = useState("");
@@ -23,7 +22,7 @@ function Card() {
         const response = await apiRequest.get(`/posts?${queryParams}`);
         console.log(response.data);
       } else {
-        const response = await apiRequest.get("/posts");
+        const response = await apiRequest.get("/posts");  
       }
     } catch (error) {
       console.error("Error while fetching the posts data:", error);
