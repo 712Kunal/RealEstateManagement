@@ -1,11 +1,23 @@
-import { React } from "react";
+import axios from "axios";
+import { React, useEffect } from "react";
 import { FaBed } from "react-icons/fa6";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaBath } from "react-icons/fa6";
 import { FaRegBookmark } from "react-icons/fa6";
 import { IoChatbubbleEllipses } from "react-icons/io5";
+import apiRequest from "../lib/apiRequest";
 
 function Card() {
+  useEffect(async() => {
+    try {
+      const request = window.location.href.split("?")[1];
+      console.log(request);
+
+      // SEND THE QUERY TO THE BACKEND SERVER TO FETCH THE DATA
+      const response = await apiRequest.get(`/posts?${request}`);
+    } catch (error) {}
+  }, []);
+
   return (
     <div className="Card flex gap-5 w-full bg-slate-800 rounded-lg shadow-lg p-4">
       <div className="relative w-52 h-40 flex-shrink-0">

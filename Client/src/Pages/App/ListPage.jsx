@@ -10,11 +10,6 @@ function ListPage() {
         <div className="wrapper flex flex-col gap-5 pr-5">
           <Filter />
           <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
         </div>
       </div>
       <div className="MapContainer basis-1/3 fixed top-16 right-3 h-[calc(100vh-4rem)] w-[calc(33.33%-12px)]">
