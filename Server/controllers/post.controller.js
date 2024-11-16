@@ -6,7 +6,7 @@ const getAllPosts = async (req, res) => {
     const queryParams = req.query;
     console.log("query:", queryParams);
     const allPosts = await prisma.post.findMany();
-
+    
     if (allPosts) {
       res.status(200).json({
         message: "All posts fetched successfully",

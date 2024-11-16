@@ -19,7 +19,7 @@ function Card() {
 
       if (queryParams) {
         // SEND THE QUERY TO THE BACKEND SERVER TO FETCH THE DATA
-        const response = await apiRequest.get(`/posts?${queryParams}`);
+        const response = await apiRequest.get(`/posts/Posts?${queryParams}`);
         console.log(response.data);
       } else {
         const response = await apiRequest.get("/posts");  
