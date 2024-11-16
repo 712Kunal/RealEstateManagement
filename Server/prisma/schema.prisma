@@ -60,8 +60,8 @@ model Post {
 }
 
 enum Type {
-  buy
-  rent
+  Buy
+  Rent
 }
 
 enum PropertyType {

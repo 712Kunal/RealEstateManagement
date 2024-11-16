@@ -2,10 +2,22 @@ import prisma from "../lib/prisma.js";
 
 const getAllPosts = async (req, res) => {
   try {
-    console.log("getAllPosts called");
     const queryParams = req.query;
     console.log("query:", queryParams);
-    const allPosts = await prisma.post.findMany();
+    const allPosts = await prisma.post.findMany({
+      where: {
+        type: queryParams.type || undefined,
+        city: queryParams.location || undefined,
+        propertyType: queryParams.propertyType || undefined,
+        bedrooms: parseInt(queryParams.bedrooms) || undefined,
+        price:{
+          // GTE - GREATER THAN OR EQUAL TO
+          // LTE - LESS THAN OR EQUAL TO
+          gte: parseInt(queryParams.minPrice) || 0,
+          lte: parseInt(queryParams.maxPrice) || 1000000,
+        }
+      }
+    });
     
     if (allPosts) {
       res.status(200).json({
