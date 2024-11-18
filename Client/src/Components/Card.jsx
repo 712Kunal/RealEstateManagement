@@ -41,7 +41,7 @@ function Card() {
           <div className="bg-slate-800 rounded-lg shadow-lg flex gap-4 justify-center items-center p-4">
             <div className="relative w-52 h-40 flex-shrink-0 rounded-lg">
               <img
-                src={post.Images[0]}
+                src="/src/assets/login.png"
                 alt="property"
                 className="w-full h-full object-cover rounded-lg"
               />
@@ -53,7 +53,7 @@ function Card() {
                 </h2>
                 <p className="Address flex items-center gap-2 text-white/75">
                   <FaLocationDot className="text-white/55 text-lg" />
-                  <span>post.address</span>
+                  <span>{post.address}</span>
                 </p>
               </div>
               <div className="bottom flex justify-between items-center">
