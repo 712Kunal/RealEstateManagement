@@ -38,7 +38,7 @@ function Card() {
     <div className="Card flex flex-col gap-5 w-full p-4">
       {posts.map((post) => {
         return (
-          <div className="bg-slate-800 rounded-lg shadow-lg flex gap-4 justify-center items-center p-4">
+          <div key={post.id} className="bg-slate-800 rounded-lg shadow-lg flex gap-4 justify-center items-center p-4">
             <div className="relative w-52 h-40 flex-shrink-0 rounded-lg">
               <img
                 src="/src/assets/login.png"
