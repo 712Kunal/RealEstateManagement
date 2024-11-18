@@ -19,30 +19,34 @@ function Card() {
           // SEND THE QUERY TO THE BACKEND SERVER TO FETCH THE DATA
           const response = await apiRequest.get(`/posts/Posts?${queryParams}`);
           console.log("response:", response.data);
+          setPosts(response.data.AllPosts);
         } else {
           const response = await apiRequest.get("/posts");
+          setPosts(response.data.AllPosts);
         }
       } catch (error) {
         console.error("Error while fetching the posts data:", error);
         setError(error.response.data.error);
       }
     };
+
+    // CALLING THE FUNCTION TO FETCH THE POSTS FROM THE BACKEND SERVER
     fetchTheData();
   }, []);
 
   return (
-    <div className="Card flex gap-5 w-full bg-slate-800 rounded-lg shadow-lg p-4">
-      {response.data.AllPosts.map((post) => {
+    <div className="Card flex flex-col gap-5 w-full p-4">
+      {posts.map((post) => {
         return (
-          <>
-            <div className="relative w-52 h-40 flex-shrink-0">
+          <div className="bg-slate-800 rounded-lg shadow-lg flex gap-4 justify-center items-center p-4">
+            <div className="relative w-52 h-40 flex-shrink-0 rounded-lg">
               <img
                 src={post.Images[0]}
                 alt="property"
                 className="w-full h-full object-cover rounded-lg"
               />
             </div>
-            <div className="TextContainer w-full flex flex-col justify-between">
+            <div className="TextContainer gap-4 w-full flex flex-col justify-between">
               <div>
                 <h2 className="title text-white/90 text-xl font-sidebar font-semibold hover:transition-all duration-300 hover:text-indigo-400 hover:cursor-pointer">
                   {post.address}
@@ -76,7 +80,7 @@ function Card() {
                 </div>
               </div>
             </div>
-          </>
+          </div>
         );
       })}
     </div>
