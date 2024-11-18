@@ -2,13 +2,19 @@ import React from "react";
 import Filter from "../../Components/Filter";
 import Card from "../../Components/Card";
 import Map from "../../Components/Map";
+import { useLocation } from "react-router-dom";
 
 function ListPage() {
+  // GET THE LOCATION PARAM FROM THE URL
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const locationParam = searchParams.get("location");
+
   return (
     <div className="ListPage flex mt-16 mx-3">
       <div className="ListContainer basis-8/12">
         <div className="wrapper flex flex-col gap-5 pr-5">
-          <Filter />
+          <Filter place={locationParam} />
           <Card />
         </div>
       </div>

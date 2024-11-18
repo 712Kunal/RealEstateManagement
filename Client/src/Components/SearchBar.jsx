@@ -35,7 +35,8 @@ function SearchBar() {
     setQuerry((prev) => ({ ...prev, location, minPrice, maxPrice }));
     // NAVIGATE TO THE LIST PAGE
     navigate(
-      `/app/list?type=${querry.type}&location=${location}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+      `/app/list?type=${querry.type}&location=${location}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
+      { state: { place: location } }
     );
   };
 

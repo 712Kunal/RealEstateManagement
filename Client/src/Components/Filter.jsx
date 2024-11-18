@@ -1,13 +1,13 @@
 import React from "react";
 import { FcSearch } from "react-icons/fc";
 
-function Filter() {
+function Filter({ place }) {
   return (
     <div className="filter flex flex-col gap-6 rounded-lg shadow-lg">
       <h1 className="text-2xl font-semibold text-indigo-400">
         Search results for{" "}
         <a href="#" className="hover:text-indigo-500 transition-colors">
-          London
+          {place}
         </a>
       </h1>
       <div className="top w-full flex flex-wrap gap-6">

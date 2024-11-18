@@ -3,7 +3,6 @@ import prisma from "../lib/prisma.js";
 const getAllPosts = async (req, res) => {
   try {
     const queryParams = req.query;
-    console.log("query:", queryParams);
     const allPosts = await prisma.post.findMany({
       where: {
         type: queryParams.type || undefined,
