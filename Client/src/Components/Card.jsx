@@ -38,10 +38,13 @@ function Card() {
     <div className="Card flex flex-col gap-5 w-full p-4">
       {posts.map((post) => {
         return (
-          <div key={post.id} className="bg-slate-800 rounded-lg shadow-lg flex gap-4 justify-center items-center p-4">
+          <div
+            key={post.id}
+            className="bg-slate-800 rounded-lg shadow-lg flex gap-4 justify-center items-center p-4"
+          >
             <div className="relative w-52 h-40 flex-shrink-0 rounded-lg">
               <img
-                src="/src/assets/login.png"
+                src={post.Images[0] || "/src/assets/house.jpg"}
                 alt="property"
                 className="w-full h-full object-cover rounded-lg"
               />
@@ -49,7 +52,7 @@ function Card() {
             <div className="TextContainer gap-4 w-full flex flex-col justify-between">
               <div>
                 <h2 className="title text-white/90 text-xl font-sidebar font-semibold hover:transition-all duration-300 hover:text-indigo-400 hover:cursor-pointer">
-                  {post.address}
+                  {post.title}
                 </h2>
                 <p className="Address flex items-center gap-2 text-white/75">
                   <FaLocationDot className="text-white/55 text-lg" />
