@@ -10,7 +10,7 @@ const fetchTheData = async (setPosts, setError) => {
       console.log("response:", response.data);
       setPosts(response.data.AllPosts);
     } else {
-      const response = await apiRequest.get("/posts");
+      const response = await apiRequest.get("/posts");  
       setPosts(response.data.AllPosts);
     }
   } catch (error) {
