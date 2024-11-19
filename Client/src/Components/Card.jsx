@@ -4,34 +4,15 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaBath } from "react-icons/fa6";
 import { FaRegBookmark } from "react-icons/fa6";
 import { IoChatbubbleEllipses } from "react-icons/io5";
-import apiRequest from "../lib/apiRequest";
+import fetchTheData from "../lib/getPosts.js";
 
 function Card() {
   const [error, setError] = useState("");
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const fetchTheData = async () => {
-      try {
-        const queryParams = window.location.href.split("?")[1];
-
-        if (queryParams) {
-          // SEND THE QUERY TO THE BACKEND SERVER TO FETCH THE DATA
-          const response = await apiRequest.get(`/posts/Posts?${queryParams}`);
-          console.log("response:", response.data);
-          setPosts(response.data.AllPosts);
-        } else {
-          const response = await apiRequest.get("/posts");
-          setPosts(response.data.AllPosts);
-        }
-      } catch (error) {
-        console.error("Error while fetching the posts data:", error);
-        setError(error.response.data.error);
-      }
-    };
-
     // CALLING THE FUNCTION TO FETCH THE POSTS FROM THE BACKEND SERVER
-    fetchTheData();
+    fetchTheData(setPosts, setError);
   }, []);
 
   return (
