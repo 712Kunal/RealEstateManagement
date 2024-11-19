@@ -14,7 +14,7 @@ function Card() {
     // CALLING THE FUNCTION TO FETCH THE POSTS FROM THE BACKEND SERVER
     fetchTheData(setPosts, setError);
   }, []);
-
+  
   return (
     <div className="Card flex flex-col gap-5 w-full p-4">
       {posts.map((post) => {

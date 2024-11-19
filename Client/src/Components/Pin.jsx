@@ -4,9 +4,8 @@ import { Popup } from "react-leaflet/Popup";
 import { Tooltip } from "react-leaflet/Tooltip";
 
 function Pin({ position }) {
-  console.log("fjdsfjj");
   
-  console.log("position:", position);
+  console.log("position:", position); 
   
   return (
     <div>

@@ -5,23 +5,23 @@ import Pin from "./Pin";
 import fetchTheData from "../lib/getPosts.js";
 
 function Map() {
+  const [error, setError] = useState("");
   const [posts, setPosts] = useState([]);
-  const [error, setError] = useState(null);
 
-  // FETCH THE DATA FROM THE BACKEND SERVER AFTER 5 SECONDS
   useEffect(() => {
-    // setTimeout(() => {
+    // CALLING THE FUNCTION TO FETCH THE POSTS FROM THE BACKEND SERVER
     fetchTheData(setPosts, setError);
-    // }, 2000);
   }, []);
 
-  const position = [51.505, -0.09];
+  const defaultPosition = [51.505, -0.09];
   console.log("mapposts:", posts);
 
   return (
     <MapContainer
       center={
-        posts.length === 0 ? [posts[0].latitude, posts[0].longitude] : position
+        posts.length > 0
+          ? [posts[0].latitude, posts[0].longitude]
+          : defaultPosition
       }
       zoom={7}
       scrollWheelZoom={false}
@@ -31,10 +31,9 @@ function Map() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {posts.length > 0 &&
-        posts.map((post) => {
-          <Pin position={post} key={post.Id} />;
-        })}
+      {posts.map((post) => (
+        <Pin position={post} key={post.id || post._id} />
+      ))}
     </MapContainer>
   );
 }
