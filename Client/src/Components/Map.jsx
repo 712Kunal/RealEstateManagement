@@ -14,11 +14,14 @@ function Map() {
 
   const defaultPosition = [51.5074, -0.1278];
   console.log(posts);
-  
 
   return (
     <MapContainer
-      center={posts.length > 0 ? [posts[0].latitude, posts[0].longitude] : defaultPosition}
+      center={
+        posts.length === 1
+          ? [posts[0].latitude, posts[0].longitude]
+          : defaultPosition
+      }
       zoom={7}
       scrollWheelZoom={false}
       className="map-container w-full h-full rounded-md overflow-hidden outline-none"
@@ -28,7 +31,12 @@ function Map() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {posts.length > 0 ? (
-        posts.map((post) => <Pin position={post} key={post.id || post._id} />)
+        posts.map((post) => (
+          <Pin
+            position={[parseFloat(post.latitude), parseFloat(post.longitude)]}
+            key={post.id || post._id}
+          />
+        ))
       ) : (
         <div className="text-center text-gray-500 py-8">Loading map...</div>
       )}
