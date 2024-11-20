@@ -19,7 +19,7 @@ function Map() {
     <MapContainer
       center={
         posts.length === 1
-          ? [posts[0].latitude, posts[0].longitude]
+          ? [parseFloat(posts[0].latitude), parseFloat(posts[0].longitude)]
           : defaultPosition
       }
       zoom={7}
