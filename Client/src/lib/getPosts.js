@@ -7,7 +7,6 @@ const fetchTheData = async (setPosts, setError) => {
     if (queryParams) {
       // SEND THE QUERY TO THE BACKEND SERVER TO FETCH THE DATA
       const response = await apiRequest.get(`/posts/Posts?${queryParams}`);
-      console.log("response:", response.data);
       setPosts(response.data.AllPosts);
     } else {
       const response = await apiRequest.get("/posts");  

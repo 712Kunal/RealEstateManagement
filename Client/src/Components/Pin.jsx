@@ -5,7 +5,7 @@ import { Tooltip } from "react-leaflet/Tooltip";
 
 function Pin({ position }) {
   
-  console.log("position:", position); 
+  console.log("position:", position);
   
   return (
     <div>
