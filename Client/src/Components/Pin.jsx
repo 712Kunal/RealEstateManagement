@@ -3,15 +3,24 @@ import { Marker } from "react-leaflet/Marker";
 import { Popup } from "react-leaflet/Popup";
 import { Tooltip } from "react-leaflet/Tooltip";
 
-function Pin({ position }) {
+function Pin({ position, post }) {
+  // Add error checking for position
+  if (!position || !Array.isArray(position) || position.length !== 2 || 
+      isNaN(position[0]) || isNaN(position[1])) {
+    console.error('Invalid position:', position);
+    return null;
+  }
+
   return (
     <Marker position={position}>
       <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
+        <div className="p-2">
+          <h3 className="font-bold">{post?.title || 'Property'}</h3>
+          <p className="text-sm">{post?.location || 'Location not specified'}</p>
+          {post?.price && <p className="text-sm">Price: ${post.price}</p>}
+        </div>
       </Popup>
-      <Tooltip>
-        A pretty CSS3 popup. <br /> Easily customizable.
-      </Tooltip>
+      <Tooltip>Click for details</Tooltip>
     </Marker>
   );
 }

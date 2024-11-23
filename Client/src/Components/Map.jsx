@@ -14,7 +14,6 @@ function Map() {
     const fetchData = async () => {
       setMessage("Fetching Data...");
       setIsLoading(true);
-      // CALLING THE FUNCTION TO FETCH THE POSTS FROM THE BACKEND SERVER
       await fetchTheData(setPosts, setError);
       setIsLoading(false);
     };
@@ -22,41 +21,49 @@ function Map() {
     fetchData();
   }, []);
 
-  const defaultPosition = [51.5074, -0.1278];
-  console.log(posts);
+  // Pune coordinates instead of London
+  const defaultPosition = [18.5204, 73.8567]; // Pune, India coordinates
 
   return (
     <>
+      {error && (
+        <p className="text-red-400 text-center bg-red-400/10 py-2 rounded-lg border border-red-400/20">
+          {error}
+        </p>
+      )}
       {isLoading ? (
         <LoadingOverlay message={message} />
       ) : (
         <MapContainer
           center={
-            posts.length > 0
+            posts.length > 0 && posts[0].latitude && posts[0].longitude
               ? [parseFloat(posts[0].latitude), parseFloat(posts[0].longitude)]
               : defaultPosition
           }
-          zoom={7}
-          scrollWheelZoom={false}
+          zoom={12}
+          scrollWheelZoom={true}
           className="map-container w-full h-full rounded-md overflow-hidden outline-none"
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {posts.length > 0 ? (
-            posts.map((post) => (
-              <Pin
-                position={[
-                  parseFloat(post.latitude),
-                  parseFloat(post.longitude),
-                ]}
-                key={post.id || post._id}
-              />
-            ))
-          ) : (
-            <div className="text-center text-gray-500 py-8">Loading map...</div>
-          )}
+          {posts.map((post) => {
+            const lat = parseFloat(post.latitude);
+            const lng = parseFloat(post.longitude);
+
+            // Validate coordinates before rendering pin
+            if (!isNaN(lat) && !isNaN(lng)) {
+              return (
+                <Pin
+                  position={[lat, lng]}
+                  post={post}
+                  key={post.id || post._id}
+                />
+              );
+            }
+            return null;
+          })}
         </MapContainer>
       )}
     </>
