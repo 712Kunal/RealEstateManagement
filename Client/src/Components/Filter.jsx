@@ -1,5 +1,7 @@
 import React from "react";
 import { FcSearch } from "react-icons/fc";
+import { useSearchParams } from "react-router-dom";
+
 
 function Filter({ place }) {
   return (
