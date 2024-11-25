@@ -23,8 +23,12 @@ function ListPage() {
     <div className="ListPage flex mt-16 mx-3">
       <div className="ListContainer basis-8/12">
         <div className="wrapper flex flex-col gap-5 pr-5">
-          <Filter place={locationParam} />
-          <Card posts={posts}/>
+          <Filter
+            place={locationParam}
+            setPosts={setPosts}
+            setError={setError}
+          />
+          <Card posts={posts} />
         </div>
       </div>
       <div className="MapContainer basis-1/3 fixed top-16 right-3 h-[calc(100vh-4rem)] w-[calc(33.33%-12px)]">

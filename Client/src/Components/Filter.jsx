@@ -3,10 +3,9 @@ import { FcSearch } from "react-icons/fc";
 import { useSearchParams } from "react-router-dom";
 import fetchTheData from "../lib/getPosts.js";
 
-function Filter({ place }) {
+function Filter({ place, setPosts, setError }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [error, setError] = useState("");
   const [query, setQuery] = useState({
     type: searchParams.get("type") || "",
     city: searchParams.get("location") || "",
@@ -24,15 +23,15 @@ function Filter({ place }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchParams(query);
-    fetchTheData();
+    fetchTheData(setPosts, setError);
   };
 
   return (
-    <div className="filter flex flex-col gap-6 rounded-lg shadow-lg"> 
+    <div className="filter flex flex-col gap-6 rounded-lg shadow-lg">
       <h1 className="text-2xl font-semibold text-indigo-400">
         Search results for{" "}
         <a href="#" className="hover:text-indigo-500 transition-colors">
-          {place}
+          {place ? place : "all cities"}
         </a>
       </h1>
       <div className="top w-full flex flex-wrap gap-6">

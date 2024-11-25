@@ -6,18 +6,18 @@ const getAllPosts = async (req, res) => {
     const allPosts = await prisma.post.findMany({
       where: {
         type: queryParams.type || undefined,
-        city: queryParams.location || undefined,
-        propertyType: queryParams.propertyType || undefined,
+        city: queryParams.city || undefined,
+        propertyType: queryParams.property || undefined,
         bedrooms: parseInt(queryParams.bedrooms) || undefined,
-        price:{
+        price: {
           // GTE - GREATER THAN OR EQUAL TO
           // LTE - LESS THAN OR EQUAL TO
           gte: parseInt(queryParams.minPrice) || 0,
           lte: parseInt(queryParams.maxPrice) || 1000000,
-        }
-      }
+        },
+      },
     });
-    
+
     if (allPosts) {
       res.status(200).json({
         message: "All posts fetched successfully",
