@@ -80,22 +80,22 @@ function Filter({ place }) {
             defaultValue={query.property}
             className="w-full sm:w-28 text-gray-100 rounded-lg p-3 bg-gray-800/50 border border-gray-700/50 outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition duration-300 placeholder:text-gray-400 placeholder:tracking-wider text-xl font-medium"
           >
-            <option value="" className="bg-black">
+            <option value="Any" className="bg-black">
               Any
             </option>
-            <option value="Buy" className="bg-black">
+            <option value="appartment" className="bg-black">
               Appartment
             </option>
-            <option value="Rent" className="bg-black">
+            <option value="house" className="bg-black">
               House
             </option>
-            <option value="Rent" className="bg-black">
+            <option value="flat" className="bg-black">
               Flat
             </option>
-            <option value="Rent" className="bg-black">
+            <option value="condo" className="bg-black">
               Condo
             </option>
-            <option value="Rent" className="bg-black">
+            <option value="land" className="bg-black">
               Land
             </option>
           </select>
@@ -128,12 +128,12 @@ function Filter({ place }) {
         </div>
         <div className="item flex flex-col gap-2 w-full sm:w-auto">
           <label htmlFor="bedrooms" className="text-xl text-white/85">
-            Bedroom
+            Bedrooms
           </label>
           <input
             className="w-full sm:w-28 text-gray-100 rounded-lg p-3 bg-gray-800/50 border border-gray-700/50 outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition duration-300 placeholder:text-gray-400 placeholder:tracking-wider text-xl font-medium"
             type="number"
-            name="bedroom"
+            name="bedrooms"
             onChange={handleChange}
             defaultValue={query.bedrooms}
             placeholder="Any"
