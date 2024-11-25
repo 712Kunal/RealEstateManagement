@@ -1,20 +1,11 @@
-import { React, useEffect, useState } from "react";
+import { React } from "react";
 import { FaBed } from "react-icons/fa6";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaBath } from "react-icons/fa6";
 import { FaRegBookmark } from "react-icons/fa6";
 import { IoChatbubbleEllipses } from "react-icons/io5";
-import fetchTheData from "../lib/getPosts.js";
 
-function Card() {
-  const [error, setError] = useState("");
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    // CALLING THE FUNCTION TO FETCH THE POSTS FROM THE BACKEND SERVER
-    fetchTheData(setPosts, setError);
-  }, []);
-  
+function Card({ posts }) {
   return (
     <div className="Card flex flex-col gap-5 w-full p-4">
       {posts.map((post) => {

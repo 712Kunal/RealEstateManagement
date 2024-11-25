@@ -28,7 +28,7 @@ function Filter({ place }) {
   };
 
   return (
-    <div className="filter flex flex-col gap-6 rounded-lg shadow-lg">
+    <div className="filter flex flex-col gap-6 rounded-lg shadow-lg"> 
       <h1 className="text-2xl font-semibold text-indigo-400">
         Search results for{" "}
         <a href="#" className="hover:text-indigo-500 transition-colors">
