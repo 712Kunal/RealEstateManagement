@@ -1,9 +1,12 @@
 import { React, useState } from "react";
 import { FcSearch } from "react-icons/fc";
 import { useSearchParams } from "react-router-dom";
+import fetchTheData from "../lib/getPosts.js";
 
 function Filter({ place }) {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const [error, setError] = useState("");
   const [query, setQuery] = useState({
     type: searchParams.get("type") || "",
     city: searchParams.get("location") || "",
@@ -18,8 +21,10 @@ function Filter({ place }) {
     setQuery({ ...query, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setSearchParams(query);
+    fetchTheData();
   };
 
   return (

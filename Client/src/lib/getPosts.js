@@ -9,7 +9,7 @@ const fetchTheData = async (setPosts, setError) => {
       const response = await apiRequest.get(`/posts/Posts?${queryParams}`);
       setPosts(response.data.AllPosts);
     } else {
-      const response = await apiRequest.get("/posts");  
+      const response = await apiRequest.get("/posts");
       setPosts(response.data.AllPosts);
     }
   } catch (error) {
