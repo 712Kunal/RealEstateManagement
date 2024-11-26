@@ -61,10 +61,8 @@ function Filter({ place, setPosts, setError }) {
             onChange={handleChange}
             defaultValue={query.type}
             className="w-full sm:w-28 text-gray-100 rounded-lg p-3 bg-gray-800/50 border border-gray-700/50 outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition duration-300 placeholder:text-gray-400 placeholder:tracking-wider text-xl font-medium"
+            placeholder="Any"
           >
-            <option value="" className="bg-black">
-              Any
-            </option>
             <option value="Buy" className="bg-black">
               Buy
             </option>

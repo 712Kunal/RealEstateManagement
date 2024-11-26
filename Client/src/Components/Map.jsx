@@ -33,7 +33,7 @@ function Map() {
       )}
       {isLoading ? (
         <LoadingOverlay message={message} />
-      ) : (
+      ) : posts.length > 0 ? (
         <MapContainer
           center={
             posts.length > 0 && posts[0].latitude && posts[0].longitude
@@ -65,6 +65,10 @@ function Map() {
             return null;
           })}
         </MapContainer>
+      ) : (
+        <h2 className="text-red-400 text-2xl text-center bg-red-400/10 py-2 rounded-lg border border-red-400/20 font-exo">
+          Something went wroung 😕
+        </h2>
       )}
     </>
   );
