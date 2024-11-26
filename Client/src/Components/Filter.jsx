@@ -144,7 +144,7 @@ function Filter({ place, setPosts, setError }) {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="w-full sm:w-12 p-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 transition-colors duration-300 place-self-end"
+          className="w-full flex justify-center sm:w-12 p-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 transition-colors duration-300 place-self-end"
         >
           <FcSearch className="text-3xl bg-white rounded-full" />
         </button>

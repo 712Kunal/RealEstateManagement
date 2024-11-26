@@ -31,7 +31,7 @@ function ListPage() {
           <Card posts={posts} />
         </div>
       </div>
-      <div className="MapContainer basis-1/3 fixed top-16 right-3 h-[calc(100vh-4rem)] w-[calc(33.33%-12px)]">
+      <div className="MapContainer hidden md:block basis-1/3 fixed top-16 right-3 h-[calc(100vh-4rem)] w-[calc(33.33%-12px)]">
         <Map posts={posts} />
       </div>
     </div>

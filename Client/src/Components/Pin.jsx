@@ -1,7 +1,7 @@
 import React from "react";
 import { Marker } from "react-leaflet/Marker";
 import { Tooltip } from "react-leaflet/Tooltip";
-import { Card, CardContent, Typography} from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 
 function Pin({ position, post }) {
