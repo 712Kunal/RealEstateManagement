@@ -19,7 +19,7 @@ function App() {
 
           <Route path="/app" element={<AppWrapper />}>
             <Route path="homepage" element={<HomePage />} />
-            <Route path="list" element={<ListPage />} />
+            <Route path="list" element={<ListPage />} />  
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
