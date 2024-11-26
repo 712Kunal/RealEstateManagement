@@ -1,8 +1,6 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import Pin from "./Pin";
-import fetchTheData from "../lib/getPosts.js";
-import LoadingOverlay from "../Pages/Auth/LoadingOverlay.jsx";
 
 function Map({ posts }) {
   const [error, setError] = useState("");
