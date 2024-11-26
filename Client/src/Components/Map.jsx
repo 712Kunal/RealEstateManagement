@@ -4,22 +4,8 @@ import Pin from "./Pin";
 import fetchTheData from "../lib/getPosts.js";
 import LoadingOverlay from "../Pages/Auth/LoadingOverlay.jsx";
 
-function Map() {
+function Map({ posts }) {
   const [error, setError] = useState("");
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setMessage("Fetching Data...");
-      setIsLoading(true);
-      await fetchTheData(setPosts, setError);
-      setIsLoading(false);
-    };
-
-    fetchData();
-  }, []);
 
   // Pune coordinates instead of London
   const defaultPosition = [18.5204, 73.8567]; // Pune, India coordinates
@@ -31,9 +17,7 @@ function Map() {
           {error}
         </p>
       )}
-      {isLoading ? (
-        <LoadingOverlay message={message} />
-      ) : posts.length > 0 ? (
+      {posts.length > 0 ? (
         <MapContainer
           center={
             posts.length > 0 && posts[0].latitude && posts[0].longitude

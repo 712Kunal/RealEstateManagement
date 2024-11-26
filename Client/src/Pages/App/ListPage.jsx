@@ -32,7 +32,7 @@ function ListPage() {
         </div>
       </div>
       <div className="MapContainer basis-1/3 fixed top-16 right-3 h-[calc(100vh-4rem)] w-[calc(33.33%-12px)]">
-        <Map />
+        <Map posts={posts} />
       </div>
     </div>
   );
