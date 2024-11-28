@@ -29,7 +29,7 @@ function SinglePage() {
                 <span>John Doe</span>
               </div>
             </div>
-            <div className="bottom info mt-10 text-gray-400 leading-5 text-justify">
+            <div className="bottom info mt-6 text-gray-400 leading-5 text-justify">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed,
               culpa nulla quas repudiandae iusto itaque incidunt iste tenetur
               rerum perspiciatis maiores quibusdam nostrum excepturi ex rem.
