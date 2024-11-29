@@ -52,79 +52,87 @@ function SinglePage() {
       </div>
 
       <div className="features basis-1/3 text-white">
-        <div className="h-full bg-[#164E63]/10 rounded-lg p-6">
-          <p className="title font-exo text-xl mb-1">General</p>
-          <div className="generals flex flex-col bg-[#034078] rounded-md gap-1 p-2">
-            <div className="features flex items-center gap-2 bg-[#0a1128] p-1 rounded-lg">
-              <BsTools className="text-white text-2xl" />
-              <div className="featureText flex flex-col justify-center">
-                <span>Utilities</span>
-                <p className="text-xs">Renter is responsible</p>
+        <div className="h-full bg-[#164E63]/10 rounded-lg px-3 py-0 flex flex-col gap-3">
+          <>
+            <p className="title font-exo text-xl">General</p>
+            <div className="generals flex flex-col bg-[#034078] rounded-md gap-1 p-2">
+              <div className="features flex items-center gap-2 bg-[#0a1128] p-1 rounded-lg">
+                <BsTools className="text-white/95 text-2xl" />
+                <div className="featureText flex flex-col justify-center">
+                  <span>Utilities</span>
+                  <p className="text-xs text-white/70">Renter is responsible</p>
+                </div>
+              </div>
+
+              <div className="features flex items-center gap-2 bg-[#0a1128] p-1 rounded-lg">
+                <MdPets className="text-white/95 text-2xl" />
+                <div className="featureText flex flex-col justify-center">
+                  <span>Pet Policy</span>
+                  <p className="text-xs text-white/70">Pets allowed</p>
+                </div>
+              </div>
+
+              <div className="features flex items-center gap-2 bg-[#0a1128] p-1 rounded-lg">
+                <GiReceiveMoney className="text-white/95 text-2xl" />
+                <div className="featureText flex flex-col justify-center">
+                  <span>Property Fees</span>
+                  <p className="text-xs text-white/70">
+                    Must have 3x the rent in total household income
+                  </p>
+                </div>
               </div>
             </div>
+          </>
 
-            <div className="features flex items-center gap-2 bg-[#0a1128] p-1 rounded-lg">
-              <MdPets className="text-white text-2xl" />
-              <div className="featureText flex flex-col justify-center">
-                <span>Pet Policy</span>
-                <p className="text-xs">Pets allowed</p>
+          <>
+            <p className="title font-exo text-xl">Room Sizes</p>
+            <div className="horizontalList generals flex bg-[#034078] rounded-md gap-2 p-2">
+              <div className="features flex bg-[#0a1128] items-center rounded-lg p-1 gap-1">
+                <TbRulerMeasure className="text-white/95 text-2xl" />
+                <span>80 sqm(861 sqft)</span>
+              </div>
+
+              <div className="features flex bg-[#0a1128] items-center rounded-lg p-1 gap-1">
+                <IoBedOutline className="text-white/95 text-2xl" />
+                <span>2 Beds</span>
+              </div>
+
+              <div className="features flex bg-[#0a1128] items-center rounded-lg p-1 gap-1">
+                <FaBath className="text-white/95 text-2xl" />
+                <span>2 Bathrooms</span>
               </div>
             </div>
+          </>
+          <>
+            <p className="title font-exo text-xl">Nearby Places</p>
+            <div className="horizontalList generals flex bg-[#034078] justify-center items-center rounded-md gap-2 p-2">
+              <div className="features flex items-center gap-2 bg-[#0a1128] px-2 py-1 rounded-lg">
+                <FaSchool className="text-white/95 text-2xl" />
+                <div className="featureText flex flex-col justify-center">
+                  <span>School</span>
+                  <p className="text-xs text-white/70">250m away</p>
+                </div>
+              </div>
 
-            <div className="features flex items-center gap-2 bg-[#0a1128] p-1 rounded-lg">
-              <GiReceiveMoney className="text-white text-2xl" />
-              <div className="featureText flex flex-col justify-center">
-                <span>Property Fees</span>
-                <p className="text-xs">
-                  Must have 3x the rent in total household income
-                </p>
+              <div className="features flex items-center gap-2 bg-[#0a1128] px-2 py-1 rounded-lg">
+                <TbBusStop className="text-white/95 text-2xl" />
+                <div className="featureText flex flex-col justify-center">
+                  <span>Bus Stop</span>
+                  <p className="text-xs text-white/70">100m away</p>
+                </div>
+              </div>
+
+              <div className="features flex items-center gap-2 bg-[#0a1128] px-2 py-1 rounded-lg">
+                <HiMiniBuildingStorefront className="text-white/95 text-2xl" />
+                <div className="featureText flex flex-col justify-center">
+                  <span>Restaurant</span>
+                  <p className="text-xs text-white/70">200m away</p>
+                </div>
               </div>
             </div>
-          </div>
-          <p className="title font-exo text-xl mb-1">Room Sizes</p>
-          <div className="horizontalList generals flex bg-[#034078] rounded-md gap-1 p-2">
-            <div className="features flex bg-[#0a1128] items-center rounded-lg p-1 gap-1">
-              <TbRulerMeasure className="text-white text-2xl" />
-              <span>80 sqm(861 sqft)</span>
-            </div>
+          </>
 
-            <div className="features flex bg-[#0a1128] items-center rounded-lg p-1 gap-1">
-              <IoBedOutline className="text-white text-2xl" />
-              <span>2 Beds</span>
-            </div>
-
-            <div className="features flex bg-[#0a1128] items-center rounded-lg p-1 gap-1">
-              <FaBath className="text-white text-2xl" />
-              <span>2 Bathrooms</span>
-            </div>
-          </div>
-          <p className="title font-exo text-xl mb-1">Nearby Places</p>
-          <div className="horizontalList generals flex bg-[#034078] justify-center items-center rounded-md gap-1 p-2">
-            <div className="features flex items-center gap-2 bg-[#0a1128] px-2 py-1 rounded-lg">
-              <FaSchool className="text-white text-2xl" />
-              <div className="featureText flex flex-col justify-center">
-                <span>School</span>
-                <p className="text-xs">250m away</p>
-              </div>
-            </div>
-
-            <div className="features flex items-center gap-2 bg-[#0a1128] px-2 py-1 rounded-lg">
-              <TbBusStop className="text-white text-2xl" />
-              <div className="featureText flex flex-col justify-center">
-                <span>Bus Stop</span>
-                <p className="text-xs">100m away</p>
-              </div>
-            </div>
-
-            <div className="features flex items-center gap-2 bg-[#0a1128] px-2 py-1 rounded-lg">
-              <HiMiniBuildingStorefront className="text-white text-2xl" />
-              <div className="featureText flex flex-col justify-center">
-                <span>Restaurant</span>
-                <p className="text-xs">200m away</p>
-              </div>
-            </div>
-          </div>
-          <p className="title">Location</p>
+          <p className="title font-exo text-xl">Location</p>
           <div className="mapContainer">{/* <Map /> */}</div>
           <div className="buttons"></div>
         </div>
