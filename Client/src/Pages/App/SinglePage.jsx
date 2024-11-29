@@ -8,6 +8,9 @@ import { GiReceiveMoney } from "react-icons/gi";
 import { TbRulerMeasure } from "react-icons/tb";
 import { IoBedOutline } from "react-icons/io5";
 import { FaBath } from "react-icons/fa6";
+import { FaSchool } from "react-icons/fa6";
+import { TbBusStop } from "react-icons/tb";
+import { HiMiniBuildingStorefront } from "react-icons/hi2";
 
 function SinglePage() {
   return (
@@ -96,20 +99,29 @@ function SinglePage() {
             </div>
           </div>
           <p className="title font-exo text-xl mb-1">Nearby Places</p>
-          <div className="horizontalList generals flex bg-[#034078] rounded-md gap-1 p-2">
-            <div className="features flex bg-[#0a1128] items-center rounded-lg p-1 gap-1">
-              <TbRulerMeasure className="text-white text-2xl" />
-              <span>80 sqm(861 sqft)</span>
+          <div className="horizontalList generals flex bg-[#034078] justify-center items-center rounded-md gap-1 p-2">
+            <div className="features flex items-center gap-2 bg-[#0a1128] px-2 py-1 rounded-lg">
+              <FaSchool className="text-white text-2xl" />
+              <div className="featureText flex flex-col justify-center">
+                <span>School</span>
+                <p className="text-xs">250m away</p>
+              </div>
             </div>
 
-            <div className="features flex bg-[#0a1128] items-center rounded-lg p-1 gap-1">
-              <IoBedOutline className="text-white text-2xl" />
-              <span>2 Beds</span>
+            <div className="features flex items-center gap-2 bg-[#0a1128] px-2 py-1 rounded-lg">
+              <TbBusStop className="text-white text-2xl" />
+              <div className="featureText flex flex-col justify-center">
+                <span>Bus Stop</span>
+                <p className="text-xs">100m away</p>
+              </div>
             </div>
 
-            <div className="features flex bg-[#0a1128] items-center rounded-lg p-1 gap-1">
-              <FaBath className="text-white text-2xl" />
-              <span>2 Bathrooms</span>
+            <div className="features flex items-center gap-2 bg-[#0a1128] px-2 py-1 rounded-lg">
+              <HiMiniBuildingStorefront className="text-white text-2xl" />
+              <div className="featureText flex flex-col justify-center">
+                <span>Restaurant</span>
+                <p className="text-xs">200m away</p>
+              </div>
             </div>
           </div>
           <p className="title">Location</p>
