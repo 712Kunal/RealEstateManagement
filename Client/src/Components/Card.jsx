@@ -5,8 +5,15 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaBath } from "react-icons/fa6";
 import { FaRegBookmark } from "react-icons/fa6";
 import { IoChatbubbleEllipses } from "react-icons/io5";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Card({ posts }) {
+  const navigate = useNavigate();
+
+  const handleCardClick = (postId) => {
+    navigate(`/app/singlePage?${postId}`);
+  };
+
   return (
     <div className="Card flex flex-col gap-5 w-full p-4">
       {posts.length > 0 ? (
@@ -14,7 +21,8 @@ function Card({ posts }) {
           return (
             <div
               key={post.id}
-              className="bg-slate-800 rounded-lg shadow-lg flex gap-4 justify-center items-center p-4"
+              className="bg-slate-800 rounded-lg shadow-lg flex gap-4 justify-center items-center p-4 hover:cursor-pointer"
+              onClick={() => handleCardClick(post.id)}
             >
               <div className="relative w-52 h-40 flex-shrink-0 rounded-lg">
                 <img

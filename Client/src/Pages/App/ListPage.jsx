@@ -26,11 +26,7 @@ function ListPage() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const locationParam = searchParams.get("location");
-
-  const handleCardClick = () => {
-    console.log("Clicked on card");
-  };
-
+  
   return (
     <div className="ListPage flex mt-16 mx-3">
       {isloading ? (
@@ -44,7 +40,7 @@ function ListPage() {
                 setPosts={setPosts}
                 setError={setError}
               />
-              <Card posts={posts} onClick={handleCardClick} />
+              <Card posts={posts} />
             </div>
           </div>
           <div className="MapContainer hidden md:block basis-1/3 fixed top-16 right-3 h-[calc(100vh-4rem)] w-[calc(33.33%-12px)]">
