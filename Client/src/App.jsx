@@ -21,7 +21,7 @@ function App() {
           <Route path="/app" element={<AppWrapper />}>
             <Route path="homepage" element={<HomePage />} />
             <Route path="list" element={<ListPage />} /> 
-            <Route path="single page" element={<SinglePage />} /> 
+            <Route path="singlePage" element={<SinglePage />} /> 
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
