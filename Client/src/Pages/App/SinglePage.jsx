@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import ImageSlider from "../../Components/ImageSlider";
 import { MdLocationPin } from "react-icons/md";
 import Map from "../../Components/Map";
@@ -11,8 +11,26 @@ import { FaBath } from "react-icons/fa6";
 import { FaSchool } from "react-icons/fa6";
 import { TbBusStop } from "react-icons/tb";
 import { HiMiniBuildingStorefront } from "react-icons/hi2";
+import { useSearchParams } from "react-router-dom";
+import apiRequest from "../../lib/apiRequest.js";
 
 function SinglePage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const postId = searchParams.get("post");
+        const postData = await apiRequest.get(`/posts/fetchingPost/${postId}`);
+        console.log(postData.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPost();
+  }, []);
+
   return (
     <div className="singlePage flex mt-16 mx-3">
       <div className="details text-gray-200 basis-8/12">

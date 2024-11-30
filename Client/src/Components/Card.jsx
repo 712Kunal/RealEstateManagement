@@ -11,7 +11,7 @@ function Card({ posts }) {
   const navigate = useNavigate();
 
   const handleCardClick = (postId) => {
-    navigate(`/app/singlePage?${postId}`);
+    navigate(`/app/singlePage?post=${postId}`);
   };
 
   return (

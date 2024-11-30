@@ -2,6 +2,8 @@ import jwt from "jsonwebtoken";
 import ENV_VARIABLES from "../constants.js";
 
 const userMiddleware = (req, res, next) => {
+  console.log("kdjfkdjfsjk");
+  
   try {
     const token = req.cookies.access_token;
 
