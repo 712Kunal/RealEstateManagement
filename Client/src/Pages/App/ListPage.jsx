@@ -14,7 +14,7 @@ function ListPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setMessage("Fetching Data...");
+      setMessage("Fetching Data . . .");
       setIsLoading(true);
       await fetchTheData(setPosts, setError);
       setIsLoading(false);
