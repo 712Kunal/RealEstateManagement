@@ -26,18 +26,19 @@ function SinglePage() {
     const fetchPost = async () => {
       try {
         setmessage("Fetching Data . . .");
-        const postId = searchParams.get("post");
+        const postId = searchParams.get("post"); // STORED POST ID
 
-        // FETCHING USER INFO FROM THE LOCAL STORAGE
-        const storedUser = localStorage.getItem("userData");
-        if (storedUser) {
-          const parsedData = JSON.parse(storedUser);
-          setUserInfo(parsedData);
-        }
         // BACKEND REQUEST FOR FETCHING POSTS
         const response = await apiRequest.get(`/posts/fetchingPost/${postId}`);
         if (response.data) {
           setPostData(response.data.SinglePost);
+
+          // FETCHING RELATED USER INFORMATION FROM THE BACKEND
+          const relatedUser = await apiRequest.get(
+            `/user/${response.data.SinglePost.userId}`
+          );
+          setUserInfo(relatedUser.data);
+
           setIsloading(false);
         }
       } catch (error) {
@@ -72,11 +73,11 @@ function SinglePage() {
                   </div>
                   <div className="user flex flex-col items-center justify-center px-7 py-0 gap-2 rounded-lg font-semibold bg-blue-800">
                     <img
-                      src={userInfo.user.avatar || "/src/assets/noavatar.png"}
+                      src={userInfo.User.avatar || "/src/assets/noavatar.png"}
                       alt="user avatar"
                       className="w-12 h-12 rounded-full object-cover"
                     />
-                    <span>{userInfo.user.username}</span>
+                    <span>{userInfo.User.username}</span>
                   </div>
                 </div>
                 <div className="bottom info mt-5 text-gray-400 leading-5 text-justify">
