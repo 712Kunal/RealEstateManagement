@@ -20,15 +20,23 @@ function SinglePage() {
   const [isloading, setIsloading] = useState(true);
   const [message, setmessage] = useState("");
   const [postData, setPostData] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
         setmessage("Fetching Data . . .");
         const postId = searchParams.get("post");
+
+        // FETCHING USER INFO FROM THE LOCAL STORAGE
+        const storedUser = localStorage.getItem("userData");
+        if (storedUser) {
+          const parsedData = JSON.parse(storedUser);
+          setUserInfo(parsedData);
+        }
+        // BACKEND REQUEST FOR FETCHING POSTS
         const response = await apiRequest.get(`/posts/fetchingPost/${postId}`);
         if (response.data) {
-          console.log(response.data.SinglePost);
           setPostData(response.data.SinglePost);
           setIsloading(false);
         }
@@ -47,14 +55,13 @@ function SinglePage() {
       ) : (
         <>
           <div className="details text-gray-200 basis-8/12">
+            {/* LEFT SECTION */}
             <div className="wrapper pr-12">
               <ImageSlider />
               <div className="postInfo flex flex-col gap-5">
                 <div className="top info flex justify-between">
                   <div className="post flex flex-col gap-2">
-                    <h1 className="text-4xl font-old">
-                      {postData.title}
-                    </h1>
+                    <h1 className="text-4xl font-old">{postData.title}</h1>
                     <div className="address flex items-center text-gray-400">
                       <MdLocationPin className="text-lg" />
                       <span>{postData.address}</span>
@@ -65,11 +72,11 @@ function SinglePage() {
                   </div>
                   <div className="user flex flex-col items-center justify-center px-7 py-0 gap-2 rounded-lg font-semibold bg-blue-800">
                     <img
-                      src="/src/assets/noavatar.png"
+                      src={userInfo.user.avatar || "/src/assets/noavatar.png"}
                       alt="user avatar"
                       className="w-12 h-12 rounded-full object-cover"
                     />
-                    <span>John Doe</span>
+                    <span>{userInfo.user.username}</span>
                   </div>
                 </div>
                 <div className="bottom info mt-5 text-gray-400 leading-5 text-justify">
@@ -79,9 +86,11 @@ function SinglePage() {
             </div>
           </div>
 
+          {/* RIGHT SECTION */}
           <div className="features basis-1/3 text-white">
             <div className="h-full bg-[#164E63]/10 rounded-lg px-3 py-0 flex flex-col gap-3">
               <>
+                {/* GENERAL SECTION */}
                 <p className="title font-exo text-xl">General</p>
                 <div className="generals flex flex-col bg-[#034078] rounded-md gap-1 p-2">
                   <div className="features flex items-center gap-2 bg-[#0a1128] p-1 rounded-lg">
@@ -98,7 +107,9 @@ function SinglePage() {
                     <MdPets className="text-white/95 text-2xl" />
                     <div className="featureText flex flex-col justify-center">
                       <span>Pet Policy</span>
-                      <p className="text-xs text-white/70">Pets {postData.postDetail.pet}</p>
+                      <p className="text-xs text-white/70">
+                        Pets {postData.postDetail.pet}
+                      </p>
                     </div>
                   </div>
 
@@ -107,13 +118,14 @@ function SinglePage() {
                     <div className="featureText flex flex-col justify-center">
                       <span>Property Fees</span>
                       <p className="text-xs text-white/70">
-                        Must have {postData.postDetail.income} the rent in total household income
+                        Must have {postData.postDetail.income} the rent in total
+                        household income
                       </p>
                     </div>
                   </div>
                 </div>
               </>
-
+              {/* ROOM SIZE SECTION */}
               <>
                 <p className="title font-exo text-xl">Room Sizes</p>
                 <div className="horizontalList generals flex bg-[#034078] rounded-md gap-2 p-2">
@@ -133,6 +145,7 @@ function SinglePage() {
                   </div>
                 </div>
               </>
+              {/* NEARBY PLACES SECTION */}
               <>
                 <p className="title font-exo text-xl">Nearby Places</p>
                 <div className="horizontalList generals flex bg-[#034078] justify-center items-center rounded-md gap-2 p-2">
@@ -140,7 +153,9 @@ function SinglePage() {
                     <FaSchool className="text-white/95 text-2xl" />
                     <div className="featureText flex flex-col justify-center">
                       <span>School</span>
-                      <p className="text-xs text-white/70">{postData.postDetail.school}m away</p>
+                      <p className="text-xs text-white/70">
+                        {postData.postDetail.school}m away
+                      </p>
                     </div>
                   </div>
 
@@ -148,7 +163,9 @@ function SinglePage() {
                     <TbBusStop className="text-white/95 text-2xl" />
                     <div className="featureText flex flex-col justify-center">
                       <span>Bus Stop</span>
-                      <p className="text-xs text-white/70">100m away</p>
+                      <p className="text-xs text-white/70">
+                        {postData.postDetail.bus}m away
+                      </p>
                     </div>
                   </div>
 
@@ -156,12 +173,14 @@ function SinglePage() {
                     <HiMiniBuildingStorefront className="text-white/95 text-2xl" />
                     <div className="featureText flex flex-col justify-center">
                       <span>Restaurant</span>
-                      <p className="text-xs text-white/70">200m away</p>
+                      <p className="text-xs text-white/70">
+                        {postData.postDetail.restaurant}m away
+                      </p>
                     </div>
                   </div>
                 </div>
               </>
-
+              {/* MAP SECTION */}
               <p className="title font-exo text-xl">Location</p>
               <div className="mapContainer">{/* <Map /> */}</div>
               <div className="buttons"></div>
