@@ -8,13 +8,13 @@ function NotFoundPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-[url('src/assets/SVG/notfoundWave.svg')] bg-cover bg-no-repeat bg-center w-full min-h-screen overflow-x-hidden flex flex-col justify-center items-center">
+    <div className="bg-[url('/src/assets/SVG/notfoundWave.svg')] bg-cover bg-no-repeat bg-center w-full min-h-screen overflow-x-hidden flex flex-col justify-center items-center">
       <h1 className="z-10 font-bold font-exo text-9xl text-slate-200 tracking-wider">
         404
       </h1>
 
       <div className="relative -top-10 inset-y-0 z-0">
-        <img src="src/assets/not Found.png" alt="not found Page" />
+        <img src="/src/assets/not Found.png" alt="not found Page" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-80 h-80 bg-gradient-to-r from-pink-500 to-red-500 rounded-full opacity-25 animate-ping" />
         </div>
