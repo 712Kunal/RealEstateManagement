@@ -7,7 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 function Pin({ position, post }) {
   return (
     <Marker position={position}>
-      <Tooltip interactive placement="top" arrow>
+      <Tooltip interactive placement="top" arrow> 
         <Card sx={{ maxWidth: 200 }}>
           <CardMedia
             sx={{ height: 140 }}

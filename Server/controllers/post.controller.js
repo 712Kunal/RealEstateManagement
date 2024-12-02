@@ -33,7 +33,6 @@ const getAllPosts = async (req, res) => {
 const getPostById = async (req, res) => {
   try {
     const post_id = req.params.id;
-    console.log(post_id);
     const tokenUserId = req.user.id;
 
     const singlePost = await prisma.post.findUnique({

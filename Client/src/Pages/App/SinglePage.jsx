@@ -183,7 +183,9 @@ function SinglePage() {
               </>
               {/* MAP SECTION */}
               <p className="title font-exo text-xl">Location</p>
-              <div className="mapContainer">{/* <Map /> */}</div>
+              <div className="MapContainer md:block w-full h-52">
+                <Map posts={postData} />
+              </div>
               <div className="buttons"></div>
             </div>
           </div>
