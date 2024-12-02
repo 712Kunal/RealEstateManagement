@@ -14,6 +14,9 @@ import { HiMiniBuildingStorefront } from "react-icons/hi2";
 import { useSearchParams } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest.js";
 import LoadingOverlay from "../Auth/LoadingOverlay.jsx";
+import ChatIcon from "@mui/icons-material/Chat";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 function SinglePage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,6 +24,11 @@ function SinglePage() {
   const [message, setmessage] = useState("");
   const [postData, setPostData] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
+  const [saved, setSaved] = useState(true);
+
+  const handleSave = () => {
+    setSaved((prev) => !prev);
+  };
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -62,13 +70,38 @@ function SinglePage() {
               <div className="postInfo flex flex-col gap-5">
                 <div className="top info flex justify-between">
                   <div className="post flex flex-col gap-2">
-                    <h1 className="text-3xl sm:text-4xl font-old">{postData.title}</h1>
+                    <h1 className="text-3xl sm:text-4xl font-old">
+                      {postData.title}
+                    </h1>
                     <div className="address flex items-center text-gray-400">
                       <MdLocationPin className="text-lg" />
                       <span>{postData.address}</span>
                     </div>
-                    <div className="price p-1 font-medium text-xl rounded-lg bg-blue-800 w-max">
-                      $ {postData.price}
+                    <div className="flex gap-5">
+                      <div className="price p-1 font-medium text-xl rounded-lg bg-blue-800 w-max">
+                        $ {postData.price}
+                      </div>
+                      <div className="buttons flex gap-5">
+                        <button className="bg-cyan-700 p-1 rounded-md">
+                          <ChatIcon />{" "}
+                          <span className="hidden sm:inline-block">
+                            Send a message
+                          </span>
+                        </button>
+                        <button
+                          className="flex items-center bg-cyan-700 p-1 rounded-md"
+                          onClick={handleSave}
+                        >
+                          {saved ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+                          {saved ? (
+                            <span className="hidden sm:inline-block">
+                              Saved
+                            </span>
+                          ) : (
+                            <span className="hidden sm:inline-block">Save</span>
+                          )}
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <div className="user flex flex-col items-center justify-center px-2 sm:px-7 py-0 gap-2 rounded-lg font-semibold bg-blue-800">
@@ -88,7 +121,7 @@ function SinglePage() {
           </div>
 
           {/* RIGHT SECTION */}
-          <div className="features mt-5 sm:basis-1/3 text-white">
+          <div className="features mt-10 sm:basis-1/3 sm:mt-0 text-white">
             <div className="h-full bg-[#164E63]/10 rounded-lg px-3 py-0 flex flex-col gap-3">
               <>
                 {/* GENERAL SECTION */}
@@ -186,7 +219,6 @@ function SinglePage() {
               <div className="MapContainer md:block w-full h-52">
                 <Map posts={postData} />
               </div>
-              <div className="buttons"></div>
             </div>
           </div>
         </>

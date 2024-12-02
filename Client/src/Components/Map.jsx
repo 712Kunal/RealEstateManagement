@@ -5,6 +5,8 @@ import Pin from "./Pin";
 function Map({ posts }) {
   const [error, setError] = useState("");
   const defaultPosition = [18.5204, 73.8567]; // Pune, India coordinates
+  console.log(posts);
+  
 
   // NORMALIZE POSTS TO ALWAYS BE AN ARRAY
   const postsArray = Array.isArray(posts) ? posts : [posts];
