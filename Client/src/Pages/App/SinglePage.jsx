@@ -50,19 +50,19 @@ function SinglePage() {
   }, []);
 
   return (
-    <div className="singlePage flex mt-16 mx-3">
+    <div className="singlePage flex-row md:flex mt-16 mx-3">
       {isloading ? (
         <LoadingOverlay message={message} />
       ) : (
         <>
           <div className="details text-gray-200 basis-8/12">
             {/* LEFT SECTION */}
-            <div className="wrapper pr-12">
+            <div className="wrapper pr-0 md:pr-12">
               <ImageSlider />
               <div className="postInfo flex flex-col gap-5">
                 <div className="top info flex justify-between">
                   <div className="post flex flex-col gap-2">
-                    <h1 className="text-4xl font-old">{postData.title}</h1>
+                    <h1 className="text-3xl sm:text-4xl font-old">{postData.title}</h1>
                     <div className="address flex items-center text-gray-400">
                       <MdLocationPin className="text-lg" />
                       <span>{postData.address}</span>
@@ -71,7 +71,7 @@ function SinglePage() {
                       $ {postData.price}
                     </div>
                   </div>
-                  <div className="user flex flex-col items-center justify-center px-7 py-0 gap-2 rounded-lg font-semibold bg-blue-800">
+                  <div className="user flex flex-col items-center justify-center px-2 sm:px-7 py-0 gap-2 rounded-lg font-semibold bg-blue-800">
                     <img
                       src={userInfo.User.avatar || "/src/assets/noavatar.png"}
                       alt="user avatar"
@@ -80,7 +80,7 @@ function SinglePage() {
                     <span>{userInfo.User.username}</span>
                   </div>
                 </div>
-                <div className="bottom info mt-5 text-gray-400 leading-5 text-justify">
+                <div className="bottom info mt-5 text-xl text-gray-400 text-justify">
                   {postData.postDetail.desc}
                 </div>
               </div>
@@ -88,7 +88,7 @@ function SinglePage() {
           </div>
 
           {/* RIGHT SECTION */}
-          <div className="features basis-1/3 text-white">
+          <div className="features mt-5 sm:basis-1/3 text-white">
             <div className="h-full bg-[#164E63]/10 rounded-lg px-3 py-0 flex flex-col gap-3">
               <>
                 {/* GENERAL SECTION */}
@@ -99,7 +99,7 @@ function SinglePage() {
                     <div className="featureText flex flex-col justify-center">
                       <span>Utilities</span>
                       <p className="text-xs text-white/70">
-                        Renter is responsible
+                        {postData.postDetail.utilities}
                       </p>
                     </div>
                   </div>
