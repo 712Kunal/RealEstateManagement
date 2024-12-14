@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import TwoFactorAuth from "./TwoFactorAuth";
 import TwofaVerifyPopup from "./TwofaVerifyPopup";
 import LoadingOverlay from "../Pages/Auth/LoadingOverlay.jsx";
+import handleSubmitGoogleOAuth from "../lib/GoogleOAuth.js";
 
 import {
   setUser,
@@ -62,6 +63,10 @@ function Signup() {
     } catch (error) {
       setError(error.response.data.error);
     }
+  };
+
+  const handleGoogleSignin = () => {
+    handleSubmitGoogleOAuth(navigate);
   };
 
   const handle2faVerify = async (otpCode) => {
@@ -150,7 +155,11 @@ function Signup() {
             <div className="flex-grow h-px bg-gray-700/50"></div>
           </div>
 
-          <button className="w-full flex items-center justify-center gap-2 bg-gray-800/50 border border-gray-700/50 text-gray-100 font-semibold py-3 px-4 rounded-lg hover:bg-gray-700/50 transition duration-300">
+          <button
+            type="button"
+            onClick={handleGoogleSignin}
+            className="w-full flex items-center justify-center gap-2 bg-gray-800/50 border border-gray-700/50 text-gray-100 font-semibold py-3 px-4 rounded-lg hover:bg-gray-700/50 transition duration-300"
+          >
             <FcGoogle className="text-2xl" />
             <span>Sign up with Google</span>
           </button>
