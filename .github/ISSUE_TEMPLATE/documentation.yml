@@ -1,0 +1,47 @@
+name: 📚 Documentation
+description: Report an issue related to documentation
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us improve the documentation!
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type of documentation issue
+      description: What type of documentation issue is this?
+      options:
+        - Missing documentation
+        - Unclear documentation
+        - Incorrect documentation
+        - Outdated documentation
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Documentation Location
+      description: Where is the documentation that needs to be improved?
+      placeholder: "README.md, API docs, etc."
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe what needs to be updated or fixed
+      placeholder: "The installation instructions are missing..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested Changes
+      description: If you have specific suggestions for improvements, please provide them
+      placeholder: "The documentation should include..."
