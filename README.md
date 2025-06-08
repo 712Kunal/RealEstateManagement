@@ -102,3 +102,7 @@ npm start
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+##🌟 Acknowledgments
+-Thanks to all contributors who help make this project better
+-Inspired by the need for better social media optimization tools
+-Built with amazing open source technologies
